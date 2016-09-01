@@ -1,11 +1,23 @@
 package com.group1.Models;
 
-public class Trader extends User {
+public class Trader {
 
+	String userName;
+	String password;
+	String first_Name;
+	String last_Name;
+	String role;
+	int employeeId;
 	int pm_id;
-	Trader(String userName, String password, String firstName, String lastName, String role, int pm_id) {
-		super(userName, password, firstName, lastName, role);
+	int loginAttempts;
+	
+	public Trader(String userName, String password, String first_Name, String last_Name, String role, int pm_id) {
+		this.userName = userName;
+		this.password = password;
+		this.first_Name = first_Name;
+		this.last_Name = last_Name;
+		this.role = role;
 		this.pm_id = pm_id;
-	}
+	}	
 
 }
