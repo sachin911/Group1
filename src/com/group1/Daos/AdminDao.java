@@ -82,7 +82,7 @@ public class AdminDao {
 		PreparedStatement stmt;
 
 		try {
-			stmt = con.prepareStatement("update EMPLOYEE set Role = '?', Login_Attempts = '?', Pm_id = '?' where userName = '?'");
+			stmt = con.prepareStatement("update EMPLOYEE set Role = ?, Login_Attempts = ?, Pm_id = ? where userName = ?");
 			stmt.setString(1, user.getRole());
 			stmt.setLong(2, user.getLoginAttempts());
 			stmt.setLong(3, user.getPm_id());
