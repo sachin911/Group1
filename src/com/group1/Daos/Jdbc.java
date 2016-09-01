@@ -24,11 +24,11 @@ public class Jdbc {
 			// Step 2. Create Connection
 			con = DriverManager.getConnection("jdbc:oracle:thin:@10.150.222.136:1521:xe", "MoneytreeG1", "MoneytreeG1");
 			System.out.println("Connection created ---- ");
-			String sql = "Select * from test";
+/*			String sql = "Select * from test";
             PreparedStatement pstmt = con.prepareStatement(sql);
             ResultSet result = pstmt.executeQuery();
             while(result.next())
-            System.out.println("The values in the table are       " + result.getInt("ID"));
+            System.out.println("The values in the table are       " + result.getInt("ID"));*/
 
           
 

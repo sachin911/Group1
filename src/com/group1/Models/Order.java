@@ -1,16 +1,19 @@
 package com.group1.Models;
 
+import java.sql.Date;
+
 public class Order {
 	
 	int order_id,total_quantity,open_quantity,allocated_quantity,pm_id,trader_id,block_id;
-	String side,symbol,status,account_type,currency,order_type,order_date,executed_date;
+	String side,symbol,status,account_type,currency,order_type;
 	float limit_price,stop_price,executed_price;
+	Date order_date,executed_date;
 	
 	public Order(int order_id, int total_quantity, int open_quantity,
 			int allocated_quantity, int pm_id, int trader_id, int block_id,
 			String side, String symbol, String status, String account_type,
-			String currency, String order_type, String order_date,
-			String executed_date, float limit_price, float stop_price,
+			String currency, String order_type, Date order_date,
+			Date executed_date, float limit_price, float stop_price,
 			float executed_price) {
 		this.order_id = order_id;
 		this.total_quantity = total_quantity;
@@ -136,19 +139,19 @@ public class Order {
 		this.order_type = order_type;
 	}
 
-	public String getOrder_date() {
+	public Date getOrder_date() {
 		return order_date;
 	}
 
-	public void setOrder_date(String order_date) {
+	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
 	}
 
-	public String getExecuted_date() {
+	public Date getExecuted_date() {
 		return executed_date;
 	}
 
-	public void setExecuted_date(String executed_date) {
+	public void setExecuted_date(Date executed_date) {
 		this.executed_date = executed_date;
 	}
 
