@@ -1,27 +1,37 @@
 package com.group1.Models;
 
-public class PM extends User {
+import java.util.ArrayList;
+import java.util.List;
 
-	public PM(String userName, String password, String firstName, String lastName, String role) {
-		super(userName, password, firstName, lastName, role);
-		// TODO Auto-generated constructor stub
+public class PM extends User {
+	List<Trader> traders = new ArrayList<Trader>();
+	
+
+	public PM(String userName, String password, String first_Name, String last_Name, String role) {
+		super(userName, password, first_Name, last_Name, role);
 	}
 
 	@Override
 	void makeTrade() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	void generateReport() {
-		// TODO Auto-generated method stub
-		
+		// go into portfolio db, gets orders where pm_id = emp_id
 	}
 
 	@Override
 	void generateHistory() {
-		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	void sendNotification() {
+		
+	}
+	
+	void getTraders() {
 		
 	}
 
