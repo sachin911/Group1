@@ -40,8 +40,8 @@ public class AdminDao {
 		PreparedStatement stmt;
 
 		try {
-			stmt = con.prepareStatement("delete from EMPLOYEE where (employee_id) = (?)");
-			stmt.setLong(1, user.getEmployeeId());
+			stmt = con.prepareStatement("delete from EMPLOYEE where (username) = (?)");
+			stmt.setString(1, user.getUserName());
 			result = stmt.executeUpdate();
 			removed = true;
 		} catch (SQLException e) {
@@ -60,11 +60,11 @@ public class AdminDao {
 		PreparedStatement stmt;
 
 		try {
-			stmt = con.prepareStatement("update EMPLOYEE set Role = '?', Login_Attempts = '?', Pm_id = '?' where employee_id = '?'");
+			stmt = con.prepareStatement("update EMPLOYEE set Role = '?', Login_Attempts = '?', Pm_id = '?' where userName = '?'");
 			stmt.setString(1, user.getRole());
 			stmt.setLong(2, user.getLoginAttempts());
 			stmt.setString(3, user.getPm_id());
-			stmt.setLong(4, user.getEmployeeId());
+			stmt.setString(4, user.getUserName());
 			result = stmt.executeUpdate();
 			edited = true;
 		} catch (SQLException e) {

@@ -4,17 +4,18 @@ import com.group1.Daos.AdminDao;
 import com.group1.Models.Employee;
 
 public class AdminService implements AdminServiceInterface {
-	AdminDao adminDao = new AdminDao();
+	static AdminDao adminDao = new AdminDao();
 	
-	public boolean addEmployee(Employee user) {
+	 
+	public static boolean addEmployee(Employee user) {
 		return adminDao.addEmployee(user);
 	}
 	
-	public boolean removeEmployee(Employee user) {
+	public static boolean removeEmployee(Employee user) {
 		return adminDao.removeEmployee(user);
 	}
 
-	public boolean editEmployee(Employee user) {
+	public static boolean editEmployee(Employee user) {
 		return adminDao.editEmployee(user);
 	}
 }
