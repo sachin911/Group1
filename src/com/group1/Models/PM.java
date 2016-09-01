@@ -1,10 +1,10 @@
 package com.group1.Models;
 
-public class Trader extends User {
-int pm_id;
-	Trader(String userName, String password, String firstName, String lastName, String role, int pm_id) {
+public class PM extends User {
+
+	public PM(String userName, String password, String firstName, String lastName, String role) {
 		super(userName, password, firstName, lastName, role);
-		this.pm_id = pm_id;
+		// TODO Auto-generated constructor stub
 	}
 
 	@Override
