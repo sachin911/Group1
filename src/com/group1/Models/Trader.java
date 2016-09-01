@@ -7,4 +7,14 @@ public class Trader extends Employee {
 		super(userName, password, first_Name, last_Name, role);
 		this.pm_id = pm_id;
 	}
+
+	public int getPm_id() {
+		return pm_id;
+	}
+
+	public void setPm_id(int pm_id) {
+		this.pm_id = pm_id;
+	}
+	
+	
 }
