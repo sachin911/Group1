@@ -31,6 +31,150 @@ public class Order {
 		this.stop_price = stop_price;
 		this.executed_price = executed_price;
 	}
+
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+
+	public int getTotal_quantity() {
+		return total_quantity;
+	}
+
+	public void setTotal_quantity(int total_quantity) {
+		this.total_quantity = total_quantity;
+	}
+
+	public int getOpen_quantity() {
+		return open_quantity;
+	}
+
+	public void setOpen_quantity(int open_quantity) {
+		this.open_quantity = open_quantity;
+	}
+
+	public int getAllocated_quantity() {
+		return allocated_quantity;
+	}
+
+	public void setAllocated_quantity(int allocated_quantity) {
+		this.allocated_quantity = allocated_quantity;
+	}
+
+	public int getPm_id() {
+		return pm_id;
+	}
+
+	public void setPm_id(int pm_id) {
+		this.pm_id = pm_id;
+	}
+
+	public int getTrader_id() {
+		return trader_id;
+	}
+
+	public void setTrader_id(int trader_id) {
+		this.trader_id = trader_id;
+	}
+
+	public int getBlock_id() {
+		return block_id;
+	}
+
+	public void setBlock_id(int block_id) {
+		this.block_id = block_id;
+	}
+
+	public String getSide() {
+		return side;
+	}
+
+	public void setSide(String side) {
+		this.side = side;
+	}
+
+	public String getSymbol() {
+		return symbol;
+	}
+
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getAccount_type() {
+		return account_type;
+	}
+
+	public void setAccount_type(String account_type) {
+		this.account_type = account_type;
+	}
+
+	public String getCurrency() {
+		return currency;
+	}
+
+	public void setCurrency(String currency) {
+		this.currency = currency;
+	}
+
+	public String getOrder_type() {
+		return order_type;
+	}
+
+	public void setOrder_type(String order_type) {
+		this.order_type = order_type;
+	}
+
+	public String getOrder_date() {
+		return order_date;
+	}
+
+	public void setOrder_date(String order_date) {
+		this.order_date = order_date;
+	}
+
+	public String getExecuted_date() {
+		return executed_date;
+	}
+
+	public void setExecuted_date(String executed_date) {
+		this.executed_date = executed_date;
+	}
+
+	public float getLimit_price() {
+		return limit_price;
+	}
+
+	public void setLimit_price(float limit_price) {
+		this.limit_price = limit_price;
+	}
+
+	public float getStop_price() {
+		return stop_price;
+	}
+
+	public void setStop_price(float stop_price) {
+		this.stop_price = stop_price;
+	}
+
+	public float getExecuted_price() {
+		return executed_price;
+	}
+
+	public void setExecuted_price(float executed_price) {
+		this.executed_price = executed_price;
+	}
 	
 	
 	

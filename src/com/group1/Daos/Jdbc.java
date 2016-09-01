@@ -10,14 +10,6 @@ import java.sql.ResultSet;
 
 public class Jdbc {
 	
-	public static void main(String[] args) {
-	/*	Jdbc jd = new Jdbc();
-		Connection con = jd.getCon();
-		if(con!= null){
-			System.out.println("fuck it");
-		}*/
-	}
-	
 	public Connection getCon() {
 		Connection con = null;
 		try {
