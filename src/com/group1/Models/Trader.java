@@ -31,6 +31,10 @@ public class Trader extends User {
 		// TODO Auto-generated method stub
 
 	}
+	void blockTrade()
+	{
+		
+	}
 
 	@Override
 	boolean changePassword(String passWord) {
