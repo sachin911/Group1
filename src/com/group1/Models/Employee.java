@@ -16,8 +16,5 @@ public abstract class Employee {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.role = role;
-	}
-	
-	abstract boolean changePassword(String passWord);
-	
+	}	
 }

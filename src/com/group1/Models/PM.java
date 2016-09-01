@@ -11,34 +11,4 @@ public class PM extends User {
 		super(userName, password, first_Name, last_Name, role);
 	}
 
-	@Override
-	void makeTrade() {
-		
-	}
-
-	@Override
-	void generateReport() {
-		// go into portfolio db, gets orders where pm_id = emp_id
-	}
-
-	@Override
-	void generateHistory() {
-		
-	}
-
-	@Override
-	void sendNotification() {
-		
-	}
-	
-	void getTraders() {
-		
-	}
-
-	@Override
-	boolean changePassword(String passWord) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
