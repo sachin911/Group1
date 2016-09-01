@@ -1,4 +1,4 @@
-package com.group1.Db;
+package com.group1.Daos;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
