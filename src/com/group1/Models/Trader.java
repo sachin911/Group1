@@ -8,38 +8,4 @@ public class Trader extends User {
 		this.pm_id = pm_id;
 	}
 
-	@Override
-	void makeTrade() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	void generateReport() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	void generateHistory() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	void sendNotification() {
-		// TODO Auto-generated method stub
-
-	}
-	void blockTrade()
-	{
-		
-	}
-
-	@Override
-	boolean changePassword(String passWord) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
