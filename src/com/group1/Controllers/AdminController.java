@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class PMController
+ * Servlet implementation class AdminController
  */
-@WebServlet("/PMController")
-public class PMController extends HttpServlet {
+@WebServlet("/AdminController")
+public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PMController() {
+    public AdminController() {
         super();
         // TODO Auto-generated constructor stub
     }
