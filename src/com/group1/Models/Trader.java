@@ -24,5 +24,9 @@ int pm_id;
 		// TODO Auto-generated method stub
 		
 	}
+	void blockTrade()
+	{
+		
+	}
 
 }
