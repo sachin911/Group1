@@ -7,7 +7,7 @@ public class Employee {
 	String last_Name;
 	String role;
 	int employeeId;
-	int loginAttempts;
+	public int loginAttempts;
 	
 	public Employee(String userName, String password, String first_Name, String last_Name, String role) {
 		this.userName = userName;
@@ -15,6 +15,10 @@ public class Employee {
 		this.first_Name = first_Name;
 		this.last_Name = last_Name;
 		this.role = role;
+	}
+
+	public Employee() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public String getUserName() {
