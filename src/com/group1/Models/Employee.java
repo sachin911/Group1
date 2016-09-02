@@ -6,6 +6,7 @@ public class Employee {
 	String first_Name;
 	String last_Name;
 	String role;
+	int pm_id;
 	int employeeId;
 	int loginAttempts;
 	
@@ -16,6 +17,7 @@ public class Employee {
 		this.last_Name = last_Name;
 		this.role = role;
 	}
+
 
 	public String getUserName() {
 		return userName;
@@ -73,9 +75,9 @@ public class Employee {
 		this.loginAttempts = loginAttempts;
 	}
 
-	public String getPm_id() {
+	public int getPm_id() {
 		// TODO Auto-generated method stub
-		return null;
+		return pm_id;
 	}	
 	
 	

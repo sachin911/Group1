@@ -19,10 +19,10 @@ public class BlockService implements BlockServiceInterface{
 		List<Order> order_list = new ArrayList<Order>();
 		
 		for (Order iter : order_list) {
-			order_list.
+			
 		}
 		
-		
+		return false;
 		
 		
 		
