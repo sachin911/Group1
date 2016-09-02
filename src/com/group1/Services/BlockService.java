@@ -6,8 +6,10 @@ import com.group1.Models.Employee;
 
 public class BlockService implements BlockServiceInterface{
 	
-	public void makeBlockService(Employee user, Block block_order){
-		BlockDao block
+	public void executeBlockService(Employee user, Block block_order){
+		BlockDao blockdao = new BlockDao();
+		
+		
 	}
 	
 }
