@@ -13,6 +13,7 @@ public class Order {
 			String side, String symbol, String account_type,
 			String currency, String order_type,  float limit_price, float stop_price) {
 		this.total_quantity = total_quantity;
+		this.open_quantity = total_quantity;
 		this.pm_id = pm_id;
 		this.trader_id = trader_id;
 		this.side = side;
@@ -49,6 +50,16 @@ public class Order {
 //		this.stop_price = stop_price;
 //		this.executed_price = executed_price;
 //	}
+
+	@Override
+	public String toString() {
+		return "Order [order_id=" + order_id + ", total_quantity=" + total_quantity + ", open_quantity=" + open_quantity
+				+ ", allocated_quantity=" + allocated_quantity + ", pm_id=" + pm_id + ", trader_id=" + trader_id
+				+ ", block_id=" + block_id + ", side=" + side + ", symbol=" + symbol + ", status=" + status
+				+ ", account_type=" + account_type + ", currency=" + currency + ", order_type=" + order_type
+				+ ", order_date=" + order_date + ", executed_date=" + executed_date + ", limit_price=" + limit_price
+				+ ", stop_price=" + stop_price + ", executed_price=" + executed_price + "]";
+	}
 
 	public Order() {
 		// TODO Auto-generated constructor stub
