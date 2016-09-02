@@ -21,6 +21,10 @@ public class LoginDao {
 			stmt.setString(1, userName);
 			stmt.setString(2, password);
 			ResultSet rs = stmt.executeQuery();
+			if(rs!= null && rs.next()){	
+				System.out.println("username-------------------------"+rs.getString("userName"));
+			}
+			
 			if (rs.next() == true) {     // Login attempt successful, allow access
 				System.out.println("Valid User");
 				valid = true;

@@ -20,13 +20,18 @@ public class LoginServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String userName = request.getParameter("username");
-		String password = request.getParameter("pwd");
+		String password = request.getParameter("password");
 		
 		LoginController lc = new LoginController();
-		lc.loginCheck(userName, password);
+		if(lc.loginCheck(userName, password)){
+			response.getWriter().append("true");
+		}else{
+			response.getWriter().append("false");
+		}
+		
 		
 		
 	}
