@@ -1,5 +1,8 @@
 package com.group1.Services;
 
-public interface BlockServiceInterface {
+import com.group1.Models.Block;
+import com.group1.Models.Employee;
 
+public interface BlockServiceInterface {
+	public boolean executeBlockService(Employee user, Block block);
 }

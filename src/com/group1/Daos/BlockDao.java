@@ -13,7 +13,7 @@ import com.group1.Models.Order;
 
 public class BlockDao {
 
-	public void executeBlock(Employee user, Block block_order) {
+	public int executeBlock(Employee user, Block block_order) {
 
 		Jdbc database_con = new Jdbc();
 
@@ -30,7 +30,7 @@ public class BlockDao {
 		float stop_price = order_list.get(0).getStop_price();
 		Date ordered_date = order_list.get(0).getOrder_date();
 		Date executed_date = order_list.get(0).getExecuted_date();
-
+		int row_count = 0;
 		for (Order iter : order_list) {
 			total_quantity += iter.getTotal_quantity();
 			open_quantity += iter.getOpen_quantity();
@@ -53,13 +53,15 @@ public class BlockDao {
 			pstmt.setInt(8, open_quantity);
 			pstmt.setDate(9, ordered_date);
 			pstmt.setDate(10, executed_date);
-			pstmt.executeUpdate();
+			row_count = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		return row_count;
+		
 	}
 
 }
