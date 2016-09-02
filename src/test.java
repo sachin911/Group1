@@ -11,8 +11,9 @@ public static void main(String[] args)  {
 		PMController pmc = new PMController();
 //		//boolean result = ac.AddAdminController("jose", "giants", "jose", "kelly", "Trader", 11);
 //		//boolean result = ac.AddAdminController("", "giants", "ollie", "kelly", "PM", 16);
-		boolean result = pmc.createPMBrokerOrder(100, 1, 1, "BUY", "AAPL", "ROTH-IRA", "USD", "LIMIT", 110, 0);
-		System.out.println(result);
+		//boolean result = pmc.createPMBrokerOrder(100, 1, 1, "BUY", "AAPL", "ROTH-IRA", "USD", "LIMIT", 110, 0);
+		boolean result1 = pmc.createPMBrokerOrder(100, 1, 2, "SELL", "GOOGL", "ROTH-IRA", "USD", "LIMIT", 110, 0);
+		System.out.println(result1);
 //		
 		}
 
