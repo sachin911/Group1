@@ -8,6 +8,10 @@ import com.group1.Models.Order;
 
 public class OrderDao {
 
+	private static java.sql.Date getCurrentDate() {
+	    java.util.Date today = new java.util.Date();
+	    return new java.sql.Date(today.getTime());
+	}
 
 	public boolean createBrokerOrder(Order o)
 	{
@@ -35,8 +39,7 @@ public class OrderDao {
 			pstmt.setInt(12,o.getBlock_id());  // ??
 			
 			// CHECK DATE TIME FORMAT !!!
-			Date date = new Date(0);
-			pstmt.setDate(13, date );
+			pstmt.setDate(13, getCurrentDate());
 			pstmt.setDate(14,o.getExecuted_date());
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			
@@ -86,7 +89,7 @@ public class OrderDao {
 			
 			// CHECK DATE TIME FORMAT !!!
 			Date date = new Date(0);
-			pstmt.setDate(13, date );
+			pstmt.setDate(13, getCurrentDate());
 			pstmt.setDate(14,o.getExecuted_date());
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			

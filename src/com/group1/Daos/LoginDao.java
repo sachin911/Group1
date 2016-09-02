@@ -40,7 +40,6 @@ public class LoginDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		return valid;
+		} return valid;
 	}
 }
