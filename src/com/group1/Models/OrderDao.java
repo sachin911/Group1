@@ -1,10 +1,10 @@
-package com.group1.Daos;
+package com.group1.Models;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.group1.Models.Order;
+import com.group1.Daos.Jdbc;
 
 public class OrderDao {
 

@@ -1,7 +1,7 @@
 package com.group1.Services;
 
-import com.group1.Daos.OrderDao;
 import com.group1.Models.Order;
+import com.group1.Models.OrderDao;
 
 public class OrderService {
 	static OrderDao orderDao = new OrderDao();

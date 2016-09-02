@@ -6,8 +6,8 @@ public class Order {
 
 	int order_id, total_quantity, open_quantity, allocated_quantity, pm_id, trader_id, block_id;
 	String side, symbol, status, account_type, currency, order_type;
-	float limit_price, stop_price, executed_price;
 	Date order_date, executed_date;
+	float limit_price, stop_price, executed_price;
 
 	public Order(int total_quantity, int pm_id, int trader_id, String side, String symbol, String account_type,
 			String currency, String order_type, float limit_price, float stop_price) {
