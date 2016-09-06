@@ -48,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 		if(userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Trader"))
 		{
 			 System.out.println(userValidity+typeOfUser);
-			 RequestDispatcher rd=request.getRequestDispatcher("traderhome.html");  
+			 RequestDispatcher rd=request.getRequestDispatcher("TraderHomeServlet");  
 			rd.forward(request, response);
 		}
 		if(userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Admin"))

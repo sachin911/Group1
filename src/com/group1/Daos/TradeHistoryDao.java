@@ -34,7 +34,6 @@ public class TradeHistoryDao {
 				result = stmt.executeQuery();
 			}
 			while(result.next()){
-				
 				Order order = new Order();
 				
 				order.setOrder_id(result.getInt("order_id"));
