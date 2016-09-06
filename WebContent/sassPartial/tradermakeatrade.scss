@@ -5,18 +5,13 @@
 	text-align: center;
 }
 
-
-.makeatrade__table, makeatradeinstructions__table {
-	margin-left: 5%;
-	margin-right: 5%;
-	overflow: auto;
-	width: 90%;
+.makeatradeinstructions__apply, .submittrade {
+	float: right;
+	margin-top: 2%;
+	margin-right:5%;
 }
 
-.makeatradeinstructions__apply {
-	background-color: $buttoncolor;
-	color: $buttontextcolor;
-	float: right;
-	font-family: $buttonfont;
-	padding: 5px;
+.createbutton, .deletebutton {
+	margin-left: 5%;
+	margin-top: 2%;
 }

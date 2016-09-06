@@ -1,5 +1,4 @@
 .hero {
-	background-color: $herobackground;
 	clear:both;
 	display: block;
 	margin-left: 100px;
@@ -9,24 +8,22 @@
 	padding-top: 50px;
 	padding-bottom: 50px;
 
+	&__block{
+		background-color: $herobackground;
+		margin-left: 10px;
+		margin-right: 10px;
+		margin-top: 20px;
+		min-width: 100px;
+		padding-bottom: 70px;
+		padding-top: 70px;
+	}
+
 	@media screen and (min-width: 1024px) {
 		&__article {
 			display: inline-block;
 		}
 	}
-	
-	// &__table, &__header, &__data {
-	// 	padding-right: 100px;
-	// 	padding-left: 100px;
-	// 	background-color: $backgroundcolor;
-	// 	border: none;
-	// }
-	// &__header {
-	// 	vertical-align: bottom;
-	// }
-	// &__data {
-	// 	vertical-align: top;
-	// }
+
 }
 
 @media screen and (min-width: 1024px) {
@@ -39,7 +36,7 @@
 
 
 .portfolio {
-	margin-top: 75px;
+	margin-top: 50px;
 
 	&__table{
  		min-width: 1000px;
