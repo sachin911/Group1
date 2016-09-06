@@ -1,16 +1,18 @@
 package com.group1.Controllers;
 
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.group1.Models.Block;
-import com.group1.Models.Employee;
+
 import com.group1.Models.Order;
 import com.group1.Services.BlockService;
 import com.group1.Services.OrderService;
 
 public class TraderController {
+
 
 	private static java.sql.Date getCurrentDate() {
 		java.util.Date today = new java.util.Date();
@@ -38,6 +40,7 @@ public class TraderController {
 		String side = order_list.get(0).getSide();
 		String status = order_list.get(0).getStatus();
 		String symbol = order_list.get(0).getSymbol();
+
 		
 		BlockService block_service = new BlockService();
 		
@@ -67,4 +70,5 @@ public class TraderController {
 		
 	}
 	
+
 }

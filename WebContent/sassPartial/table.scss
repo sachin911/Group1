@@ -1,0 +1,32 @@
+table, td, th {
+	align: center;
+	border-collapse: collapse;
+	border: 1px solid $tablecolor;
+	font-family: $tablefont;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 5px;
+	overflow: auto;
+	text-align: center;
+}
+
+th {
+	background-color: $tableheader;
+}
+
+tr:nth-child(even) {
+	background-color: $tabledata1;
+}
+
+tr:nth-child(odd) {
+	background-color: $tabledata2;
+}
+
+.tableinput {
+	width: 100%;
+}
+
+table {
+	
+	width: 90%;
+}

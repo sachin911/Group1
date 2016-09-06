@@ -6,5 +6,4 @@ public interface AdminServiceInterface {
 //	boolean addEmployee(Employee e);
 //	boolean removeEmployee(Employee e);
 //	boolean editEmployee(Employee e);
-	
 }

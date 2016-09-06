@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Trader Make a Trade</title>
+		<link rel="stylesheet" href="style/style.css">
+	</head>
+	<body>
+		<header class="traderMenu">
+			<img class="traderMenu__logo" src="images/Logo.png">
+
+			<!-- Menu buttons -->
+			<div class="traderMenu__buttonbox">
+				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome.html'">
+				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="traderMenu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="traderMenu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
+				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
+
+		<main class="tradermakeatrademain">
+			<div class="makeatrade">
+				<h2 class="makeatrade__header">Make a Trade</h2>
+				<div class="scrollwrapper">
+					<form method="post">
+						<table class="makeatrade__table" id="maketradetable" name="tradetable">
+							<tr>
+								<th name="side">Side</th>
+								<th name="symbol">Symbol</th>
+								<th name="totalquantity">Total Quantity</th>
+								<th name="currency">Currency</th>
+								<th name="limitprice">Limit Price</th>
+								<th name="stopprice">Stop Price</th>
+								<th name="ordertype">Order Type</th>
+							</tr>
+							<tbody>
+							<tr>
+								<td><input type="text" class="table__input" name="sideinput"></td>
+								<td><input type="text" class="table__input" name="symbolinput"></td>
+								<td><input type="text" class="table__input" name="totalquantityinput"></td>
+								<td><input type="text" class="table__input" name="currencyinput"></td>
+								<td><input type="text" class="table__input" name="limitpriceinput"></td>
+								<td><input type="text" class="table__input" name="stoppriceinput"></td>
+								<td><input type="text" class="table__input" name="ordertypeinput"></td>
+							</tr>
+							</tbody>
+						</table>
+						</form>
+				</div>
+					<button onclick="addRow('maketradetable')" class="createbutton generalbutton" name="addbutton">Add row</button>
+					<button onclick="deleteRow('maketradetable')" class="deletebutton generalbutton" name="deletebutton">Delete row</button>
+					<input type="submit" class="submittrade generalbutton" value="Submit" name="submittradebutton">
+			</div>
+
+
+		<!-- makeatrade table -->
+			<div class="makeatradeinstructions">
+				<h2 class="makeatradeinstructions__header">PM Trade Orders</h2>
+				<div class="scrollwrapper">
+					<table id="makeatradeinstructions__table" class="makeatradeinstructions__table" name="tradeinstructionstable">
+						<thead>
+							<tr>
+								<th name="sideinstructions">Side</th>
+								<th name="symbolinstructions">Symbol</th>
+								<th name="totalquantityinstructions">Total Quantity</th>
+								<th name="currencyinstructions">Currency</th>
+								<th name="limitpriceinstructions">Limit Price</th>
+								<th name="stoppriceinstructions">Stop Price</th>
+								<th name="ordertypeinstructions">Order Type</th>
+								<th name="addbuttoncolumn"></th>
+								<th name="removebuttoncolumn"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td name="sideinstructions">Side</td>
+								<td name="symbolinstructions">Symbol</td>
+								<td name="totalquantityinstructions">Total Quantity</td>
+								<td name="currencyinstructions">Currency</td>
+								<td name="limitpriceinstructions">Limit Price</td>
+								<td name="stoppriceinstructions">Stop Price</td>
+								<td name="ordertypeinstructions">Order Type</td>
+								<td name="addbuttoncolumn"></td>
+								<td name="removebuttoncolumn"></td>
+							</tr>
+						</tbody>
+					</table>
+					<script>displayPMInstructionTable("makeatradeinstructions__table");</script>
+				</div>
+				<input type="button" class="makeatradeinstructions__apply generalbutton" value="Apply">
+			</div>
+		</main>
+
+		<script src="JavaScript/makeatrade.js"></script>
+	</body>
+</html>

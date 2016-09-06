@@ -1,10 +1,10 @@
-package com.group1.Daos;
+package com.group1.Models;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import com.group1.Models.Order;
+import com.group1.Daos.Jdbc;
 
 public class OrderDao {
 
@@ -28,16 +28,16 @@ public class OrderDao {
 			pstmt.setString(1,o.getSide()); // have
 			pstmt.setString(2,o.getSymbol()); //have 
 			pstmt.setInt(3,o.getTotal_quantity()); // have
-			pstmt.setFloat(4, o.getLimit_price()); // check aagainst Order Type
+			pstmt.setFloat(4, o.getLimit_price()); // check against Order Type
 			pstmt.setFloat(5, o.getStop_price());  // check against order Type
 			pstmt.setInt(6,o.getOpen_quantity()); //           TOGETHER SUMS
 			pstmt.setInt(7,o.getAllocated_quantity()); //      TOTAL Q, BUT NEED BA input
-			pstmt.setString(8, "PENDING");   // AUTO-PENDING
+			pstmt.setString(8, "PENDING");   // AUTO-PENDING if sent to Broker
 			pstmt.setString(9,o.getAccount_type()); // have
 			pstmt.setInt(10,o.getPm_id());  // have
 			pstmt.setInt(11,o.getTrader_id());  // have or possibly blank
+			
 			pstmt.setNull(12, java.sql.Types.INTEGER);
-		//	setInt(12,o.getBlock_id());  // ??
 			
 			// CHECK DATE TIME FORMAT !!!
 			pstmt.setDate(13, getCurrentDate());
@@ -62,6 +62,7 @@ public class OrderDao {
 		}
 		return result;
 	}
+	
 	
 	public boolean createPMAssignedOrder(Order o)
 	{

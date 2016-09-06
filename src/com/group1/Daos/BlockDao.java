@@ -13,6 +13,11 @@ import com.group1.Models.Employee;
 import com.group1.Models.Order;
 
 public class BlockDao {
+	
+	private static java.sql.Date getCurrentDate() {
+	    java.util.Date today = new java.util.Date();
+	    return new java.sql.Date(today.getTime());
+	}
 
 	public int createBlock(Block block_order) {
 
@@ -29,8 +34,7 @@ public class BlockDao {
 		String side = order_list.get(0).getSide();
 		String status = order_list.get(0).getStatus();
 		String symbol = order_list.get(0).getSymbol();
-		Date ordered_date = order_list.get(0).getOrder_date();
-		Date executed_date = order_list.get(0).getExecuted_date();
+		Date ordered_date = getCurrentDate();
 		int row_id = 0;
 
 		PreparedStatement pstmt;

@@ -5,17 +5,18 @@ import java.util.Date;
 import java.util.List;
 
 public class Block {
-	
+
 	int total_quantity = 0;
-	int executed_quantity,open_quantity;
-	Date order_date,executed_date;
-	String side,symbol,status;
+	int executed_quantity, open_quantity;
+	Date order_date, executed_date;
+	String side, symbol, status;
 	List<Order> order_list = new ArrayList<Order>();
 	int block_id;
-	
+
 	public Block(int total_quantity, int executed_quantity, int open_quantity, Date order_date, Date executed_date,
 			String side, String symbol, String status, List<Order> order_list, int block_id) {
 		super();
+
 		this.total_quantity = total_quantity;
 		this.executed_quantity = executed_quantity;
 		this.open_quantity = open_quantity;
@@ -23,9 +24,11 @@ public class Block {
 		this.executed_date = executed_date;
 		this.side = side;
 		this.symbol = symbol;
+
 		this.status = status;
 		this.order_list = order_list;
 		this.block_id = block_id;
+
 	}
 
 	public int getTotal_quantity() {
@@ -107,8 +110,5 @@ public class Block {
 	public void setBlock_id(int block_id) {
 		this.block_id = block_id;
 	}
-	
-	
-	
 
 }

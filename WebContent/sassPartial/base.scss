@@ -1,0 +1,41 @@
+* {
+	box-sizing: border-box;
+}
+
+h2 {
+	font-family: $h2font;
+}
+
+p {
+	font-family: $pfont;
+}
+
+.scrollwrapper {
+	overflow:auto;
+}
+
+.generalbutton {
+	background-color: $buttoncolor;
+	border-radius: 3%;
+	color: $buttontextcolor;
+	font-family: $buttonfont;
+	border: 2px solid $buttonbordercolor;
+}
+
+@media screen and (max-width: 767px){
+	.hidden-mob {
+		display: none !important;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+	.hidden-tab {
+		display: none !important;
+	}
+}
+
+@media screen and (min-width: 1024px){
+	.hidden-desktop {
+		display: none !important;
+	}
+}

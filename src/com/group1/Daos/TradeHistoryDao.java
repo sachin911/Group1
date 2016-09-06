@@ -13,7 +13,7 @@ import com.group1.Models.Order;
 public class TradeHistoryDao {
 
 	Jdbc jdbc = new Jdbc();
-	List<Order> tradingHistory = new ArrayList<>();
+	public List<Order> historyList = new ArrayList<>();
 	
 	public List displayTradeHistory(Employee user){
 		
@@ -21,9 +21,17 @@ public class TradeHistoryDao {
 		PreparedStatement stmt;
 		
 		try{
-			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE EMPLOYEE_ID = ?");
+			ResultSet result = null;
+			if(user.getRole().equals("PM")){
+			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ?");
 			stmt.setInt(1, user.getEmployeeId());
-			ResultSet result = stmt.executeQuery();
+			result = stmt.executeQuery();
+			}
+			else if(user.getRole().equals("Trader")){
+				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ?");
+				stmt.setInt(1, user.getEmployeeId());
+				result = stmt.executeQuery();
+			}
 			while(result.next()){
 				
 				Order order = new Order();
@@ -52,15 +60,16 @@ public class TradeHistoryDao {
 				order.setStop_price(result.getInt("stop_price"));
 				order.setExecuted_price(result.getInt("executed_price"));
 				
-				tradingHistory.add(order);
+				historyList.add(order);
 				
 			}
+
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return tradingHistory;
+		return historyList;
 		
 		
 	}
