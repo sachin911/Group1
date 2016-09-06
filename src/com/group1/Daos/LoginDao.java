@@ -43,8 +43,6 @@ public class LoginDao {
 				
 				// System.out.println("Valid user");
 				con.close();
-				
-				
 				return resultMap;
 			}
 
