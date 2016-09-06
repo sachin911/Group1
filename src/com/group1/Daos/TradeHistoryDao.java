@@ -17,19 +17,20 @@ public class TradeHistoryDao {
 	
 	public List displayTradeHistory(Employee user){
 		
-		Connection con = jdbc.getCon();
+		Connection con = null;
+		con = jdbc.getCon();
 		PreparedStatement stmt;
 		
 		try{
 			ResultSet result = null;
 			if(user.getRole().equals("PM")){
 			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ?");
-			stmt.setInt(1, user.getEmployeeId());
+			stmt.setInt(1, user.getEmployee_id());
 			result = stmt.executeQuery();
 			}
 			else if(user.getRole().equals("Trader")){
 				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ?");
-				stmt.setInt(1, user.getEmployeeId());
+				stmt.setInt(1, user.getEmployee_id());
 				result = stmt.executeQuery();
 			}
 			while(result.next()){
