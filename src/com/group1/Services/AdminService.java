@@ -15,7 +15,12 @@ public class AdminService implements AdminServiceInterface {
 		return adminDao.removeEmployee(user);
 	}
 
+
+
+
+
 	public static boolean editEmployee(Employee user) {
 		return adminDao.editEmployee(user);
 	}
+
 }
