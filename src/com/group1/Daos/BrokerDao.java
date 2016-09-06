@@ -64,8 +64,6 @@ public class BrokerDao {
 	
 	public void updateTrades(Order o) {
 		
-		
-		
 	}
 
 }
