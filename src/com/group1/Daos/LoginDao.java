@@ -4,43 +4,77 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.group1.Models.Employee;
 
 public class LoginDao {
 	Jdbc jdbc = new Jdbc();
+	Employee user;
 
-	public String checkUserExists(String userName, String password) {
+	int login_attempts;
+	ResultSet result;
+
+	String pass;
+	int attempts;
+	String role;
+	//String response;
+	Map<Integer, String> resultMap = new HashMap<Integer, String>();
+
+	public Map<Integer, String> authenticateEmployee(String username,
+			String password) throws SQLException {
+		Jdbc jdbc = new Jdbc();
 		Connection con = jdbc.getCon();
-		int result = 0;
 		PreparedStatement stmt;
+		stmt = con.prepareStatement("SELECT * FROM EMPLOYEE WHERE USERNAME=?");
+		stmt.setString(1, username);
+		result = stmt.executeQuery();
 
-		try {
-			stmt = con.prepareStatement("select * from EMPLOYEE where username = ? and password = ?");
-			stmt.setString(1, userName);
-			stmt.setString(2, password);
-			ResultSet rs = stmt.executeQuery();
-			if(rs!= null && rs.next()){	
-				System.out.println("username-------------------------"+rs.getString("userName"));
-				System.out.println("Valid User");
-				return rs.getString("role"); 
-			} else if (userName.equals(rs.getString("username"))) {			// password is wrong, but user exists in databse
-				int attempts = (int) rs.getLong("login_attempts") + 1;	// increase log attempts by 1
-				if (attempts == 3) {  									// check to see if that was their third try
-					System.out.println("Please contact your admin to reset your login attempts");
-				} else {
-					stmt = con.prepareStatement("update EMPLOYEE set Login_Attempts = ? where userName = ?"); // else increase by 1
-					stmt.setLong(1, attempts);						// and update it
-					stmt.setString(2, userName);
-					result = stmt.executeUpdate();
-				}
-			} else {
-				System.out.println("Not a user");
+		if (result != null) {
+			while (result.next()) {
+				pass = result.getString("password");
+				attempts = result.getInt("login_attempts");
+				 role = result.getString("role");
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-		return null;
+			if (password.equals(pass)) {
+				resultMap.put(1, "Valid User");
+				resultMap.put(2, role);
+				
+				// System.out.println("Valid user");
+
+				return resultMap;
+			}
+
+			else {
+				login_attempts = ++login_attempts;
+				stmt = con.prepareStatement("UPDATE EMPLOYEE SET LOGIN_ATTEMPTS = ?, WHERE USERNAME = ?");
+				stmt.setLong(1, login_attempts);
+				stmt.setString(2, username);
+
+				if (login_attempts > 3) {
+					// BLOCK USER
+					resultMap.put(1, "block account");
+					resultMap.put(2, "null");
+					// System.out.println("Contact admin");
+					return resultMap;
+				} else {
+					resultMap.put(1, "invalid password");
+					resultMap.put(2, "null");
+					System.out.println("Invalid Password");
+					return resultMap;
+				}
+
+			}
+
+		}
+
+		else {
+			resultMap.put(1, "invalid user");
+			System.out.println("User does not  exists");
+
+			return resultMap;
+
+		}
 	}
 }
