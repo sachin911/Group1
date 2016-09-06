@@ -17,14 +17,13 @@ public class TradeHistoryDao {
 	
 	public List displayTradeHistory(Employee user){
 		
-<<<<<<< HEAD
+
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt = null;
-=======
-		Connection con = null;
-		con = jdbc.getCon();
-		PreparedStatement stmt;
->>>>>>> refs/remotes/origin/NH
+
+		con = null;
+	
+
 		
 		try{
 			ResultSet result = null;
@@ -66,8 +65,8 @@ public class TradeHistoryDao {
 				order.setExecuted_price(result.getInt("executed_price"));
 				
 				historyList.add(order);
-			}
-
+				}
+				
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -15,15 +15,15 @@
 
 			<!-- Menu buttons -->
 			<div class="traderMenu__buttonbox">
-				<input type="button" class="traderMenu__button selected" value="HOME" onClick="callservlet()">
+				<input type="button" class="traderMenu__button selected" value="HOME" onClick="traderhome1.jsp">
 				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="traderMenu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
-				<input type="button" class="traderMenu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
+				<input type="button" class="traderMenu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
 				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
 			</div>
 		</header>
-<form name="myform" action="TraderHomeServlet" method="get"></form>
+<form name="historyform" action="TradeHistoryServlet" method="get"></form>
 		<!-- Header menu buttons end -->
 		<main class="traderhomemain">
 			<div class="hero">
@@ -93,13 +93,7 @@
    
 </script>-->
 <script>
-function callservlet()
-{ 
-      
-     document.myform.submit();
-    
 
-	}
 </script>
 	</body>
 </html>

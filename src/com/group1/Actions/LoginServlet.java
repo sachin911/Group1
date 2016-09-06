@@ -57,28 +57,31 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		List<Object> li = new ArrayList<>();
-		Object obj=new Object();
+		Object obj = new Object();
 
 		LoginController logincontroller = new LoginController();
 		try {
 			li = logincontroller.callLogin(username, password);
 			map = (Map<Integer, String>) li.get(0);
+
 			
-<<<<<<< HEAD
+
              System.out.println(li.size());
+
+
+
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);
 			// eid=Integer.parseInt(map.get(3));
-			if(userValidity.equals("Valid User")){
-				e=(Employee) li.get(1);
+			if (userValidity.equals("Valid User")) {
+				e = (Employee) li.get(1);
 			}
-			
-			
+
 			if (userValidity.equals("Valid User")
 					&& typeOfUser.equalsIgnoreCase("PM")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
+				System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("pmhome.html");
 				rd.forward(request, response);
@@ -88,9 +91,9 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
+				System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("traderhome.html");
+						.getRequestDispatcher("traderhome1.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
@@ -98,7 +101,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
+				System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("adminhome.html");
 				rd.forward(request, response);
@@ -135,24 +138,12 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 
-=======
-			RequestDispatcher rd=request.getRequestDispatcher("pmhome.html");  
-			rd.forward(request, response);
-		}
-		if(userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Trader"))
-		{
-			 System.out.println(userValidity+typeOfUser);
-			 RequestDispatcher rd=request.getRequestDispatcher("TraderHomeServlet");  
-			rd.forward(request, response);
-		}
-		if(userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Admin"))
-		{
-			 System.out.println(userValidity+typeOfUser);	
-			 RequestDispatcher rd=request.getRequestDispatcher("adminhome.html");  
-			rd.forward(request, response);
->>>>>>> refs/remotes/origin/NH
+
+
+
 		}
 	}
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
