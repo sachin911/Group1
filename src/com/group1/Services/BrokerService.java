@@ -38,7 +38,7 @@ public class BrokerService {
 
 	public void marketOrderFull(Order o) {
 		float price = (float) (rand.nextDouble() * 100);
-		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), price);
+		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), price);
 		// SET OPEN AND ALLOCATED QUANTITY
 		
 		o.setOpen_quantity(o.getTotal_quantity());
@@ -53,7 +53,7 @@ public class BrokerService {
 
 	public void limitOrderFull(Order o) {
 		
-		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
+		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
 		
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
@@ -66,7 +66,7 @@ public class BrokerService {
 
 	public void stopOrderFull(Order o) {
 		
-		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
+		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
 		
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
@@ -98,7 +98,7 @@ public class BrokerService {
 		
 		
 		int open = (int) (rand.nextDouble() * 100 * o.getTotal_quantity());
-		float pl = calcPL(o.getOrder_type(), open, o.getLimit_price());
+		float pl = calcAmount(o.getOrder_type(), open, o.getLimit_price());
 		
 		o.setOpen_quantity(open);
 		o.setAllocated_quantity(o.getTotal_quantity() - open);
@@ -113,7 +113,7 @@ public class BrokerService {
 	public void stopOrderPartial(Order o) {
 		
 		int open = (int) (rand.nextDouble() * 100 * o.getTotal_quantity());
-		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getStop_price());
+		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), o.getStop_price());
 		
 		o.setOpen_quantity(open);
 		o.setAllocated_quantity(o.getTotal_quantity() - open);
@@ -131,7 +131,7 @@ public class BrokerService {
 	
 	
 	
-	public float calcPL(String type, int quantity, float price) {
+	public float calcAmount(String type, int quantity, float price) {
 		float pl;
 		if (type == "BUY") {
 			pl = quantity * - price;
