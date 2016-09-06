@@ -10,17 +10,17 @@
 		<link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
-		<header class="traderMenu">
-			<img class="traderMenu__logo" src="images/Logo.png">
+		<header class="menu">
+			<img class="menu__logo" src="images/Logo.png">
 
 			<!-- Menu buttons -->
-			<div class="traderMenu__buttonbox">
-				<input type="button" class="traderMenu__button selected" value="HOME" onClick = "document.myform.submit()">
-				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
-				<input type="button" class="traderMenu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
-				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
-				<input type="button" class="traderMenu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
-				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login1.jsp'">
+			<div class="menu__buttonbox">
+				<input type="button" class="menu__button selected" value="HOME" onClick = "document.myform.submit()">
+				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.jsp'">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login1.jsp'">
 			</div>
 		</header>
 <form name="myform" action="TraderHomeServlet" method="get"></form>

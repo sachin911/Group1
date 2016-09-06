@@ -94,7 +94,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				request.setAttribute("error", "Invalid Username/Password");
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+						.getRequestDispatcher("login.jsp");
 
 				rd.forward(request, response);
 			}
@@ -105,7 +105,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error",
 						"Your account is blocked, Contact admin to activate");
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+						.getRequestDispatcher("login.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Invalid user")
@@ -113,7 +113,7 @@ public class LoginServlet extends HttpServlet {
 				// System.out.println(userValidity+typeOfUser);
 
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+						.getRequestDispatcher("login.jsp");
 				request.setAttribute("error", "Invalid Username/Password");
 				rd.forward(request, response);
 			}
