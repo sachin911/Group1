@@ -11,23 +11,24 @@
 		<title>PM Home Page</title>
 		<link rel="stylesheet" href="style/style.css">
 	</head>
-	<body onLoad="callservlet()">
-		<header class="traderMenu">
-			<img class="traderMenu__logo" src="images/Logo.png">
+	<body>
+		<header class="menu">
+			<img class="menu__logo" src="images/Logo.png">
 
 			<!-- Menu buttons -->
+<<<<<<< HEAD
 			<div class="traderMenu__buttonbox">
 				<input type="button" class="Menu__button selected" value="HOME" onClick="document.homeform.submit()">
 				<input type="button" class="Menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
 				<input type="button" class="Menu__button" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
 				<input type="button" class="Menu__button" value="PROFIT/LOSS" onClick="location.href='pmprofitloss.html'">
-				<input type="button" class="Menu__button" value="ORDER HISTORY" onClick="location.href='pmorderhistory.html'">
+				<input type="button" class="Menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
 				<input type="button" class="Menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
 			</div>
 		</header>
 		
 	<form name="homeform" action="PMHomeServlet" method="get"></form>
-	<form name="historyform" action="PMHomeServlet" method="get"></form>
+	<form name="historyform" action="TradeHistoryServlet" method="get"></form>
 
 		<!-- Header menu buttons end -->
 		<main class="pmhomemain">
