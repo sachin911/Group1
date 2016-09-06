@@ -7,7 +7,9 @@ public class Trader extends Employee {
 		super(userName, password, first_Name, last_Name, role);
 		this.pm_id = pm_id;
 	}
-
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Trader [pm_id=" + pm_id + "]";

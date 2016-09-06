@@ -21,6 +21,7 @@
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
 				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
 				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+
 			</div>
 		</header>
 <form name="historyform" action="TradeHistoryServlet" method="get"></form>
@@ -93,6 +94,11 @@
    
 </script>-->
 <script>
+
+function helpme()
+{ 
+     document.myform.submit();
+	} 
 
 </script>
 	</body>

@@ -29,10 +29,10 @@ public class test {
 //		boolean result2 = tc.createTraderBrokerOrder(50, 11, 16, "BUY", "GOOGL", "FARLEY", "AUD", "LIMIT", 95, 0);
 //		boolean result3 = tc.createTraderBrokerOrder(30, 11, 16, "SELL", "GOOGL", "FARLEY", "USD", "MARKET", 0, 0);
 		
-		boolean result = pmc.createPMBrokerOrder(5, 11, 11, "SELL", "COCA", "410K", "USD", "MARKET", 0, 0);
-		boolean result1 = pmc.createPMBrokerOrder(60, 11, 11, "BUY", "AQUA", "CORLEONE", "INR", "STOP", 0, 50);
-		boolean result2 = tc.createTraderBrokerOrder(50, 11, 21, "BUY", "SAPE", "FARLEY", "AUD", "MARKET", 0, 0);
-		boolean result3 = tc.createTraderBrokerOrder(1, 11, 22, "SELL", "SAPE", "FARLEY", "USD", "MARKET", 0, 0);
+		boolean result = pmc.createPMBrokerOrder(5, 11, 21, "BUY", "CUP", "IRS", "USD", "MARKET", 0, 0);
+		boolean result1 = pmc.createPMBrokerOrder(60, 11, 22, "BUY", "TV", "TAX", "INR", "LIMIT", 50, 0);
+		boolean result2 = tc.createTraderBrokerOrder(50, 11, 21, "BUY", "PEN", "HEALTH", "AUD", "STOP", 0, 80);
+		boolean result3 = tc.createTraderBrokerOrder(1, 11, 22, "BUY", "CAKE", "RETIRE", "USD", "MARKET", 0, 0);
 		
 //		System.out.println(result);
 //		System.out.println(result1);

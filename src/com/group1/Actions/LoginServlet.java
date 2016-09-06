@@ -20,34 +20,19 @@ import com.group1.Models.Employee;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 10L;
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-
-	/*
-	 * int eid; int pmid; String pass; int attempts; String role;
-	 * 
-	 * public LoginServlet(String username, String pass2, int attempts2, String
-	 * role2, int eid2, int pmid2) {
-	 * 
-	 * this.pass = pass2; this.attempts = attempts2; this.role = role2; this.eid
-	 * = eid2; this.pmid = pmid2;
-	 * 
-	 * }
-	 */
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		Integer key;
 		String value = null;
+        System.out.println("kms");
 
 		String userValidity;
 		String typeOfUser;
@@ -81,9 +66,8 @@ public class LoginServlet extends HttpServlet {
 					&& typeOfUser.equalsIgnoreCase("PM")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-				System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("pmhome.html");
+						.getRequestDispatcher("pmhome1.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
@@ -91,9 +75,12 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-				System.out.println(obj);
+
+			System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("traderhome1.jsp");
+//				RequestDispatcher rd = request
+//						.getRequestDispatcher("TraderHomeServlet.java");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
@@ -106,12 +93,15 @@ public class LoginServlet extends HttpServlet {
 						.getRequestDispatcher("adminhome.html");
 				rd.forward(request, response);
 			}
+			
+			
+			
 			if (userValidity.equals("Invalid password")
 					&& typeOfUser.equalsIgnoreCase("null")) {
 				System.out.println(userValidity + typeOfUser);
 				request.setAttribute("error", "Invalid Username/Password");
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+						.getRequestDispatcher("login.jsp");
 
 				rd.forward(request, response);
 			}
@@ -122,7 +112,7 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error",
 						"Your account is blocked, Contact admin to activate");
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+						.getRequestDispatcher("login.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Invalid user")
@@ -130,16 +120,13 @@ public class LoginServlet extends HttpServlet {
 				// System.out.println(userValidity+typeOfUser);
 
 				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+						.getRequestDispatcher("login.jsp");
 				request.setAttribute("error", "Invalid Username/Password");
 				rd.forward(request, response);
 			}
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
-
-
-
 
 		}
 	}
