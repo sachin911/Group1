@@ -41,19 +41,41 @@ public class BrokerService {
 		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), price);
 		// SET OPEN AND ALLOCATED QUANTITY
 		
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setAllocated_quantity(0);
+		
 		o.setExecuted_price(price);
 		o.setPl(pl);
-		o.setStatus("Executed");
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setStatus("EXECUTED");
 		
 		brokerdao.updateTrades(o);
 	}
 
 	public void limitOrderFull(Order o) {
-		float pl;
+		
+		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
+		
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setAllocated_quantity(0);
+		
 		o.setExecuted_price(o.getLimit_price());
+		o.setPl(pl);
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setStatus("EXECUTED");
 	}
 
 	public void stopOrderFull(Order o) {
+		
+		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
+		
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setAllocated_quantity(0);
+		
+		o.setExecuted_price(o.getStop_price());
+		o.setPl(pl);
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setStatus("EXECUTED");
 
 	}
 
@@ -65,16 +87,12 @@ public class BrokerService {
 		String oType = o.getOrder_type();
 
 		switch(oType) {
-		case "Market": marketOrderPartial(o); break;
 		case "Limit": limitOrderPartial(o); break;
 		case "Stop": stopOrderPartial(o); break;
 		case "Stop Limit": stopLimitOrderPartial(o); break;
 		}
 	}
 
-	public void marketOrderPartial(Order o) {
-
-	}
 
 	public void limitOrderPartial(Order o) {
 
@@ -87,6 +105,8 @@ public class BrokerService {
 	public void stopLimitOrderPartial(Order o) {
 
 	}
+	
+	
 	
 	public float calcPL(String type, int quantity, float price) {
 		float pl;

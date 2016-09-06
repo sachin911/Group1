@@ -56,24 +56,6 @@ public class Order {
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-
-
-	@Override
-	public String toString() {
-		return "Order [order_id=" + order_id + ", total_quantity="
-				+ total_quantity + ", open_quantity=" + open_quantity
-				+ ", allocated_quantity=" + allocated_quantity + ", pm_id="
-				+ pm_id + ", trader_id=" + trader_id + ", block_id=" + block_id
-				+ ", side=" + side + ", symbol=" + symbol + ", status="
-				+ status + ", account_type=" + account_type + ", currency="
-				+ currency + ", order_type=" + order_type + ", order_date="
-				+ order_date + ", executed_date=" + executed_date
-				+ ", limit_price=" + limit_price + ", stop_price=" + stop_price
-				+ ", executed_price=" + executed_price + "]";
-	}
-
 	public int getOrder_id() {
 		return order_id;
 	}
