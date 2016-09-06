@@ -13,13 +13,14 @@ public class PortfolioDao {
 		Jdbc jobj = new Jdbc();
 		boolean result = false;
 		Connection con=jobj.getCon();
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
 			pstmt = con.prepareStatement("select * from portfolio where emp_id = ? and symbol = ?");
 			pstmt.setInt(1, o.getTrader_id());
 			pstmt.setString(2, o.getSymbol());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
 			if (rs != null && rs.next()) {   // Trader already owns some of the symbol
 
@@ -58,15 +59,11 @@ public class PortfolioDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		return result;
 	}
 
@@ -75,13 +72,14 @@ public class PortfolioDao {
 		Jdbc jobj = new Jdbc();
 		boolean result = false;
 		Connection con=jobj.getCon();
-		PreparedStatement pstmt;
-
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
 		try {
 			pstmt = con.prepareStatement("select * from portfolio where emp_id = ? and symbol = ?");
 			pstmt.setInt(1, o.getTrader_id());
 			pstmt.setString(2, o.getSymbol());
-			ResultSet rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 
 			if (rs != null && rs.next()) { 			// The trader is already in possession of SYMBOL
 				int currentQuantity = rs.getInt("quantity");
@@ -106,15 +104,14 @@ public class PortfolioDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
 		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		return result;
 	}
 

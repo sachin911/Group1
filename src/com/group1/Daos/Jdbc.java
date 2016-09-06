@@ -43,4 +43,14 @@ public class Jdbc {
 		}
 		return con;
 	}
+	
+	public void destroy(Connection con) {
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

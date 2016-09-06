@@ -18,7 +18,7 @@ public class PLDao {
 	public List getPL(Employee user){
 		
 		Connection con = jdbc.getCon();
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		
 		try{
 			ResultSet result = null;
@@ -68,7 +68,11 @@ public class PLDao {
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
 		return plList;
 	}
 }

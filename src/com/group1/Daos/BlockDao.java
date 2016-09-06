@@ -37,7 +37,7 @@ public class BlockDao {
 		Date ordered_date = getCurrentDate();
 		int row_id = 0;
 
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			String sql_query = "insert into block values(0,?,?,?,?,?,?,?,?)";
 			pstmt = con.prepareStatement(sql_query,new String[] {"block_id"});
@@ -58,11 +58,14 @@ public class BlockDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
 	
 		return row_id;
-		
+
 	}
 	
 	/*
