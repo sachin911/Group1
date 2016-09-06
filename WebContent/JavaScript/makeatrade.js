@@ -9,6 +9,7 @@ function addRow(tablename) {
     var cell4 = row.insertCell(4);
     var cell5 = row.insertCell(5);
     var cell6 = row.insertCell(6);
+    var cell7 = row.insertCell(7);
 
     var element0 = document.createElement("input");
     element0.type = "text";
@@ -44,24 +45,13 @@ function addRow(tablename) {
     element6.type = "text";
     element6.name = "textbox";
     cell6.appendChild(element6);
+
+    var element7 = document.createElement("input");
+    element7.type = "checkbox";
+    element7.name = "checkbox";
+    cell7.appendChild(element7);
 }
 
 function deleteRow(tablename) {
     document.getElementById(tablename).deleteRow(1);
 }
-
-function displayPMInstructionTable(tablename) {
-    var table = getElementById(tablename);
-
-    console.log(table.rows.length);
-    var columns = table.column[7].cells;
-
-    console.log(test);
-
-    for (var i = 0; i < table.rows.length; i++) {
-        columns[i].innerHTML = "NEW CONTENT";
-    }
-};
-
-
-//if there's a row show the buttons
