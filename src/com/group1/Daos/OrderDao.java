@@ -72,7 +72,7 @@ public class OrderDao {
 		Connection con=jobj.getCon();
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
 				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id, block_id, " 
-				+ "order_date, executed_date, currency, order_type, executed_price " 
+				+ "order_date, executed_date, currency, order_type, executed_price) " 
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt;
 		try {
@@ -88,15 +88,16 @@ public class OrderDao {
 			pstmt.setString(9,o.getAccount_type()); // have
 			pstmt.setInt(10,o.getPm_id());  // have
 			pstmt.setInt(11,o.getTrader_id());  // have or possibly blank
-			pstmt.setInt(12,o.getBlock_id());  // ??
+			
+			
+			pstmt.setNull(12, java.sql.Types.INTEGER);
 			
 			// CHECK DATE TIME FORMAT !!!
-			Date date = new Date(0);
 			pstmt.setDate(13, getCurrentDate());
 			pstmt.setDate(14,o.getExecuted_date());
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			
-			pstmt.setString(15,o.getCurrency());  // have
+			pstmt.setString(15, o.getCurrency());  // have
 			pstmt.setString(16, o.getOrder_type());  // have
 			pstmt.setFloat(17, o.getExecuted_price());
 			//String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
