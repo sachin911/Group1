@@ -12,27 +12,17 @@
 		<header class="menu">
 			<img class="menu__logo" src="images/Logo.png">
 
-			<!-- Menu buttons -->
-	<!-- this is test remove itssssss -->
-			<div class="traderMenu__buttonbox">
-				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
-				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
-				<input type="button" class="traderMenu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
-				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
-				<input type="button" class="traderMenu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
-				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
-			</div>
-		</header>
+
 		<!-- Header menu buttons end -->
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
 		<main class="traderorderhistorymain">
 
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome.html'">
+				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
 				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
-				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
+				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
 				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
 			</div>
 		</header>
@@ -78,3 +68,4 @@
 
 	</script>
 </html>
+>>>>>>> 67056778014d665f11bd157bc900d31299815a81
