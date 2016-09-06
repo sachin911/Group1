@@ -18,7 +18,7 @@ public class TradeHistoryDao {
 	public List displayTradeHistory(Employee user){
 		
 		Connection con = jdbc.getCon();
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		
 		try{
 			ResultSet result = null;
@@ -61,20 +61,15 @@ public class TradeHistoryDao {
 				order.setExecuted_price(result.getInt("executed_price"));
 				
 				historyList.add(order);
-				
 			}
 
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} finally {
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
 		return historyList;
