@@ -12,7 +12,7 @@ public class Order {
 	public Order(int total_quantity, int pm_id, int trader_id, String side, String symbol, String account_type,
 			String currency, String order_type, float limit_price, float stop_price) {
 		this.total_quantity = total_quantity;
-		this.open_quantity = total_quantity;
+		this.allocated_quantity = total_quantity;
 		this.pm_id = pm_id;
 		this.trader_id = trader_id;
 		this.side = side;

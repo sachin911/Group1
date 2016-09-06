@@ -14,14 +14,15 @@ public class BrokerService {
 		List<Order> pending = brokerdao.getPendingTrades();
 
 		for (Order o : pending) {
-			if (o.getOrder_type().equals("Market")) {
+			if (o.getOrder_type().equals("MARKET")) {
 				execute(o);
+			} else {
+				final int ran = rand.nextInt(100);
+				System.out.println("Hello");
+				if (ran > 50) { }  // stay pending
+				else if (ran > 20) {execute(o); }   // get executed fully
+				else { partial(o); }   // partially
 			}
-
-			final int ran = rand.nextInt(100);
-			if (ran > 50) { return; }  // stay pending
-			else if (ran > 20) {execute(o); return; }   // get executed fully
-			else { partial(o); return; }   // partially
 		}
 	}
 
@@ -29,10 +30,10 @@ public class BrokerService {
 		String oType = o.getOrder_type();
 
 		switch(oType) {
-		case "Market": marketOrderFull(o); break;
-		case "Limit": limitOrderFull(o); break;
-		case "Stop": stopOrderFull(o); break;
-		case "Stop Limit": stopLimitOrderFull(o); break;
+		case "MARKET": marketOrderFull(o); break;
+		case "LIMIT": limitOrderFull(o); break;
+		case "STOP": stopOrderFull(o); break;
+		case "STOP LIMIT": stopLimitOrderFull(o); break;
 		}
 	}
 
@@ -40,25 +41,25 @@ public class BrokerService {
 		float price = (float) (rand.nextDouble() * 100);
 		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), price);
 		// SET OPEN AND ALLOCATED QUANTITY
-		
+
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
-		
+
 		o.setExecuted_price(price);
 		o.setPl(pl);
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setStatus("EXECUTED");
-		
+
 		brokerdao.updateTrades(o);
 	}
 
 	public void limitOrderFull(Order o) {
-		
+
 		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
-		
+
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
-		
+
 		o.setExecuted_price(o.getLimit_price());
 		o.setPl(pl);
 		o.setOpen_quantity(o.getTotal_quantity());
@@ -66,12 +67,12 @@ public class BrokerService {
 	}
 
 	public void stopOrderFull(Order o) {
-		
+
 		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
-		
+
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
-		
+
 		o.setExecuted_price(o.getStop_price());
 		o.setPl(pl);
 		o.setOpen_quantity(o.getTotal_quantity());
@@ -105,9 +106,9 @@ public class BrokerService {
 	public void stopLimitOrderPartial(Order o) {
 
 	}
-	
-	
-	
+
+
+
 	public float calcPL(String type, int quantity, float price) {
 		float pl;
 		if (type == "BUY") {
@@ -117,7 +118,7 @@ public class BrokerService {
 		}
 		return pl;
 	}
-	
+
 	//USD, FRANC, AUD, GBP, INR, CAD, EURO
 
 }

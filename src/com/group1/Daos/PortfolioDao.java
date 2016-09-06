@@ -9,7 +9,7 @@ import com.group1.Models.Order;
 
 public class PortfolioDao {
 
-	public boolean checkSell(Order o) {
+	public boolean checkPortfolio(Order o) {
 
 		Jdbc jobj = new Jdbc();
 		boolean result = false;
@@ -28,8 +28,14 @@ public class PortfolioDao {
 				if (o.getSide().equals("Sell")) { 					//Trader is selling symbol A
 					if (o.getTotal_quantity() > currentQuantity) {  // if trader is trying to sell more than he has
 						return false;
-					} else {
-						return true;				// trader has enough of symbol to trade
+					} else {								// trader has enough of symbol to trade
+						pstmt = con.prepareStatement("update quantity set quantity = ? where trader_id = ? and symbol = ?");
+						int newQuantity = currentQuantity - o.getOpen_quantity();
+						pstmt.setInt(1, newQuantity);
+						pstmt.setInt(2, o.getTrader_id());
+						pstmt.setString(3, o.getSymbol());
+						pstmt.executeQuery();
+						return true;			
 					}
 
 
@@ -39,28 +45,26 @@ public class PortfolioDao {
 					pstmt.setInt(1, newQuantity);
 					pstmt.setInt(2, o.getTrader_id());
 					pstmt.setString(3, o.getSymbol());
-					ResultSet rs1 = pstmt.executeQuery();
+					pstmt.executeQuery();
 					return true;
 				}
 			} else {			// he does not have any of stock so cannot sell, or needs to add
 				if (o.getSide().equals("Sell")) { 					//Trader is selling symbol A
-						return false;							 // if trader is trying to sell what he doesnt have
-					} else {
-						pstmt = con.prepareStatement("insert into order_table() values()");
-						return true;				// trader is buying a new stock
-					}
-				
-				
+					return false;							 // if trader is trying to sell what he doesnt have
+				} else {									// trader is buying a new stock
+					pstmt = con.prepareStatement("insert into portfolio (trader_id, symbol, quantity) values(?,?,?)");
+					pstmt.setInt(1, o.getTrader_id());
+					pstmt.setString(2, o.getSymbol());
+					pstmt.setInt(3, o.getOpen_quantity());
+					pstmt.executeQuery();
+					return true;			
+				}
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
-		// CHECK SIDE AGAIN HERE
-		// ADD TO PORTFOLIO
 		return result;
 	}
 
