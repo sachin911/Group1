@@ -10,10 +10,10 @@
 			<h1>Money Tree</h1>
 		</header>
 		<main class="login">
-			<form>
-				<input type="text" class="login__input" placeholder="Username">
-				<input type="password" class="login__input" placeholder="Password">
-				<input type="submit" class="login__submit" value="Login">
+			<form action="loginservlet" method="get">
+				<input type="text" class="login__input" placeholder="Username" name="username">
+				<input type="password" class="login__input" placeholder="Password" name="password">
+				<input type="submit" class="login__submit" value="Login" name="loginbutton">
 			</form>
 		</main>
 	</body>
