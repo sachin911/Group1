@@ -1,10 +1,11 @@
-package com.group1.Models;
+package com.group1.Daos;
 
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.group1.Daos.Jdbc;
+import com.group1.Models.Order;
 
 public class OrderDao {
 
@@ -127,13 +128,106 @@ public class OrderDao {
 			pstmt.executeQuery();
 			System.out.println("Order Cancelled");
 			result = true;
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return result;
+
+	}
+	public int getTotAssets(int trader_id)
+	{
+		System.out.println("OrderDao : assets");
+		Jdbc jobj = new Jdbc();
+		int result = 0;
+		Connection con=jobj.getCon();
+		//String sql = "update order_table set status = 'CANCELLED'";
+		ResultSet rs;
+		PreparedStatement pstmt;
+		try {
+			pstmt = con.prepareStatement("select count(distinct(symbol)) from order_table where trader_id= ?");
+			pstmt.setInt(1, trader_id);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt(1);
+			}
+				
+			System.out.println("Total assets : " + result);
+			con.close();
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;
+	}
+	public int getpl(int trader_id)
+	{
+		System.out.println("OrderDao : pl");
+		Jdbc jobj = new Jdbc();
+		int result = 0;
+		Connection con=jobj.getCon();
+		//String sql = "update order_table set status = 'CANCELLED'";
+		ResultSet rs;
+		PreparedStatement pstmt;
+		try {
+			pstmt = con.prepareStatement("select pl from order_table where trader_id= ?");
+			pstmt.setInt(1, trader_id);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				result=result+rs.getInt(1);
+			}
+				
+			System.out.println("Total assets : " + result);
+			con.close();
 
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public ArrayList<Order> getlist(int trader_id)
+	{
+		System.out.println("OrderDao : trades");
+		Jdbc jobj = new Jdbc();
+		ArrayList<Order> result = new ArrayList<Order>();
+		Connection con=jobj.getCon();
+		//String sql = "update order_table set status = 'CANCELLED'";
+		ResultSet rs;
+		PreparedStatement pstmt;
+		try {
+			pstmt = con.prepareStatement("select symbol,total_quantity,currency,executed_price,pl from order_table where trader_id= ?");
+			pstmt.setInt(1, trader_id);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				Order tmp = new Order();
+				tmp.setSymbol(rs.getString(1));
+				tmp.setTotal_quantity(rs.getInt(2));
+				tmp.setCurrency(rs.getString(3));
+				tmp.setExecuted_price(rs.getFloat(4));
+				tmp.setPl(rs.getFloat(5));
+				result.add(tmp);
+			}
+				
+			System.out.println("Total assets : " + result);
+			
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
