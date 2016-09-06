@@ -64,6 +64,12 @@ public class LoginServlet extends HttpServlet {
 			li = logincontroller.callLogin(username, password);
 			map = (Map<Integer, String>) li.get(0);
 
+			
+
+             System.out.println(li.size());
+
+
+
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);
 			// eid=Integer.parseInt(map.get(3));
@@ -131,6 +137,9 @@ public class LoginServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+
+
+
 
 		}
 	}

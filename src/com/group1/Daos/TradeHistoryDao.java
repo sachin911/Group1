@@ -17,9 +17,13 @@ public class TradeHistoryDao {
 	
 	public List displayTradeHistory(Employee user){
 		
-		Connection con = null;
-		con = jdbc.getCon();
+
+		Connection con = jdbc.getCon();
 		PreparedStatement stmt = null;
+
+		con = null;
+	
+
 		
 		try{
 			ResultSet result = null;
