@@ -8,7 +8,6 @@ import com.group1.Models.Employee;
 
 public class AdminDao {
 	Jdbc jdbc = new Jdbc();
-	static int empID = 10000; // starts at 10000 - first emp will be 10001
 	
 	/* NEED TO ERROR CHECK THE PM_ID -- 
 	ERROR WHEN TRADER POINTS TO NON EXISTING PM

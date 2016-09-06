@@ -26,7 +26,6 @@ public class TraderController {
 		
 		for (Order iter : order_list) {
 			total_quantity += iter.getTotal_quantity();
-			//open_quantity += iter.getOpen_quantity();
 		}
 		
 		Block b = new Block(total_quantity, side, symbol);

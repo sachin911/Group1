@@ -26,15 +26,9 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		LoginController lc = new LoginController();
-		if(lc.loginCheck(userName, password)){
-			response.getWriter().append("true");
-			
-		}else{
-			response.getWriter().append("false");
-		}
 		
-		
-		
+		String result = lc.loginCheck(userName, password);
+		System.out.println(result);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

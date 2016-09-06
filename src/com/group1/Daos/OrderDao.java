@@ -36,6 +36,7 @@ public class OrderDao {
 			pstmt.setString(9,o.getAccount_type()); // have
 			pstmt.setInt(10,o.getPm_id());  // have
 			pstmt.setInt(11,o.getTrader_id());  // have or possibly blank
+			
 			pstmt.setNull(12, java.sql.Types.INTEGER);
 			
 			// CHECK DATE TIME FORMAT !!!

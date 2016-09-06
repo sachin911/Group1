@@ -7,7 +7,7 @@ public class Order {
 	int order_id, total_quantity, open_quantity, allocated_quantity, pm_id, trader_id, block_id;
 	String side, symbol, status, account_type, currency, order_type;
 	Date order_date, executed_date;
-	float limit_price, stop_price, executed_price;
+	float limit_price, stop_price, executed_price, pl;
 
 	public Order(int total_quantity, int pm_id, int trader_id, String side, String symbol, String account_type,
 			String currency, String order_type, float limit_price, float stop_price) {
@@ -207,5 +207,15 @@ public class Order {
 	public void setExecuted_price(float executed_price) {
 		this.executed_price = executed_price;
 	}
+
+	public float getPl() {
+		return pl;
+	}
+
+	public void setPl(float pl) {
+		this.pl = pl;
+	}
+	
+	
 
 }

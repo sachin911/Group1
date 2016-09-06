@@ -22,13 +22,9 @@ public class LoginDao {
 			ResultSet rs = stmt.executeQuery();
 			if(rs!= null && rs.next()){	
 				System.out.println("username-------------------------"+rs.getString("userName"));
-			}
-
-			if (rs.next() == true) {     // Login attempt successful, allow access
 				System.out.println("Valid User");
 				return rs.getString("role"); 
-
-			} else if (userName == rs.getString("username")) {			// password is wrong, but user exists in databse
+			} else if (userName.equals(rs.getString("username"))) {			// password is wrong, but user exists in databse
 				int attempts = (int) rs.getLong("login_attempts") + 1;	// increase log attempts by 1
 				if (attempts == 3) {  									// check to see if that was their third try
 					System.out.println("Please contact your admin to reset your login attempts");
