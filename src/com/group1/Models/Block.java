@@ -111,4 +111,12 @@ public class Block {
 		this.block_id = block_id;
 	}
 
+	@Override
+	public String toString() {
+		return "Block [total_quantity=" + total_quantity + ", executed_quantity=" + executed_quantity
+				+ ", open_quantity=" + open_quantity + ", order_date=" + order_date + ", executed_date=" + executed_date
+				+ ", side=" + side + ", symbol=" + symbol + ", status=" + status + ", order_list=" + order_list
+				+ ", block_id=" + block_id + "]";
+	}
+
 }

@@ -39,7 +39,8 @@ public class BlockDao {
 
 		PreparedStatement pstmt;
 		try {
-			pstmt = con.prepareStatement("insert into block values(?,?,?,?,?,?,?,?,?,?)");
+			String sql_query = "insert into block values(0,?,?,?,?,?,?,?,?)";
+			pstmt = con.prepareStatement(sql_query,new String[] {"block_id"});
 			pstmt.setString(1, side);
 			pstmt.setString(2, symbol);
 			pstmt.setString(3, status);
@@ -50,8 +51,9 @@ public class BlockDao {
 			pstmt.setNull(8, java.sql.Types.DATE);
 			pstmt.executeUpdate();
 			ResultSet rs = pstmt.getGeneratedKeys();
-			rs.next();
-			row_id = rs.getInt(1);
+			if(rs.next()){
+				row_id = rs.getInt(1);
+			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -22,6 +22,7 @@ public class Order {
 		this.order_type = order_type;
 		this.limit_price = limit_price;
 		this.stop_price = stop_price;
+		this.status = "pending";
 	}
 
 	// public Order(int order_id, int total_quantity, int open_quantity,
@@ -206,6 +207,16 @@ public class Order {
 
 	public void setPl(float pl) {
 		this.pl = pl;
+	}
+
+	@Override
+	public String toString() {
+		return "Order [order_id=" + order_id + ", total_quantity=" + total_quantity + ", open_quantity=" + open_quantity
+				+ ", allocated_quantity=" + allocated_quantity + ", pm_id=" + pm_id + ", trader_id=" + trader_id
+				+ ", block_id=" + block_id + ", side=" + side + ", symbol=" + symbol + ", status=" + status
+				+ ", account_type=" + account_type + ", currency=" + currency + ", order_type=" + order_type
+				+ ", order_date=" + order_date + ", executed_date=" + executed_date + ", limit_price=" + limit_price
+				+ ", stop_price=" + stop_price + ", executed_price=" + executed_price + ", pl=" + pl + "]";
 	}
 	
 	
