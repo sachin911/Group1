@@ -49,11 +49,7 @@ public class LoginServlet extends HttpServlet {
 			li = logincontroller.callLogin(username, password);
 			map = (Map<Integer, String>) li.get(0);
 
-			
-
              System.out.println(li.size());
-
-
 
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);

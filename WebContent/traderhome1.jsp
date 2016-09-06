@@ -15,7 +15,7 @@
 
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
+				<input type="button" class="menu__button" value="HOME" onClick="document.historyform.submit()">
 				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
@@ -24,7 +24,7 @@
 
 			</div>
 		</header>
-<form name="historyform" action="TradeHistoryServlet" method="get"></form>
+<form name="historyform" action="TraderHomeServlet" method="get"></form>
 		<!-- Header menu buttons end -->
 		<main class="traderhomemain">
 			<div class="hero">
@@ -95,9 +95,9 @@
 </script>-->
 <script>
 
-function helpme()
+function findData()
 { 
-     document.myform.submit();
+     document.historyform.submit();
 	} 
 
 </script>
