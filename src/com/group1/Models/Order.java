@@ -32,6 +32,10 @@ public class Order {
 		this.executed_price = executed_price;
 	}
 
+	public Order() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public int getOrder_id() {
 		return order_id;
 	}
