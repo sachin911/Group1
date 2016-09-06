@@ -1,0 +1,56 @@
+.title {
+	background-color: $loginbackground;
+	color: $titlecolor;
+	font-family: $titlefont;
+	text-align: center;
+	margin-top: 100px;
+}
+
+.loginbody {
+	background-color: $loginbackground;
+}
+
+.login {
+	border-radius: 3%;
+	height: 220px;
+	margin: 0 10%;
+	width: 80%;
+
+	&__input{
+		background-color: $loginbackground;
+		border-radius: 3%;
+		color: $logintextcolor;
+		height: 40px;
+		font-family: $mainfont;
+		margin-bottom: 20px;
+		text-align: center;
+		width: 100%;
+	}
+
+	&__submit{
+		background-color: $loginbuttoncolor;
+		border-radius: 3%;
+		color: $loginbuttontextcolor;
+		height: 40px;
+		font-family: $buttonfont;
+		width: 100%;
+	border: 2px solid blue;
+	}
+
+	@media screen and (min-width: 1024px) {
+		margin: 50px 30%;
+		padding: 30px 20px;
+		width: 40%;
+
+		&__input{
+			padding-left: 7px;
+			text-align: left;
+		}
+
+		&__submit{
+			margin: 0 32.5%;
+			width: 35%;
+		}
+	}
+}
+

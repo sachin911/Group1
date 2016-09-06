@@ -1,0 +1,52 @@
+.hero {
+	background-color: $herobackground;
+	clear:both;
+	display: block;
+	margin-left: 100px;
+	margin-right: 100px;
+	margin-top: 50px;
+	text-align: center;
+	padding-top: 50px;
+	padding-bottom: 50px;
+
+	@media screen and (min-width: 1024px) {
+		&__article {
+			display: inline-block;
+		}
+	}
+	
+	// &__table, &__header, &__data {
+	// 	padding-right: 100px;
+	// 	padding-left: 100px;
+	// 	background-color: $backgroundcolor;
+	// 	border: none;
+	// }
+	// &__header {
+	// 	vertical-align: bottom;
+	// }
+	// &__data {
+	// 	vertical-align: top;
+	// }
+}
+
+@media screen and (min-width: 1024px) {
+	article.hero__block {
+		display: inline-block;
+		padding-left: 100px;
+		padding-right:100px;
+	}
+}
+
+
+.portfolio {
+	margin-top: 75px;
+
+	&__table{
+ 		min-width: 1000px;
+		overflow: auto;
+	}
+
+	&__header{
+		text-align: center;
+	}
+}
