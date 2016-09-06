@@ -11,28 +11,28 @@ import com.group1.Models.Employee;
 import com.group1.Models.Order;
 
 public class BrokerDao {
-	
+
 	private static java.sql.Date getCurrentDate() {
-	    java.util.Date today = new java.util.Date();
-	    return new java.sql.Date(today.getTime());
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
 	}
 
-	
+
 	Jdbc jdbc = new Jdbc();
 	List<Order> pendingTrades = new ArrayList<>();
-	
+
 	public List getPendingTrades(){
-		
+
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt;
-		
+
 		try{
 			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE STATUS = 'PENDING'");
 			ResultSet result = stmt.executeQuery();
 			while(result.next()){
-				
+
 				Order order = new Order();
-				
+
 				order.setOrder_id(result.getInt("order_id"));
 				order.setTotal_quantity(result.getInt("total_quantity"));
 				order.setOpen_quantity(result.getInt("open_quantity"));
@@ -47,36 +47,45 @@ public class BrokerDao {
 				order.setCurrency(result.getString("currency"));
 				order.setSide(result.getString("side"));
 				order.setOrder_type(result.getString("order_type"));
-				
+
 				// Check date type
 				order.setOrder_date(result.getDate("order_date"));
 				order.setExecuted_date(result.getDate("executed_date"));
 				// Check date type
-				
+
 				order.setLimit_price(result.getInt("limit_price"));
 				order.setStop_price(result.getInt("stop_price"));
 				order.setExecuted_price(result.getInt("executed_price"));
-				
+
 				pendingTrades.add(order);
-				
+
 			}
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return pendingTrades;
 	}
-	
+
 
 	public void updateTrades(Order o) {
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt;
 		int result=0;
 		boolean edited = false;
+
 		try{
 			stmt = con.prepareStatement("update order_table set status=?,pl=?,executed_price=?,executed_date=?,open_quantity=?,allocated_quantity=? where order_id=?");
-			
+
 			stmt.setString(1, o.getStatus());
 			stmt.setFloat(2, o.getPl());
 			stmt.setFloat(3, o.getExecuted_price());
@@ -87,12 +96,18 @@ public class BrokerDao {
 			result=stmt.executeUpdate();
 			edited = true;
 		}
-	
-	catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-	
+
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
