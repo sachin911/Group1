@@ -65,10 +65,13 @@ public class LoginDao {
 
 				if (role.equals("Trader")) {
 					e = new Trader(username, password, fname, lname, role, pmid);
+					e.setEmployeeId(eid);
 				} else if (role.equalsIgnoreCase("PM")) {
 					e = new PM(username, password, fname, lname, role);
+					e.setEmployeeId(eid);
 				} else if (role.equalsIgnoreCase("Admin")) {
 					e = new Admin(username, password, fname, lname, role);
+					e.setEmployeeId(eid);
 				}
 				// LoginServlet ls=new
 				// LoginServlet(username,pass,attempts,role,eid,pmid);

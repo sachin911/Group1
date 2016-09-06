@@ -15,7 +15,7 @@
 
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button selected" value="HOME" onClick = "document.myform.submit()">
+				<input type="button" class="menu__button selected" value="HOME" onClick = "helpme()">
 				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
@@ -94,9 +94,8 @@
 </script>-->
 <script>
 
-function jspInit()
+function helpme()
 { 
-	console.log("hey");
      document.myform.submit();
 	} 
 </script>

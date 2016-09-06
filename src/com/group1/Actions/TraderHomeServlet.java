@@ -38,6 +38,7 @@ public class TraderHomeServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		Employee e = (Employee) session.getAttribute("obj");
+		System.out.println("e" + e.getEmployeeId());
 		
 		RequestDispatcher rd=request.getRequestDispatcher("traderhome1.jsp");
 		TraderController tr =  new TraderController();

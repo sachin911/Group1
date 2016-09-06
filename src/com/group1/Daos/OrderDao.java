@@ -257,9 +257,6 @@ public class OrderDao {
 				Order tmp = new Order();
 				tmp.setSymbol(rs.getString(1));
 				tmp.setTotal_quantity(rs.getInt(2));
-				tmp.setCurrency(rs.getString(3));
-				tmp.setExecuted_price(rs.getFloat(4));
-				tmp.setPl(rs.getFloat(5));
 				result.add(tmp);
 			}
 				

@@ -18,7 +18,6 @@ public class Employee {
 		this.role = role;
 	}
 
-
 	public Employee(int employee_id, String role) {
 		// TODO Auto-generated constructor stub
 		this.employeeId = employee_id;

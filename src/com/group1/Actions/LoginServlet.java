@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		Integer key;
 		String value = null;
+        System.out.println("kms");
 
 		String userValidity;
 		String typeOfUser;
@@ -62,6 +63,7 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
 			System.out.println(obj);
+			System.out.println("e" + e.getEmployeeId());
 				RequestDispatcher rd = request
 						.getRequestDispatcher("pmhome1.jsp");
 				rd.forward(request, response);
@@ -71,9 +73,13 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
+				System.out.println("e" + e.getEmployeeId());
+
 			System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("traderhome1.jsp");
+//				RequestDispatcher rd = request
+//						.getRequestDispatcher("TraderHomeServlet.java");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
