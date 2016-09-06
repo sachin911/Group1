@@ -10,8 +10,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.group1.Controllers.TradeHistoryController;
+import com.group1.Models.Employee;
 import com.group1.Models.Order;
 
 /**
@@ -33,14 +35,16 @@ public class TradeHistoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int employee_id = 1000;
-		String role = "Trader";
+		//int employee_id = 16;
+		//String role = "Trader";
+		HttpSession session = request.getSession();
+		Employee e = (Employee) session.getAttribute("obj"); 
 		TradeHistoryController tradeHistoryController = new TradeHistoryController();
 		List<Order> displayList = new ArrayList<>();
-		displayList = tradeHistoryController.tradeHistory(employee_id, role);
-		if(role.equalsIgnoreCase("Trader")){
+		displayList = tradeHistoryController.tradeHistory(e.getEmployee_id(), e.getRole());
+		if(e.getRole().equalsIgnoreCase("Trader")){
 			request.setAttribute("displayList", displayList);
-		RequestDispatcher rd=request.getRequestDispatcher("traderorderhistory.jsp");  
+	RequestDispatcher rd=request.getRequestDispatcher("traderorderhistory.jsp");  
 		rd.forward(request, response);
 		}
 	}

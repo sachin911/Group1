@@ -8,7 +8,7 @@
 		<title>Trader Order History</title>
 		<link rel="stylesheet" href="style/style.css">
 	</head>
-	<body onLoad="callservlet()">
+	<body>
 		<header class="traderMenu">
 			<img class="traderMenu__logo" src="images/Logo.png">
 
@@ -40,7 +40,7 @@
 							<th>Price</th>
 						</tr>
 			<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
-                       if(list!=null){
+                   if(list!=null){
 				for(int i = 0;i<list.size();i++){ %>
 					<tr>
 							<th><%=list.get(i).getOrder_id()%></th>
@@ -51,7 +51,7 @@
 							<th><%=list.get(i).getSide()%></th>
 							<th><%=list.get(i).getExecuted_price()%></th>
 						</tr>
-			<%}}%>
+		<% 	}}%>
 						<tbody>
 						</tbody>
 					</table>
