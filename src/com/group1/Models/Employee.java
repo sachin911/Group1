@@ -19,6 +19,13 @@ public class Employee {
 	}
 
 
+	public Employee(int employee_id, String role) {
+		// TODO Auto-generated constructor stub
+		this.employeeId = employee_id;
+		this.role = role;
+	}
+
+
 	public String getUserName() {
 		return userName;
 	}

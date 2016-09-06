@@ -1,5 +1,9 @@
 package com.group1.Services;
 
-public interface AdminServiceInterface {
+import com.group1.Models.Employee;
 
+public interface AdminServiceInterface {
+//	boolean addEmployee(Employee e);
+//	boolean removeEmployee(Employee e);
+//	boolean editEmployee(Employee e);
 }

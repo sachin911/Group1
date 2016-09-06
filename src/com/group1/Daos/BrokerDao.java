@@ -10,28 +10,25 @@ import java.util.List;
 import com.group1.Models.Employee;
 import com.group1.Models.Order;
 
-public class TradeHistoryDao {
-
-	Jdbc jdbc = new Jdbc();
-	public List<Order> historyList = new ArrayList<>();
+public class BrokerDao {
 	
-	public List displayTradeHistory(Employee user){
+	private static java.sql.Date getCurrentDate() {
+	    java.util.Date today = new java.util.Date();
+	    return new java.sql.Date(today.getTime());
+	}
+
+	
+	Jdbc jdbc = new Jdbc();
+	List<Order> pendingTrades = new ArrayList<>();
+	
+	public List getPendingTrades(){
 		
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt;
 		
 		try{
-			ResultSet result = null;
-			if(user.getRole().equals("PM")){
-			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ?");
-			stmt.setInt(1, user.getEmployeeId());
-			result = stmt.executeQuery();
-			}
-			else if(user.getRole().equals("Trader")){
-				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ?");
-				stmt.setInt(1, user.getEmployeeId());
-				result = stmt.executeQuery();
-			}
+			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE STATUS = 'PENDING'");
+			ResultSet result = stmt.executeQuery();
 			while(result.next()){
 				
 				Order order = new Order();
@@ -60,18 +57,19 @@ public class TradeHistoryDao {
 				order.setStop_price(result.getInt("stop_price"));
 				order.setExecuted_price(result.getInt("executed_price"));
 				
-				historyList.add(order);
+				pendingTrades.add(order);
 				
 			}
-
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return historyList;
-		
-		
+		return pendingTrades;
 	}
 	
+	public void updateTrades(Order o) {
+		
+	}
+
 }
