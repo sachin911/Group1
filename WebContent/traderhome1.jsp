@@ -21,9 +21,10 @@
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
 				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.jsp'">
 				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login1.jsp'">
+
 			</div>
 		</header>
-<form name="myform" action="TraderHomeServlet" method="get"></form>
+<form name="historyform" action="TradeHistoryServlet" method="get"></form>
 		<!-- Header menu buttons end -->
 		<main class="traderhomemain">
 			<div class="hero">
@@ -98,6 +99,7 @@ function helpme()
 { 
      document.myform.submit();
 	} 
+
 </script>
 	</body>
 </html>

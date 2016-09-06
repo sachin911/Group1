@@ -42,28 +42,30 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		List<Object> li = new ArrayList<>();
-		Object obj=new Object();
+		Object obj = new Object();
 
 		LoginController logincontroller = new LoginController();
 		try {
 			li = logincontroller.callLogin(username, password);
 			map = (Map<Integer, String>) li.get(0);
+
 			
+
              System.out.println(li.size());
+
+
+
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);
 			// eid=Integer.parseInt(map.get(3));
-			if(userValidity.equals("Valid User")){
+			if (userValidity.equals("Valid User")) {
 				e = (Employee) li.get(1);
 			}
-			
-			
+
 			if (userValidity.equals("Valid User")
 					&& typeOfUser.equalsIgnoreCase("PM")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
-			System.out.println("e" + e.getEmployeeId());
 				RequestDispatcher rd = request
 						.getRequestDispatcher("pmhome1.jsp");
 				rd.forward(request, response);
@@ -73,7 +75,6 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-				System.out.println("e" + e.getEmployeeId());
 
 			System.out.println(obj);
 				RequestDispatcher rd = request
@@ -87,7 +88,7 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
+				System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("adminhome.html");
 				rd.forward(request, response);
@@ -126,8 +127,10 @@ public class LoginServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+
 		}
 	}
+
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

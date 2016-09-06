@@ -1,99 +1,81 @@
-<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <%@page import="java.util.ArrayList,com.group1.Models.Order"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html lang="en">
-       <head>
-              <meta charset="UTF-8">
-              <title>Trader Home Page</title>
-              <link rel="stylesheet" href="style/style.css">
-       </head>
-       <body>
-              <header class="traderMenu">
-                     <img class="traderMenu__logo" src="images/Logo.png">
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.group1.Models.Order" %>
+	<head>
+		<meta charset="UTF-8">
+		<title>Trader Order History</title>
+		<link rel="stylesheet" href="style/style.css">
+	</head>
+	<body>
+		<header class="menu">
+			<img class="menu__logo" src="images/Logo.png">
 
-                     <!-- Menu buttons -->
-                     <div class="traderMenu__buttonbox">
-                           <input type="button" class="Menu__button selected" value="HOME" onClick="traderhome1.jsp">
-                           <input type="button" class="Menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
-                           <input type="button" class="Menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
-                           <input type="button" class="Menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
-                           <input type="button" class="Menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
-                           <input type="button" class="Menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
-                     </div>
-              </header>
-<form name="historyform" action="TradeHistoryServlet" method="get"></form>
-              <!-- Header menu buttons end -->
-              <main class="traderhomemain">
-                     <div class="hero">
-                           <article class="hero__block">
-                                  <h2 class="hero__heading">Total Assets</h2>
-                                  <p class="hero__data" name="heroassets"><%= request.getAttribute("totalassets") %></p>
-                           </article>
+			<!-- Menu buttons -->
+	<!-- this is test remove itssssss -->
+			<div class="traderMenu__buttonbox">
+				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
+				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="traderMenu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="traderMenu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
+				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
+<form name="historyform" action="TradeHistoryServlet" method = "get"></form>
+		<main class="traderorderhistorymain">
 
-                           <article class="hero__block">
-                                  <h2 class="hero__heading">Profit/ Loss</h2>
-                                  <p class="hero__data" name="heropl"><%= request.getAttribute("pl") %></p>
-                           </article>
+			<div class="menu__buttonbox">
+				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome.html'">
+				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
 
-                           <article class="hero__block">
-                                  <h2 class="hero__heading">% Change</h2>
-                                  <p class="hero__data" name="heropchange">data</p>
-                           </article>
-                     </div>
-                     <div class="portfolio">
-                           <h2 class="portfolio__header">Portfolio</h2>
-                           <div class="scrollwrapper">
-                                  <table class="portfolio__table" name="traderportfolio">
-                                         <tr>
-                                                <th name="symbol">Symbol</th>
-                                                <th name="quantity">Quantity</th>
-                                                <th name="basecurrency">Base Currency</th>
-                                                <th name="usdvalue">USD Value</th>
-                                                <th name="executedprice">Executed Price</th>
-                                                <th name="averageprice">Average Price</th>
-                                                <th name="currentshareprice">Current Share Price</th>
-                                                <th name="marketvalue">Market Value</th>
-                                                <th name="profitloss">Profit/loss</th>
-                                         </tr>
-                                         <%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
-                                         
-                                         if(tlist!=null)
-                                                {
-                                                for(Order o : tlist) {
-                                                
-                                         %>
-                                         <tr>
-                                         <td><%=o.getSymbol()%></td>
-                                         <td><%=o.getTotal_quantity()%></td>
-                                         <td><%=o.getCurrency() %></td>
-                                         <td>USD value</td>
-                                         <td><%=o.getExecuted_price() %></td>
-                                         <td>average price</td>
-                                         <td>current share price</td>
-                                         <td>market value</td>
-                                         <td><%=o.getPl() %></td>
-                                         </tr><% }
-                                         } %>
-                                         <tbody>
-                                                
-                                         </tbody>
-                                  </table>
-                           </div>
-                     </div>
-              </main>
-              <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!--  <script>
-    $(document).ready(function() {
-        $.get("TraderHomeServlet", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
-                 console.log("ready function")     // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
-         });
-        });
-   
-</script>-->
-<script>
+		<main class="orderhistorymain">
 
-</script>
-       </body>
+		<!-- orderhistory table -->
+			<div class="orderhistory">
+				<h2 class="orderhistory__header">Order History</h2>
+				<div class="scrollwrapper">
+					<table class="orderhistory__table">
+						<tr>
+							<th>Order Number</th>
+							<th>Date</th>
+							<th>Order Status</th>
+							<th>Order Type</th>
+							<th>Quantity</th>
+							<th>Term</th>
+							<th>Price</th>
+						</tr>
+			<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
+                   if(list!=null){
+				for(int i = 0;i<list.size();i++){ %>
+					<tr>
+							<th><%=list.get(i).getOrder_id()%></th>
+							<th><%=list.get(i).getOrder_date()%></th>
+							<th><%=list.get(i).getStatus()%></th>
+							<th><%=list.get(i).getAccount_type()%></th>
+							<th><%=list.get(i).getOpen_quantity()%></th>
+							<th><%=list.get(i).getSide()%></th>
+							<th><%=list.get(i).getExecuted_price()%></th>
+						</tr>
+		<% 	}}%>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+	</body>
+	<script>
+
+	</script>
 </html>
+>>>>>>> 67056778014d665f11bd157bc900d31299815a81
