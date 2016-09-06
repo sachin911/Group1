@@ -37,9 +37,9 @@ public class AdminServlet extends HttpServlet {
 		
 		RequestDispatcher rd=request.getRequestDispatcher("adminhome1.jsp");
 		AdminController ac = new AdminController();
-		List<Employee> el=new ArrayList<Employee>();
-		el = ac.getAllEmployees();
-		request.setAttribute("el", el);
+		List<Employee> employeelist=new ArrayList<Employee>();
+		employeelist = ac.getAllEmployees();
+		request.setAttribute("el", employeelist);
 
 
 		rd.forward(request, response);

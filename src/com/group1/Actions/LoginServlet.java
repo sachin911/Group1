@@ -86,7 +86,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("obj", e);
 				System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("adminhome.html");
+						.getRequestDispatcher("adminhome1.jsp");
 				rd.forward(request, response);
 			}
 			
