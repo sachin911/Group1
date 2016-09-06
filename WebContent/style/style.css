@@ -62,10 +62,10 @@ tr:nth-child(odd) {
 table {
   width: 90%; }
 
-.traderMenu {
+.menu {
   background-color: #FFFFFF;
   padding-bottom: 50px; }
-  .traderMenu__button {
+  .menu__button {
     background-color: #FFFFFF;
     border: none;
     color: #000000;
@@ -76,17 +76,17 @@ table {
     margin-right: auto;
     margin-top: 15px;
     margin-bottom: 15px; }
-  .traderMenu__logo {
+  .menu__logo {
     height: 75px;
     margin-left: auto;
     margin-right: auto; }
   @media screen and (min-width: 1024px) {
-    .traderMenu__logo {
+    .menu__logo {
       float: left;
       margin-bottom: 23px; }
-    .traderMenu__buttonbox {
+    .menu__buttonbox {
       float: right; }
-    .traderMenu__button {
+    .menu__button {
       display: inline-block;
       margin: 10px 15px; } }
 
@@ -227,5 +227,11 @@ table {
 .createbutton, .deletebutton {
   margin-left: 5%;
   margin-top: 2%; }
+
+h2 {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  text-align: center; }
 
 /*# sourceMappingURL=style.css.map */
