@@ -1,5 +1,5 @@
 package com.group1.Daos;
 
-public class TraderDao {
+public class PLDao {
 
 }
