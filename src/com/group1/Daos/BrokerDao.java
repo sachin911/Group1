@@ -12,6 +12,12 @@ import com.group1.Models.Order;
 
 public class BrokerDao {
 	
+	private static java.sql.Date getCurrentDate() {
+	    java.util.Date today = new java.util.Date();
+	    return new java.sql.Date(today.getTime());
+	}
+
+	
 	Jdbc jdbc = new Jdbc();
 	List<Order> pendingTrades = new ArrayList<>();
 	
