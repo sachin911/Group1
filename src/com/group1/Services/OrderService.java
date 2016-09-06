@@ -19,18 +19,21 @@ public class OrderService {
 	public static boolean cancelOrder(Order o) {
 		return orderDao.cancelOrder(o);
 	}
+	
     public int getAssets(int trader_id)
     {
     	System.out.println("OrderService : assets");
     	int n =  orderDao.getTotAssets(trader_id);
     	return n;
     }
+    
     public int getpl(int trader_id)
     {
     	System.out.println("OrderService : pl");
     	int n =  orderDao.getpl(trader_id);
     	return n;
     }
+    
     public ArrayList<Order> getlist(int trader_id)
     {
     	System.out.println("OrderService : lists");
