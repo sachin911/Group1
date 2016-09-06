@@ -36,13 +36,15 @@ public class TradeHistoryServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//int employee_id = 16;
-		//String role = "Trader";
+		String role = "Trader";
 		HttpSession session = request.getSession();
-		Employee e = (Employee) session.getAttribute("obj"); 
+		Employee e = (Employee) session.getAttribute("obj");
+		
 		TradeHistoryController tradeHistoryController = new TradeHistoryController();
 		List<Order> displayList = new ArrayList<>();
-		displayList = tradeHistoryController.tradeHistory(e.getEmployee_id(), e.getRole());
-		if(e.getRole().equalsIgnoreCase("Trader")){
+		displayList = tradeHistoryController.tradeHistory(22, role);
+	//	displayList = tradeHistoryController.tradeHistory(e.getEmployee_id(), e.getRole());
+		if(role.equalsIgnoreCase("Trader")){
 			request.setAttribute("displayList", displayList);
 	RequestDispatcher rd=request.getRequestDispatcher("traderorderhistory.jsp");  
 		rd.forward(request, response);

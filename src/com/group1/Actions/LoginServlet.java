@@ -87,7 +87,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("obj", e);
 				System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("traderhome.html");
+						.getRequestDispatcher("traderhome1.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
