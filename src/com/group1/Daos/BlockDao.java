@@ -68,6 +68,14 @@ public class BlockDao {
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return row_count;
 		
 	}

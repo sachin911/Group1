@@ -9,7 +9,7 @@
 		<title>Trader Home Page</title>
 		<link rel="stylesheet" href="style/style.css">
 	</head>
-	<body onLoad="callservlet()">
+	<body>
 		<header class="traderMenu">
 			<img class="traderMenu__logo" src="images/Logo.png">
 
@@ -84,18 +84,21 @@
 			</div>
 		</main>
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script>
+<!--  <script>
     $(document).ready(function() {
     	 $.get("TraderHomeServlet", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
                  console.log("ready function")     // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
          });
         });
    
-</script>
+</script>-->
 <script>
 function callservlet()
-{
-	document.myform.submit();
+{ 
+      
+     document.myform.submit();
+    
+
 	}
 </script>
 	</body>

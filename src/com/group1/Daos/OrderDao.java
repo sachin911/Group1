@@ -64,6 +64,14 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	
@@ -116,6 +124,15 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return result;
 	}
 
@@ -143,10 +160,19 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return result;
 
 	}
+	
+	
 	public int getTotAssets(int trader_id)
 	{
 		System.out.println("OrderDao : assets");
@@ -177,6 +203,15 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return result;
 	}
 	
@@ -211,6 +246,15 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return result;
 	}
 	
