@@ -21,7 +21,7 @@ p {
   overflow: auto; }
 
 .generalbutton {
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   border-radius: 3%;
   color: #000000;
   font-family: SapientSansMedium;
@@ -124,7 +124,7 @@ table {
     text-align: center;
     width: 100%; }
   .login__submit {
-    background-color: #ffffff;
+    background-color: #FFFFFF;
     border-radius: 3%;
     color: #565656;
     height: 40px;
