@@ -8,11 +8,5 @@ public class PM extends Employee {
 		super(userName, password, first_Name, last_Name, role);
 		this.pm_id = null;
 	}	
-
-	public static void main(String[] args) {
-		Employee e = new PM("j", "pw", "name", "last", "pm");
-		
-		System.out.println(e.getPm_id());
-	}
 	
 }
