@@ -47,7 +47,6 @@ public class BrokerService {
 
 		o.setExecuted_price(price);
 		o.setPl(pl);
-		o.setOpen_quantity(o.getTotal_quantity());
 		o.setStatus("EXECUTED");
 
 		brokerdao.updateTrades(o);
@@ -62,8 +61,8 @@ public class BrokerService {
 
 		o.setExecuted_price(o.getLimit_price());
 		o.setPl(pl);
-		o.setOpen_quantity(o.getTotal_quantity());
 		o.setStatus("EXECUTED");
+		brokerdao.updateTrades(o);
 	}
 
 	public void stopOrderFull(Order o) {
@@ -77,6 +76,7 @@ public class BrokerService {
 		o.setPl(pl);
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setStatus("EXECUTED");
+		brokerdao.updateTrades(o);
 
 	}
 
@@ -96,10 +96,33 @@ public class BrokerService {
 
 
 	public void limitOrderPartial(Order o) {
+		
+		
+		int open = (int) (rand.nextDouble() * 100 * o.getTotal_quantity());
+		float pl = calcPL(o.getOrder_type(), open, o.getLimit_price());
+		
+		o.setOpen_quantity(open);
+		o.setAllocated_quantity(o.getTotal_quantity() - open);
+		
+		o.setExecuted_price(o.getLimit_price());
+		o.setPl(pl);
+		o.setStatus("EXECUTED");
+		brokerdao.updateTrades(o);
 
 	}
 
 	public void stopOrderPartial(Order o) {
+		
+		int open = (int) (rand.nextDouble() * 100 * o.getTotal_quantity());
+		float pl = calcPL(o.getOrder_type(), o.getTotal_quantity(), o.getStop_price());
+		
+		o.setOpen_quantity(open);
+		o.setAllocated_quantity(o.getTotal_quantity() - open);
+		
+		o.setExecuted_price(o.getStop_price());
+		o.setPl(pl);
+		o.setStatus("EXECUTED");
+		brokerdao.updateTrades(o);
 
 	}
 

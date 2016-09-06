@@ -68,8 +68,32 @@ public class BrokerDao {
 		return pendingTrades;
 	}
 	
+
 	public void updateTrades(Order o) {
-		
+		Connection con = jdbc.getCon();
+		PreparedStatement stmt;
+		int result=0;
+		boolean edited = false;
+		try{
+			stmt = con.prepareStatement("update order_table set status=?,pl=?,executed_price=?,executed_date=?,open_quantity=?,allocated_quantity=? where order_id=?");
+			
+			stmt.setString(1, o.getStatus());
+			stmt.setFloat(2, o.getPl());
+			stmt.setFloat(3, o.getExecuted_price());
+			stmt.setDate(4, o.getExecuted_date());
+			stmt.setInt(5, o.getOpen_quantity());
+			stmt.setInt(6, o.getAllocated_quantity());
+			stmt.setInt(7, o.getOrder_id());
+			result=stmt.executeUpdate();
+			edited = true;
+		}
+	
+	catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+	
+
 	}
 
 }
