@@ -10,7 +10,6 @@ import com.group1.Models.Employee;
 
 public class AdminDao {
 	Jdbc jdbc = new Jdbc();
-	static int empID = 10000; // starts at 10000 - first emp will be 10001
 	
 	/* NEED TO ERROR CHECK THE PM_ID -- 
 	ERROR WHEN TRADER POINTS TO NON EXISTING PM
@@ -21,7 +20,7 @@ public class AdminDao {
 		Connection con = jdbc.getCon();
 		boolean added = false;
 		int result = 0;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 
 		if (user.getRole().equals("Trader")) {
 			try {
@@ -37,6 +36,9 @@ public class AdminDao {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+			    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+			    try { con.close(); } catch (Exception e) { /* ignored */ }
 			}
 		} else {
 			try {
@@ -51,6 +53,9 @@ public class AdminDao {
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} finally {
+			    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+			    try { con.close(); } catch (Exception e) { /* ignored */ }
 			}
 		}
 		return added;
@@ -61,7 +66,7 @@ public class AdminDao {
 		Connection con = jdbc.getCon();
 		boolean removed = false;
 		int result = 0;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 
 		try {
 			stmt = con.prepareStatement("delete from EMPLOYEE where (username) = (?)");
@@ -71,8 +76,11 @@ public class AdminDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-
+		
 		return removed;
 
 	}
@@ -81,7 +89,7 @@ public class AdminDao {
 		Connection con = jdbc.getCon();
 		boolean edited = false;
 		int result = 0;
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 
 		try {
 			stmt = con.prepareStatement("update EMPLOYEE set Role = ?, Login_Attempts = ?, Pm_id = ? where userName = ?");
@@ -94,8 +102,10 @@ public class AdminDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-
 		return edited;
 
 	}

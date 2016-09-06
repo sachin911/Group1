@@ -11,7 +11,7 @@
 
 			<!-- Menu buttons -->
 			<div class="traderMenu__buttonbox">
-				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome.html'">
+				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
 				<input type="button" class="traderMenu__button selected" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="traderMenu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
@@ -22,47 +22,13 @@
 		<!-- Header menu buttons end -->
 
 		<main class="traderinboxmain">
-		<!-- suggestions table -->
-			<div class="suggestions">
-				<h2 class="suggestions__header">Suggestions</h2>
-				<div class="scrollwrapper">
-					<table class="suggestions__table" name="suggestionstable">
-						<tr>
-							<th>VaR</th>
-							<th>Abs. Value Risk</th>
-							<th>Stress Testing Results</th>
-							<th>Day Ahead</th>
-							<th>Base Currency</th>
-							<th>USD Value</th>
-							<th>P/L</th>
-						</tr>
-						<tr>
-							<td>data</td>
-							<td>data</td>
-							<td>data</td>
-							<td>data</td>
-							<td>data</td>
-							<td>data</td>
-							<td>data</td>
-						</tr>
-					</table>
-				</div>
-			</div>
-
-
 			<div class="messages">
 				<h2 class="messages__header">Messages</h2>
 				<div class="scrollwrapper">
 				<table class="messages__table" name="messagetable">
 					<tr>
-						<th>Sender</th>
-						<th>Date</th>
-						<th>Message</th>
-					</tr>
-					<tr>
-						<td>Bob</td>
-						<td>24/08/2016</td>
-						<td>Your last trade didn't go well. Do better.</td>
+						<th name="date">Date</th>
+						<th name="message">Message</th>
 					</tr>
 				</table>
 				</div>

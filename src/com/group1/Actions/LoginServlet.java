@@ -18,11 +18,9 @@ import javax.servlet.http.HttpSession;
 import com.group1.Controllers.LoginController;
 import com.group1.Models.Employee;
 
-/**
- * Servlet implementation class LoginServlet
- */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 10L;
 
 	/**
@@ -135,13 +133,9 @@ public class LoginServlet extends HttpServlet {
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
+
 		}
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

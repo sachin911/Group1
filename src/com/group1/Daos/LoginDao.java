@@ -15,7 +15,7 @@ import com.group1.Models.PM;
 import com.group1.Models.Trader;
 
 public class LoginDao {
-
+	Jdbc jdbc = new Jdbc();
 	Employee user;
 
 	// int login_attempts;
@@ -30,10 +30,9 @@ public class LoginDao {
 	String lname;
 	// String response;
 	Map<Integer, String> resultMap = new HashMap<Integer, String>();
-	
 
-	public List<Object> authenticateEmployee(String username,
-			String password) throws SQLException {
+	public List<Object> authenticateEmployee(String username, String password)
+			throws SQLException {
 		List<Object> list1 = new ArrayList<>();
 		System.out.println("entered the dao-------------");
 		Jdbc jdbc = new Jdbc();
@@ -42,7 +41,7 @@ public class LoginDao {
 		stmt = con.prepareStatement("SELECT * FROM EMPLOYEE WHERE USERNAME=?");
 		stmt.setString(1, username);
 		result = stmt.executeQuery();
-		Employee e=null;
+		Employee e = null;
 		if (result != null) {
 			while (result.next()) {
 				pass = result.getString("password");
@@ -61,16 +60,15 @@ public class LoginDao {
 
 				resultMap.put(1, "Valid User");
 				resultMap.put(2, role);
-				//resultMap.put(3, eid.toString());
+
+				// resultMap.put(3, eid.toString());
 
 				if (role.equals("Trader")) {
-					 e = new Trader(username, password, fname, lname,
-							role, pmid);
+					e = new Trader(username, password, fname, lname, role, pmid);
 				} else if (role.equalsIgnoreCase("PM")) {
-					 e = new PM(username, password, fname, lname, role);
+					e = new PM(username, password, fname, lname, role);
 				} else if (role.equalsIgnoreCase("Admin")) {
-					 e = new Admin(username, password, fname, lname,
-							role);
+					e = new Admin(username, password, fname, lname, role);
 				}
 				// LoginServlet ls=new
 				// LoginServlet(username,pass,attempts,role,eid,pmid);
@@ -78,13 +76,14 @@ public class LoginDao {
 				System.out.println("----------------------------Valid user");
 				list1.add(resultMap);
 				list1.add(e);
-				//return resultMap;
+				// return resultMap;
 				return list1;
+
 			}
 
 			else {
 				System.out.println("wrong-------------");
-				
+
 				attempts = attempts + 1;
 				stmt = con
 						.prepareStatement("UPDATE EMPLOYEE SET LOGIN_ATTEMPTS = ? WHERE USERNAME = ?");
@@ -103,10 +102,10 @@ public class LoginDao {
 					resultMap.put(1, "Invalid password");
 					resultMap.put(2, "null");
 					System.out.println("Invalid Password");
-					
+
 					list1.add(resultMap);
 					return list1;
-					//return resultMap;
+					// return resultMap;
 				}
 
 			}
@@ -115,13 +114,14 @@ public class LoginDao {
 
 		else {
 			System.out.println("No user=------------------");
-			
+
 			resultMap.put(1, "Invalid user");
 			resultMap.put(2, "null");
 			System.out.println("User does not  exists");
+
 			list1.add(resultMap);
 			return list1;
-			//return resultMap;
+			// return resultMap;
 
 		}
 	}

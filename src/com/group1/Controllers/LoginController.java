@@ -4,7 +4,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
 import com.group1.Services.LoginService;
 
 public class LoginController {

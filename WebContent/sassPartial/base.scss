@@ -14,6 +14,14 @@ p {
 	overflow:auto;
 }
 
+.generalbutton {
+	background-color: $buttoncolor;
+	border-radius: 3%;
+	color: $buttontextcolor;
+	font-family: $buttonfont;
+	border: 2px solid $buttonbordercolor;
+}
+
 @media screen and (max-width: 767px){
 	.hidden-mob {
 		display: none !important;

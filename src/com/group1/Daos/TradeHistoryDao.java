@@ -13,12 +13,12 @@ import com.group1.Models.Order;
 public class TradeHistoryDao {
 
 	Jdbc jdbc = new Jdbc();
-	List<Order> historyList = new ArrayList<>();
+	public List<Order> historyList = new ArrayList<>();
 	
 	public List displayTradeHistory(Employee user){
 		
 		Connection con = jdbc.getCon();
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		
 		try{
 			ResultSet result = null;
@@ -52,8 +52,8 @@ public class TradeHistoryDao {
 				order.setOrder_type(result.getString("order_type"));
 				
 				// Check date type
-				order.setOrder_date(result.getString("order_date"));
-				order.setExecuted_date(result.getString("executed_date"));
+				order.setOrder_date(result.getDate("order_date"));
+				order.setExecuted_date(result.getDate("executed_date"));
 				// Check date type
 				
 				order.setLimit_price(result.getInt("limit_price"));
@@ -61,13 +61,17 @@ public class TradeHistoryDao {
 				order.setExecuted_price(result.getInt("executed_price"));
 				
 				historyList.add(order);
-				
 			}
+
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
 		return historyList;
 		
 		

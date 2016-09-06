@@ -10,61 +10,90 @@ import java.util.List;
 import com.group1.Models.Employee;
 import com.group1.Models.Order;
 
-public class PLDao {
-	
-	public List<Order> plList = new ArrayList<>();
+public class BrokerDao {
+
+	private static java.sql.Date getCurrentDate() {
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
+	}
+
 
 	Jdbc jdbc = new Jdbc();
-	public List getPL(Employee user){
-		
+	List<Order> pendingTrades = new ArrayList<>();
+
+	public List getPendingTrades(){
+
 		Connection con = jdbc.getCon();
-		PreparedStatement stmt = null;
-		
+		PreparedStatement stmt= null;
+		ResultSet result = null;
+
 		try{
-			ResultSet result = null;
-			if(user.getRole().equals("PM")){
-			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ? HAVING STATUS = 'EXECUTED'");
-			stmt.setInt(1, user.getEmployeeId());
+			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE STATUS = 'PENDING'");
 			result = stmt.executeQuery();
-			}
-			else if(user.getRole().equals("Trader")){
-				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ? HAVING STATUS = 'EXECUTED'");
-				stmt.setInt(1, user.getEmployeeId());
-				result = stmt.executeQuery();
-			}
 			while(result.next()){
-				
+
 				Order order = new Order();
-				
+
 				order.setOrder_id(result.getInt("order_id"));
 				order.setTotal_quantity(result.getInt("total_quantity"));
 				order.setOpen_quantity(result.getInt("open_quantity"));
 				order.setAllocated_quantity(result.getInt("allocated_quantity"));
-	
-	
+				order.setPm_id(result.getInt("pm_id"));
+				order.setTrader_id(result.getInt("trader_id"));
 				order.setBlock_id(result.getInt("block_id"));
 				order.setSide(result.getString("side"));
 				order.setSymbol(result.getString("symbol"));
 				order.setStatus(result.getString("status"));
 				order.setAccount_type(result.getString("account_type"));
 				order.setCurrency(result.getString("currency"));
-	
+				order.setSide(result.getString("side"));
 				order.setOrder_type(result.getString("order_type"));
-				
+
 				// Check date type
 				order.setOrder_date(result.getDate("order_date"));
 				order.setExecuted_date(result.getDate("executed_date"));
 				// Check date type
-				
+
 				order.setLimit_price(result.getInt("limit_price"));
 				order.setStop_price(result.getInt("stop_price"));
 				order.setExecuted_price(result.getInt("executed_price"));
-				
-				plList.add(order);
-				
-			}
 
+				pendingTrades.add(order);
+
+			}
 		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { /* ignored */ }
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
+		}
+		return pendingTrades;
+	}
+
+
+	public void updateTrades(Order o) {
+		Connection con = jdbc.getCon();
+		PreparedStatement stmt = null;
+		int result=0;
+		boolean edited = false;
+
+		try{
+			stmt = con.prepareStatement("update order_table set status=?,pl=?,executed_price=?,executed_date=?,open_quantity=?,allocated_quantity=? where order_id=?");
+
+			stmt.setString(1, o.getStatus());
+			stmt.setFloat(2, o.getPl());
+			stmt.setFloat(3, o.getExecuted_price());
+			stmt.setDate(4, o.getExecuted_date());
+			stmt.setInt(5, o.getOpen_quantity());
+			stmt.setInt(6, o.getAllocated_quantity());
+			stmt.setInt(7, o.getOrder_id());
+			result=stmt.executeUpdate();
+			edited = true;
+		}
+
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -72,7 +101,7 @@ public class PLDao {
 		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
-		return plList;
+
 	}
+
 }
