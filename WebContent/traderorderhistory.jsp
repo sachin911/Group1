@@ -13,7 +13,7 @@
 			<img class="menu__logo" src="images/Logo.png">
 
 			<!-- Menu buttons -->
-
+	<!-- this is test remove itssssss -->
 			<div class="traderMenu__buttonbox">
 				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
 				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
