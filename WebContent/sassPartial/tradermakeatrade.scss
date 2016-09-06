@@ -1,0 +1,22 @@
+.makeatrade__header, .makeatradeinstructions__header {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 50px;
+	text-align: center;
+}
+
+
+.makeatrade__table, makeatradeinstructions__table {
+	margin-left: 5%;
+	margin-right: 5%;
+	overflow: auto;
+	width: 90%;
+}
+
+.makeatradeinstructions__apply {
+	background-color: $buttoncolor;
+	color: $buttontextcolor;
+	float: right;
+	font-family: $buttonfont;
+	padding: 5px;
+}

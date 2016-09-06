@@ -1,0 +1,51 @@
+.traderMenu{
+	background-color: $menubackground;
+	padding-bottom: 50px;
+
+	&__button{
+		background-color: $menubackground;
+		border: none;
+		color: $menutextcolor;
+		display: block;
+		font-family: $menufont;
+		font-size: 14px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+	&__logo {
+		height: 75px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	@media screen and (min-width: 1024px) {
+		&__logo {
+			float: left;
+			margin-bottom: 23px;
+		}
+
+		&__buttonbox{
+			float: right;
+		}
+		&__button{
+			display: inline-block;
+			margin: 10px 15px;
+		}
+	}
+}
+
+.selected {
+	border-bottom: 2px solid $menuhighlight;
+	padding-bottom: 4px;
+}
+
+.logoutbutton {
+	border-radius: 4px;
+	border: 2px solid $menuhighlight;
+	padding: 10px;
+}
+
+

@@ -10,12 +10,11 @@ import com.group1.Models.Employee;
 public class LoginDao {
 	Jdbc jdbc = new Jdbc();
 
-	public boolean checkUserExists(String userName, String password) {
+	public String checkUserExists(String userName, String password) {
 		Connection con = jdbc.getCon();
-		boolean valid = false;
 		int result = 0;
 		PreparedStatement stmt;
-		
+
 		try {
 			stmt = con.prepareStatement("select * from EMPLOYEE where username = ? and password = ?");
 			stmt.setString(1, userName);
@@ -24,10 +23,11 @@ public class LoginDao {
 			if(rs!= null && rs.next()){	
 				System.out.println("username-------------------------"+rs.getString("userName"));
 			}
-			
+
 			if (rs.next() == true) {     // Login attempt successful, allow access
 				System.out.println("Valid User");
-				valid = true;
+				return rs.getString("role"); 
+
 			} else if (userName == rs.getString("username")) {			// password is wrong, but user exists in databse
 				int attempts = (int) rs.getLong("login_attempts") + 1;	// increase log attempts by 1
 				if (attempts == 3) {  									// check to see if that was their third try
@@ -44,6 +44,7 @@ public class LoginDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} return valid;
+		} 
+		return null;
 	}
 }

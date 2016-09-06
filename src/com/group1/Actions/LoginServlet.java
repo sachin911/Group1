@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
 		LoginController lc = new LoginController();
 		if(lc.loginCheck(userName, password)){
 			response.getWriter().append("true");
+			
 		}else{
 			response.getWriter().append("false");
 		}

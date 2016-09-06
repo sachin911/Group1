@@ -8,7 +8,7 @@ public class LoginController {
 		
 	}
 	
-	public boolean loginCheck(String username, String password) {
+	public String loginCheck(String username, String password) {
 		return LoginService.checkUserExists(username, password);
 	}
 

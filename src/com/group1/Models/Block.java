@@ -14,12 +14,10 @@ public class Block {
 	
 
 
-	public Block(int total_quantity, String side, String symbol, String status, Date order_date) {
+	public Block(int total_quantity, String side, String symbol) {
 		this.total_quantity = total_quantity;
 		this.side = side;
 		this.symbol = symbol;
-		this.status = status;
-		this.order_date = order_date;
 	}
 
 
