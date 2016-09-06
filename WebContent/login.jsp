@@ -14,7 +14,12 @@
 				<input type="text" class="login__input" name="username" placeholder="Username" required>
 				<input type="password" class="login__input" name="password" placeholder="Password" required>
 				<input type="submit" class="login__submit" value="Login">
+				
 			</form>
+			<p><%
+request.getAttribute("error"); %></p>
 		</main>
+		
 	</body>
+	
 </html>
