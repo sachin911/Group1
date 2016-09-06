@@ -44,6 +44,8 @@ public class BrokerService {
 		o.setExecuted_price(price);
 		o.setPl(pl);
 		o.setStatus("Executed");
+		
+		brokerdao.updateTrades(o);
 	}
 
 	public void limitOrderFull(Order o) {
