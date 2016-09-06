@@ -45,7 +45,7 @@ public class BlockDao {
 
 		Connection con = database_con.getCon();
 
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement("insert into block values(?,?,?,?,?,?,?,?,?,?)");
 			pstmt.setString(1, side);
@@ -63,7 +63,18 @@ public class BlockDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return row_count;
 		

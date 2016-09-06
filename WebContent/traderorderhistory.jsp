@@ -29,15 +29,15 @@
 			<div class="orderhistory">
 				<h2 class="orderhistory__header">Order History</h2>
 				<div class="scrollwrapper">
-					<table class="orderhistory__table">
+					<table class="orderhistory__table" name="orderhistorytable">
 						<tr>
-							<th>Order Number</th>
-							<th>Date</th>
-							<th>Order Status</th>
-							<th>Order Type</th>
-							<th>Quantity</th>
-							<th>Term</th>
-							<th>Price</th>
+							<th name="ordernumber">Order Number</th>
+							<th name="date">Date</th>
+							<th name="orderstatus">Order Status</th>
+							<th name="ordertype">Order Type</th>
+							<th name="quantity">Quantity</th>
+							<th name="term">Term</th>
+							<th name="price">Price</th>
 						</tr>
 			<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
                    if(list!=null){

@@ -1,5 +1,6 @@
 package com.group1.Controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.group1.Models.Block;
@@ -32,5 +33,29 @@ public class TraderController {
 		return false;
 		
 		
+	}
+	public int getTotalAssets(int trader_id)
+	{
+		OrderService os =  new OrderService();
+		int tassets=os.getAssets(trader_id);
+		
+		
+		return tassets;
+	}
+	public int getPL(int trader_id)
+	{
+		OrderService os =  new OrderService();
+		int tassets=os.getpl(trader_id);
+		
+		
+		return tassets;
+	}
+	public ArrayList<Order> getlist(int trader_id)
+	{
+		OrderService os =  new OrderService();
+		ArrayList<Order> tassets=os.getlist(trader_id);
+		
+		
+		return tassets;
 	}
 }

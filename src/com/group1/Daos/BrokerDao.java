@@ -24,11 +24,12 @@ public class BrokerDao {
 	public List getPendingTrades(){
 
 		Connection con = jdbc.getCon();
-		PreparedStatement stmt;
+		PreparedStatement stmt= null;
+		ResultSet result = null;
 
 		try{
 			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE STATUS = 'PENDING'");
-			ResultSet result = stmt.executeQuery();
+			result = stmt.executeQuery();
 			while(result.next()){
 
 				Order order = new Order();
@@ -64,22 +65,18 @@ public class BrokerDao {
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { result.close(); } catch (Exception e) { /* ignored */ }
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		return pendingTrades;
 	}
 
 
 	public void updateTrades(Order o) {
 		Connection con = jdbc.getCon();
-		PreparedStatement stmt;
+		PreparedStatement stmt = null;
 		int result=0;
 		boolean edited = false;
 
@@ -100,13 +97,9 @@ public class BrokerDao {
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} finally {
+		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 
 	}

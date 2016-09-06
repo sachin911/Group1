@@ -8,6 +8,11 @@ public class Trader extends Employee {
 		this.pm_id = pm_id;
 	}
 
+	@Override
+	public String toString() {
+		return "Trader [pm_id=" + pm_id + "]";
+	}
+
 	public int getPm_id() {
 		return pm_id;
 	}

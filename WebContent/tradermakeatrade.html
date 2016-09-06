@@ -35,6 +35,7 @@
 								<th name="limitprice">Limit Price</th>
 								<th name="stopprice">Stop Price</th>
 								<th name="ordertype">Order Type</th>
+								<th name="checkbox"></th>
 							</tr>
 							<tbody>
 							<tr>
@@ -45,6 +46,7 @@
 								<td><input type="text" class="table__input" name="limitpriceinput"></td>
 								<td><input type="text" class="table__input" name="stoppriceinput"></td>
 								<td><input type="text" class="table__input" name="ordertypeinput"></td>
+								<td><input type="checkbox" class="table__input" name="checkboxinput"></td>
 							</tr>
 							</tbody>
 						</table>
@@ -70,8 +72,7 @@
 								<th name="limitpriceinstructions">Limit Price</th>
 								<th name="stoppriceinstructions">Stop Price</th>
 								<th name="ordertypeinstructions">Order Type</th>
-								<th name="addbuttoncolumn"></th>
-								<th name="removebuttoncolumn"></th>
+								<th name="checkboxcolumn"></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -83,17 +84,14 @@
 								<td name="limitpriceinstructions">Limit Price</td>
 								<td name="stoppriceinstructions">Stop Price</td>
 								<td name="ordertypeinstructions">Order Type</td>
-								<td name="addbuttoncolumn"></td>
-								<td name="removebuttoncolumn"></td>
+								<td><input type="checkbox" class="checkbox"></td>
 							</tr>
 						</tbody>
 					</table>
-					<script>displayPMInstructionTable("makeatradeinstructions__table");</script>
 				</div>
-				<input type="button" class="makeatradeinstructions__apply generalbutton" value="Apply">
 			</div>
 		</main>
-
 		<script src="JavaScript/makeatrade.js"></script>
+		<script src="JavaScript/bundle.js"></script>
 	</body>
 </html>
