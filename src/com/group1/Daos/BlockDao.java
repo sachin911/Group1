@@ -54,12 +54,13 @@ public class BlockDao {
 			if(rs.next()){
 				row_id = rs.getInt(1);
 			}
-
+			con.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
+	
 		return row_id;
 		
 	}
@@ -80,6 +81,7 @@ public class BlockDao {
 				pstmt.setInt(1, iter.getOrder_id());
 				pstmt.executeUpdate();
 				rows_updated++;
+				con.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

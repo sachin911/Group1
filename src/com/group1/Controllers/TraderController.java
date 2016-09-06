@@ -31,6 +31,7 @@ public class TraderController {
 	}
 
 	public void createTraderBlockOrder(List<Order> order_list) {
+
 		int total_quantity = 0;
 		int executed_quantity;
 		int open_quantity = 0;
@@ -48,10 +49,12 @@ public class TraderController {
 			total_quantity += iter.getTotal_quantity();
 			open_quantity += iter.getOpen_quantity();
 			System.out.println(iter.toString());
+			OrderService.createBrokerOrder(iter);
 		}
 
 		executed_quantity = total_quantity - open_quantity;
 		
+
 		Block new_block = new Block(total_quantity, executed_quantity, open_quantity, order_date , executed_date , side, symbol, status, order_list, 0);
 		System.out.println(new_block.toString());
 		boolean is_block_created = block_service.createBlockService(new_block);
@@ -59,13 +62,13 @@ public class TraderController {
 	}
 	
 	public static void main(String[] args) {
-		Order o1 = new Order(10, 11, 15, "BUY","TATA", "Dont care", "USD", "Market", 0, 0);
-		Order o2 = new Order(30, 11, 15, "BUY","TATA", "Dont care", "USD", "Market", 0, 0);
-	
-		
+		Order o1 = new Order(10, 11, 15, "BUY","TATA", "Dont care", "USD", "MARKET", 0, 0);
+		Order o2 = new Order(30, 11, 15, "BUY","TATA", "Dont care", "USD", "MARKET", 0, 0);
+
 		List<Order> order_list = new ArrayList<Order>();
 		order_list.add(o1);
 		order_list.add(o2);
+
 		
 		TraderController tc = new TraderController();
 		tc.createTraderBlockOrder(order_list);
