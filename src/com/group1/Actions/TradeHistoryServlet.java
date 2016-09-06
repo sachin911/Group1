@@ -38,26 +38,17 @@ public class TradeHistoryServlet extends HttpServlet {
 		int employee_id = 16;
 
 		String role = "Trader";
-		HttpSession session = request.getSession();
-		Employee e = (Employee) session.getAttribute("obj"); 
+ 
 		TradeHistoryController tradeHistoryController = new TradeHistoryController();
 		List<Order> displayList = new ArrayList<>();
-		//displayList = tradeHistoryController.tradeHistory(e.getEmployee_id(), e.getRole());
-		if(e.getRole().equalsIgnoreCase("Trader")){
-
-
-		
-
-		displayList = tradeHistoryController.tradeHistory(22, role);
-	//	displayList = tradeHistoryController.tradeHistory(e.getEmployee_id(), e.getRole());
 		if(role.equalsIgnoreCase("Trader")){
-
+			displayList = tradeHistoryController.tradeHistory(employee_id, role);
 			request.setAttribute("displayList", displayList);
-	RequestDispatcher rd=request.getRequestDispatcher("traderorderhistory.jsp");  
-		rd.forward(request, response);
+			RequestDispatcher rd=request.getRequestDispatcher("traderorderhistory.jsp");  
+			rd.forward(request, response);
 		}
 		
-	}}
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

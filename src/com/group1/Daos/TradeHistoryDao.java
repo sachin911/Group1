@@ -21,7 +21,6 @@ public class TradeHistoryDao {
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt = null;
 
-		con = null;
 	
 
 		
