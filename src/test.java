@@ -1,12 +1,11 @@
+import com.group1.Controllers.AdminController;
 
 public class test {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		System.out.println("hello");
-		System.out.println("hello1");
-		System.out.println("HEY");
-		System.out.println("hello2");
+	
+	public static void main(String[] args)  {
+		AdminController ac = new AdminController();
+		//boolean result = ac.AddAdminController("jose", "giants", "jose", "kelly", "Trader", 11);
+		boolean result = ac.EditAdminController("ryan", "giants", "ryan", "kelly", "Trader", 16);
 
 
 	}

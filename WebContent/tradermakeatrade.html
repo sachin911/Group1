@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Trader Make a Trade</title>
+		<link rel="stylesheet" href="style/style.css">
+	</head>
+	<body>
+		<header class="traderMenu">
+			<img class="traderMenu__logo" src="images/Logo.png">
+
+			<!-- Menu buttons -->
+			<div class="traderMenu__buttonbox">
+				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome.html'">
+				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="traderMenu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="traderMenu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
+				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
+
+		<main class="tradermakeatrademain">
+<div class="makeatrade">
+				<h2 class="makeatrade__header">Make a Trade</h2>
+				<div class="scrollwrapper">
+					<table class="makeatrade__table" id="maketradetable">
+						<tr>
+							<th>Side</th>
+							<th>Symbol</th>
+							<th>Total Quantity</th>
+							<th>Account Type</th>
+							<th>Currency</th>
+							<th>Limit Price</th>
+							<th>Stop Prize</th>
+							<th>Order Type</th>
+						</tr>
+						<tr>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							<td><input type="text" class="table__input" name="tradertradeinput"></td>
+							
+						</tr>
+					</table>
+					<button onclick="createFunction()">Add row</button>
+					<button onclick="deleteFunction()">Delete row</button>
+				</div>
+			</div>
+
+
+		<!-- makeatrade table -->
+			<div class="makeatradeinstructions">
+				<h2 class="makeatradeinstructions__header">PM Trade Orders</h2>
+				<div class="scrollwrapper">
+					<table id="makeatradeinstructions__table" class="makeatradeinstructions__table">
+						<tr>
+							<th>VaR</th>
+							<th>Abs. Value Risk</th>
+							<th>Stress Testing Results</th>
+							<th>Day Ahead</th>
+							<th>Base Currency</th>
+							<th>USD Value</th>
+							<th>P/L</th>
+							<th>Apply?</th>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td><input type="checkbox"></td>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td><input type="checkbox"></td>
+						</tr>
+						<tr>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td>data</td>
+							<td><input type="checkbox"></td>
+						</tr>
+					</table>
+				</div>
+				<input type="button" class="makeatradeinstructions__apply" value="Apply">
+			</div>
+		</main>
+
+		<script src="JavaScript/makeatradepm.js"></script>
+	</body>
+</html>
