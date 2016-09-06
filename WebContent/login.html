@@ -1,5 +1,24 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body class="loginbody">
+	<header class="title">
+		<img src="images/Logo.png">
+		<h1>Money Tree</h1>
+	</header>
+	<main class="login">
+	<form action="LoginServlet" method="get">
+		<input type="text" class="login__input" placeholder="Username" name="username" >
+		<input type="password" class="login__input" placeholder="Password" name="password">
+		<input type="submit" class="login__submit" value="Login">
+	</form>
+	</main>
+</body>
+=======
 	<head>
 		<title>Login</title>
 		<link rel="stylesheet" href="style/style.css">
@@ -10,9 +29,12 @@
 			<h1>Money Tree</h1>
 		</header>
 		<main class="login">
-			<input type="text" class="login__input" placeholder="Username">
-			<input type="password" class="login__input" placeholder="Password">
-			<input type="submit" class="login__submit" value="Login">
+			<form method="GET" action="LoginServlet">
+				<input type="text" class="login__input" name="username" placeholder="Username" required>
+				<input type="password" class="login__input" name="password" placeholder="Password" required>
+				<input type="submit" class="login__submit" value="Login">
+			</form>
 		</main>
 	</body>
+>>>>>>> a4b431bb226834db4bcb0e2cc642b566bce80556
 </html>
