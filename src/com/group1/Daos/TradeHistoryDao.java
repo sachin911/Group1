@@ -44,8 +44,8 @@ public class TradeHistoryDao {
 				order.setOrder_type(result.getString("order_type"));
 				
 				// Check date type
-				order.setOrder_date(result.getString("order_date"));
-				order.setExecuted_date(result.getString("executed_date"));
+				order.setOrder_date(result.getDate("order_date"));
+				order.setExecuted_date(result.getDate("executed_date"));
 				// Check date type
 				
 				order.setLimit_price(result.getInt("limit_price"));
