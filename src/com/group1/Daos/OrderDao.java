@@ -23,7 +23,7 @@ public class OrderDao {
 				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id,block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,o.getSide()); // have
@@ -60,6 +60,9 @@ public class OrderDao {
 		} catch (SQLException e) {
 			 //TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		return result;
 	}
@@ -74,7 +77,7 @@ public class OrderDao {
 				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id, block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
 				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1,o.getSide()); // have
@@ -109,6 +112,9 @@ public class OrderDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		return result;
 	}
@@ -122,7 +128,7 @@ public class OrderDao {
 		boolean result = false;
 		Connection con=jobj.getCon();
 		//String sql = "update order_table set status = 'CANCELLED'";
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement("update order_table set status = 'CANCELLED' where order_id = ?");
 			pstmt.setInt(1, o.getOrder_id());
@@ -133,6 +139,9 @@ public class OrderDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
 		return result;
@@ -145,8 +154,8 @@ public class OrderDao {
 		int result = 0;
 		Connection con=jobj.getCon();
 		//String sql = "update order_table set status = 'CANCELLED'";
-		ResultSet rs;
-		PreparedStatement pstmt;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement("select count(distinct(symbol)) from order_table where trader_id= ?");
 			pstmt.setInt(1, trader_id);
@@ -163,9 +172,15 @@ public class OrderDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		return result;
 	}
+	
+	
 	public int getpl(int trader_id)
 	{
 		System.out.println("OrderDao : pl");
@@ -173,8 +188,8 @@ public class OrderDao {
 		int result = 0;
 		Connection con=jobj.getCon();
 		//String sql = "update order_table set status = 'CANCELLED'";
-		ResultSet rs;
-		PreparedStatement pstmt;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement("select pl from order_table where trader_id= ?");
 			pstmt.setInt(1, trader_id);
@@ -191,6 +206,10 @@ public class OrderDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		return result;
 	}
@@ -202,8 +221,8 @@ public class OrderDao {
 		ArrayList<Order> result = new ArrayList<Order>();
 		Connection con=jobj.getCon();
 		//String sql = "update order_table set status = 'CANCELLED'";
-		ResultSet rs;
-		PreparedStatement pstmt;
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement("select symbol,total_quantity,currency,executed_price,pl from order_table where trader_id= ?");
 			pstmt.setInt(1, trader_id);
@@ -227,6 +246,10 @@ public class OrderDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		return result;
 	}

@@ -42,7 +42,6 @@ public class LoginDao {
 				resultMap.put(2, role);
 				
 				// System.out.println("Valid user");
-				con.close();
 				return resultMap;
 			}
 
@@ -57,13 +56,11 @@ public class LoginDao {
 					resultMap.put(1, "block account");
 					resultMap.put(2, "null");
 					// System.out.println("Contact admin");
-					con.close();
 					return resultMap;
 				} else {
 					resultMap.put(1, "invalid password");
 					resultMap.put(2, "null");
 					System.out.println("Invalid Password");
-					con.close();
 					return resultMap;
 				}
 
@@ -74,8 +71,6 @@ public class LoginDao {
 		else {
 			resultMap.put(1, "invalid user");
 			System.out.println("User does not  exists");
-
-			con.close();
 			return resultMap;
 
 		}
