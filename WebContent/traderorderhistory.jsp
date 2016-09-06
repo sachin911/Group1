@@ -18,7 +18,7 @@
 		<main class="traderorderhistorymain">
 
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
+				<input type="button" class="menu__button" value="HOME" onClick="document.homeform.submit()">
 				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">

@@ -15,8 +15,8 @@
 
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="document.historyform.submit()">
-				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="menu__button" value="HOME" onClick="document.homeform.submit()">
+				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'"> 
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
 				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
@@ -24,17 +24,19 @@
 
 			</div>
 		</header>
-<form name="historyform" action="TraderHomeServlet" method="get"></form>
+<form name="homeform" action="TraderHomeServlet" method="get"></form>
+<form name="historyform" action="TradeHistoryServlet" method="get"></form>
+
 		<!-- Header menu buttons end -->
 		<main class="traderhomemain">
 			<div class="hero">
 				<article class="hero__block">
-					<h2 class="hero__heading">Total Assets</h2>
+					<h2 class="hero__heading">Current Assets</h2>
 					<p class="hero__data" name="heroassets"><%= request.getAttribute("totalassets") %></p>
 				</article>
 
 				<article class="hero__block">
-					<h2 class="hero__heading">Profit/ Loss</h2>
+					<h2 class="hero__heading">Current Investment</h2>
 					<p class="hero__data" name="heropl"><%= request.getAttribute("pl") %></p>
 				</article>
 

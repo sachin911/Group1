@@ -176,7 +176,7 @@ public class OrderDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement("select count(distinct(symbol)) from portfolio where emp_id= ?");
+			pstmt = con.prepareStatement("select count(distinct(symbol)) from portfolio where emp_id = ?");
 			pstmt.setInt(1, trader_id);
 			
 			rs = pstmt.executeQuery();

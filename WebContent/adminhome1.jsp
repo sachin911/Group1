@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -9,6 +11,10 @@
 		<header class="menu">
 			<img class="menu__logo" src="images/Logo.png">
 		</header>
+		
+		<form name="adminform" action="AdminServlet" method = "get"></form>
+		
+		
 		<main>
 			<article class="employeetable">
 				<h2>Employees</h2>

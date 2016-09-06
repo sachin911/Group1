@@ -1,5 +1,7 @@
 package com.group1.Controllers;
 
+import java.util.List;
+
 import com.group1.Models.Admin;
 import com.group1.Models.Employee;
 import com.group1.Models.PM;
@@ -50,6 +52,10 @@ public class AdminController {
 		
 		//returns boolean
 		return AdminService.editEmployee(e);
+	}
+	
+	public List<Employee> getAllEmployees() {
+		return AdminService.getAllEmployees();
 	}
 	
 	
