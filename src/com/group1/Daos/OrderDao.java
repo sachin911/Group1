@@ -160,13 +160,6 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		return result;
 
@@ -183,10 +176,10 @@ public class OrderDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement("select count(distinct(symbol)) from order_table where trader_id= ?");
+			pstmt = con.prepareStatement("select count(distinct(symbol)) from portfolio where emp_id= ?");
 			pstmt.setInt(1, trader_id);
 			
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while(rs.next())
 			{
 				result=rs.getInt(1);
@@ -202,13 +195,6 @@ public class OrderDao {
 		    try { rs.close(); } catch (Exception e) { /* ignored */ }
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
-		}
-		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		
@@ -247,13 +233,6 @@ public class OrderDao {
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		return result;
 	}
@@ -268,7 +247,7 @@ public class OrderDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement("select symbol,total_quantity,currency,executed_price,pl from order_table where trader_id= ?");
+			pstmt = con.prepareStatement("select symbol, quantity from portfolio where emp_id= ?");
 			pstmt.setInt(1, trader_id);
 			
 			rs=pstmt.executeQuery();

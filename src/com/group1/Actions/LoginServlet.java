@@ -53,7 +53,7 @@ public class LoginServlet extends HttpServlet {
 			typeOfUser = map.get(2);
 			// eid=Integer.parseInt(map.get(3));
 			if(userValidity.equals("Valid User")){
-				e=(Employee) li.get(1);
+				e = (Employee) li.get(1);
 			}
 			
 			
@@ -63,7 +63,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("obj", e);
 			System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("pmhome.html");
+						.getRequestDispatcher("pmhome1.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("obj", e);
 			System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("traderhome.html");
+						.getRequestDispatcher("traderhome1.jsp");
 				rd.forward(request, response);
 			}
 			if (userValidity.equals("Valid User")
@@ -86,6 +86,9 @@ public class LoginServlet extends HttpServlet {
 						.getRequestDispatcher("adminhome.html");
 				rd.forward(request, response);
 			}
+			
+			
+			
 			if (userValidity.equals("Invalid password")
 					&& typeOfUser.equalsIgnoreCase("null")) {
 				System.out.println(userValidity + typeOfUser);

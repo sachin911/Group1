@@ -37,7 +37,7 @@ public class TraderController {
 	public int getTotalAssets(int trader_id)
 	{
 		OrderService os =  new OrderService();
-		int tassets=os.getAssets(trader_id);
+		int tassets = os.getAssets(trader_id);
 		
 		
 		return tassets;
@@ -45,7 +45,7 @@ public class TraderController {
 	public int getPL(int trader_id)
 	{
 		OrderService os =  new OrderService();
-		int tassets=os.getpl(trader_id);
+		int tassets = os.getpl(trader_id);
 		
 		
 		return tassets;
@@ -53,7 +53,7 @@ public class TraderController {
 	public ArrayList<Order> getlist(int trader_id)
 	{
 		OrderService os =  new OrderService();
-		ArrayList<Order> tassets=os.getlist(trader_id);
+		ArrayList<Order> tassets = os.getlist(trader_id);
 		
 		
 		return tassets;
