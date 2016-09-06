@@ -13,10 +13,12 @@ import com.group1.Models.Order;
 
 public class BlockDao {
 
-	public int executeBlock(Employee user, Block block_order) {
+	public int createBlock(Employee user, Block block_order) {
 
 		Jdbc database_con = new Jdbc();
-
+		
+		Connection con = database_con.getCon();
+		
 		// block related variables
 		List<Order> order_list = new ArrayList<Order>();
 		order_list = block_order.getOrder_list();
@@ -37,8 +39,6 @@ public class BlockDao {
 		}
 
 		executed_quantity = total_quantity - open_quantity;
-
-		Connection con = database_con.getCon();
 
 		PreparedStatement pstmt;
 		try {
