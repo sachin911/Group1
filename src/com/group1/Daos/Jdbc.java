@@ -22,6 +22,15 @@ public class Jdbc {
 
 		try {
 			// Step 2. Create Connection
+
+			con = DriverManager.getConnection("jdbc:oracle:thin:@10.150.222.96:1521:xe", "MoneytreeG1", "MoneytreeG1");
+			System.out.println("Connection created ---- ");
+			//String sql = "Select * from test";
+            //PreparedStatement pstmt = con.prepareStatement(sql);
+            //ResultSet result = pstmt.executeQuery();
+            //while(result.next())
+            //System.out.println("The values in the table are       " + result.getInt("ID"));
+
 			//con = DriverManager.getConnection("jdbc:oracle:thin:@BLRVIKR04.sapient.com:1521:xe", "moneytree", "moneytree");
 			
 			//con = DriverManager.getConnection("jdbc:oracle:thin:@NYsnar1973723.sapient.com:1521:xe", "test", "test");	
@@ -34,6 +43,7 @@ public class Jdbc {
            // ResultSet result = pstmt.executeQuery();
            // while(result.next())
            // System.out.println("The values in the table are       " + result.getInt("ID"));
+
 
           
 

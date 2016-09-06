@@ -12,6 +12,12 @@ import com.group1.Models.Order;
 
 public class BrokerDao {
 	
+	private static java.sql.Date getCurrentDate() {
+	    java.util.Date today = new java.util.Date();
+	    return new java.sql.Date(today.getTime());
+	}
+
+	
 	Jdbc jdbc = new Jdbc();
 	List<Order> pendingTrades = new ArrayList<>();
 	
@@ -62,8 +68,8 @@ public class BrokerDao {
 		return pendingTrades;
 	}
 	
-	public boolean updateTrades(Order o) {
-		
+
+	public void updateTrades(Order o) {
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt;
 		int result=0;
@@ -86,7 +92,8 @@ public class BrokerDao {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-		return edited;
+	
+
 	}
 
 }
