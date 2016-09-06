@@ -61,10 +61,10 @@ public class TradeHistoryDao {
 				order.setExecuted_price(result.getInt("executed_price"));
 				
 				historyList.add(order);
-				System.out.println(historyList);
+				
 				
 			}
-				System.out.println(historyList.size());
+				
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
