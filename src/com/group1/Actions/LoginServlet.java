@@ -64,6 +64,7 @@ public class LoginServlet extends HttpServlet {
 			li = logincontroller.callLogin(username, password);
 			map = (Map<Integer, String>) li.get(0);
 			
+<<<<<<< HEAD
              System.out.println(li.size());
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);
@@ -134,6 +135,22 @@ public class LoginServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
 
+=======
+			RequestDispatcher rd=request.getRequestDispatcher("pmhome.html");  
+			rd.forward(request, response);
+		}
+		if(userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Trader"))
+		{
+			 System.out.println(userValidity+typeOfUser);
+			 RequestDispatcher rd=request.getRequestDispatcher("TraderHomeServlet");  
+			rd.forward(request, response);
+		}
+		if(userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Admin"))
+		{
+			 System.out.println(userValidity+typeOfUser);	
+			 RequestDispatcher rd=request.getRequestDispatcher("adminhome.html");  
+			rd.forward(request, response);
+>>>>>>> refs/remotes/origin/NH
 		}
 	}
 	protected void doPost(HttpServletRequest request,
