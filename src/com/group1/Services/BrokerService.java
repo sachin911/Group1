@@ -131,7 +131,11 @@ public class BrokerService {
 	
 	
 	
-	public float calcAmount(String type, int quantity, float price) {
+
+
+
+	public static float calcAmount(String type, int quantity, float price) {
+
 		float pl;
 		if (type == "BUY") {
 			pl = quantity * - price;
@@ -140,6 +144,8 @@ public class BrokerService {
 		}
 		return pl;
 	}
+	
+	
 	
 	//USD, FRANC, AUD, GBP, INR, CAD, EURO
 
