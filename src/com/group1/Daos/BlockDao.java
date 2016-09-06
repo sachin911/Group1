@@ -3,6 +3,7 @@ package com.group1.Daos;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import com.group1.Models.Order;
 
 public class BlockDao {
 
-	public int createBlock(Employee user, Block block_order) {
+	public int createBlock(Block block_order) {
 
 		Jdbc database_con = new Jdbc();
 		
@@ -22,23 +23,15 @@ public class BlockDao {
 		// block related variables
 		List<Order> order_list = new ArrayList<Order>();
 		order_list = block_order.getOrder_list();
-		int total_quantity = 0;
-		int open_quantity = 0;
-		int executed_quantity = 0;
+		int total_quantity = block_order.getTotal_quantity();
+		int open_quantity = block_order.getOpen_quantity();
+		int executed_quantity = block_order.getExecuted_quantity();
 		String side = order_list.get(0).getSide();
 		String status = order_list.get(0).getStatus();
 		String symbol = order_list.get(0).getSymbol();
-		float limit_price = order_list.get(0).getLimit_price();
-		float stop_price = order_list.get(0).getStop_price();
 		Date ordered_date = order_list.get(0).getOrder_date();
 		Date executed_date = order_list.get(0).getExecuted_date();
-		int row_count = 0;
-		for (Order iter : order_list) {
-			total_quantity += iter.getTotal_quantity();
-			open_quantity += iter.getOpen_quantity();
-		}
-
-		executed_quantity = total_quantity - open_quantity;
+		int row_id = 0;
 
 		PreparedStatement pstmt;
 		try {
@@ -46,22 +39,48 @@ public class BlockDao {
 			pstmt.setString(1, side);
 			pstmt.setString(2, symbol);
 			pstmt.setString(3, status);
-			pstmt.setFloat(4, limit_price);
-			pstmt.setFloat(5, stop_price);
-			pstmt.setInt(6, total_quantity);
-			pstmt.setInt(7, executed_quantity);
-			pstmt.setInt(8, open_quantity);
-			pstmt.setDate(9, ordered_date);
-			pstmt.setDate(10, executed_date);
-			row_count = pstmt.executeUpdate();
+			pstmt.setInt(4, total_quantity);
+			pstmt.setInt(5, executed_quantity);
+			pstmt.setInt(6, open_quantity);
+			pstmt.setDate(7, ordered_date);
+			pstmt.setNull(8, java.sql.Types.DATE);
+			pstmt.executeUpdate();
+			ResultSet rs = pstmt.getGeneratedKeys();
+			rs.next();
+			row_id = rs.getInt(1);
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		return row_count;
+		return row_id;
 		
 	}
-
+	
+	/*
+	 * updates the order status from  'PM assigned' to 'pending'   
+	 */
+	public int updateOrdersInABlock(Block block){
+		Jdbc database_con = new Jdbc();
+		Connection con = database_con.getCon();
+		List<Order> order_list = new ArrayList<Order>();
+		int rows_updated = 0;
+		PreparedStatement pstmt;
+		
+		for(Order iter : order_list){
+			try {
+				pstmt = con.prepareStatement("update table order set status = 'pending' where order_id = ?");
+				pstmt.setInt(1, iter.getOrder_id());
+				pstmt.executeUpdate();
+				rows_updated++;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+		}
+	
+		return rows_updated;	
+	}
+	
 }

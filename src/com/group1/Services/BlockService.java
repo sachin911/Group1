@@ -1,5 +1,6 @@
 package com.group1.Services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.group1.Daos.BlockDao;
@@ -15,7 +16,7 @@ public class BlockService implements BlockServiceInterface{
 	 * This function should take an already created block (list of orders) and sends it to the dao along with the Employee object.
 	 * This returns true if the block is actually created and false if the dao function returns 0. 
 	 */
-	public boolean executeBlockService(Employee user, Block block_order){
+	public boolean createBlockService(Block block_order){
 		BlockDao blockdao = new BlockDao();
 		boolean executed_status = false;
 		if(block_order == null){
@@ -23,22 +24,41 @@ public class BlockService implements BlockServiceInterface{
 		}	
 		
 		// dao function which actually adds the block row to the block table
-		int block_created = blockdao.createBlock(user, block_order);
+		int block_id = blockdao.createBlock(block_order);
 		
-		//block_created is the number of rows that were added to the table.
-		return (block_created != 0) ? true : false;
+		executed_status = (block_id > 0) ? true : false;
 		
-	}
-
-	@Override
-	public boolean createBlockService(Employee user, List<Order> order_list) {
-		// TODO Auto-generated method stub
-		boolean is_block_created = false;
-		
-		if(order_list == null){
-			return is_block_created;
+		if(executed_status){
+			block_order.setBlock_id(block_id);
+			executeBlockService(block_order);
 		}
 		
+		//block_created is the number of rows that were added to the table.
+		return executed_status;
+		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.group1.Services.BlockServiceInterface#executeBlockService(com.group1.Models.Block)
+	 * 
+	 * This function takes the block object and then updates the order status to pending and 
+	 * then calls the actual broker function which handles the execution
+	 */
+	@Override
+	public boolean executeBlockService(Block block) {
+		// TODO Auto-generated method stub
+		boolean is_block_executed = false;
+		int block_id = block.getBlock_id();
+		BlockDao block_dao = new BlockDao();
+		
+		if(block_id < 0 || block == null){
+			return is_block_executed;
+		}
+	
+		block_dao.updateOrdersInABlock(block);
+		
+		//next step is to call the broker function to execute
 		
 		return false;
 	}
