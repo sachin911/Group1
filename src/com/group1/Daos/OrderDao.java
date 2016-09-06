@@ -61,6 +61,14 @@ public class OrderDao {
 			 //TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 	
@@ -110,6 +118,15 @@ public class OrderDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return result;
 	}
 
@@ -134,10 +151,19 @@ public class OrderDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 		return result;
 
 	}
+	
+	
 	public int getTotAssets(int trader_id)
 	{
 		System.out.println("OrderDao : assets");
@@ -164,8 +190,19 @@ public class OrderDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return result;
 	}
+	
+	
 	public int getpl(int trader_id)
 	{
 		System.out.println("OrderDao : pl");
@@ -192,6 +229,15 @@ public class OrderDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		try {
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		return result;
 	}
 	
