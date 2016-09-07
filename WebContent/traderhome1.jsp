@@ -14,8 +14,7 @@
 		src="images/Logo.png"> <!-- Menu buttons -->
 	<div class="menu__buttonbox">
 		<input type="button" class="menu__button selected" value="HOME"
-			onClick="document.homeform.submit()"> <input type="button"
-			class="menu__button" value="HOME" onClick="TraderHomeServlet">
+			onClick="document.homeform.submit()"> 
 
 		<input type="button" class="menu__button" value="INBOX"
 			onClick="location.href='traderinbox.html'"> <input
@@ -40,18 +39,18 @@
 	<main class="traderhomemain">
 	<div class="hero">
 		<article class="hero__block">
-		<h2 class="hero__heading">Current Assets</h2>
-		<p class="hero__data" name="heroassets"><%= request.getAttribute("totalassets") %></p>
+		<h2 class="hero__heading">CURRENT ASSETS</h2>
+		<p class="hero__data" name="heroassets"><%= request.getAttribute("current_assets") %></p>
 		</article>
 
 		<article class="hero__block">
-		<h2 class="hero__heading">Current Investment</h2>
-		<p class="hero__data" name="heropl"><%= request.getAttribute("pl") %></p>
+		<h2 class="hero__heading">PROFIT/LOSS</h2>
+		<p class="hero__data" name="heropl"><%= request.getAttribute("pl_assets") %></p>
 		</article>
 
 		<article class="hero__block">
-		<h2 class="hero__heading">% Change</h2>
-		<p class="hero__data" name="heropchange">data</p>
+		<h2 class="hero__heading">% CHANGE</h2>
+		<p class="hero__data" name="heropchange"><%= request.getAttribute("change") %></p>
 		</article>
 	</div>
 	<div class="portfolio">
@@ -69,7 +68,7 @@
 					<th name="marketvalue">Market Value</th>
 					<th name="profitloss">Profit/loss</th>
 				</tr>
-				<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
+		<!--  		<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
 						
 						if(tlist!=null)
 							{
@@ -88,9 +87,9 @@
 					<td><%=o.getPl() %></td>
 				</tr>
 				<% }
-						} %>
+						} %> -->
 				<tbody>
-
+					
 				</tbody>
 			</table>
 		</div>

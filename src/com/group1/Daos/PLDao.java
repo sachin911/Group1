@@ -62,7 +62,7 @@ public class PLDao {
 				plList.add(order);
 				
 			}
-			System.out.println(plList);
+			System.out.println("This is within the function" + plList);
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block

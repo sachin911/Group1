@@ -16,7 +16,6 @@
 		<!-- Header menu buttons end -->
 <form name="homeform" action="TraderHomeServlet" method="get"></form>	
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
-<form name="homeform" action="TraderHomeServlet" method = "get"></form>
 <form name="plform" action="PLServlet" method = "get"></form>
 		<main class="traderorderhistorymain">
 
@@ -54,6 +53,7 @@
 							<th><%=list.get(i).getOrder_id()%></th>
 							<th><%=list.get(i).getOrder_date()%></th>
 							<th><%=list.get(i).getStatus()%></th>
+							<th><%=list.get(i).getOrder_type()%></th>
 							<th><%=list.get(i).getOpen_quantity()%></th>
 							<th><%=list.get(i).getSide()%></th>
 							<th><%=list.get(i).getExecuted_price()%></th>
