@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.group1.Controllers.AdminController;
 import com.group1.Controllers.LoginController;
+import com.group1.Daos.AdminDao;
 import com.group1.Models.Employee;
 
 @WebServlet("/LoginServlet")
@@ -53,7 +55,18 @@ public class LoginServlet extends HttpServlet {
 			// eid=Integer.parseInt(map.get(3));
 			if (userValidity.equals("Valid User")) {
 				e = (Employee) li.get(1);
-			}
+				System.out.println(e.getEmployee_id());
+				AdminDao ad = new AdminDao();
+				System.out.println(ad.checkstate(e));
+				if(ad.checkstate(e)==false)
+					{
+					System.out.println("Redirecting to home page");
+					request.setAttribute("error", "You hav been deactivated");
+					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+					rd.forward(request, response);
+					}
+				else
+				{
 
 			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("PM")) {
 				HttpSession session = request.getSession();
@@ -100,10 +113,12 @@ public class LoginServlet extends HttpServlet {
 //				rd.forward(request, response);
 
 			}
+				}
+			}
 			if (userValidity.equals("Invalid password") && typeOfUser.equalsIgnoreCase("null")) {
 				System.out.println(userValidity + typeOfUser);
 				request.setAttribute("error", "Invalid Username/Password");
-				RequestDispatcher rd = request.getRequestDispatcher("Login1.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 			}
 
 			if (userValidity.equals("Invalid password") && typeOfUser.equalsIgnoreCase("null")) {
@@ -131,6 +146,8 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error", "Invalid Username/Password");
 				rd.forward(request, response);
 			}
+				
+			
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();
