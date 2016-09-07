@@ -13,7 +13,8 @@ import com.group1.Models.Order;
 public class TradeHistoryDao {
 
 	Jdbc jdbc = new Jdbc();
-	public List<Order> historyList = new ArrayList<>();
+	public List<Order> historyList = new ArrayList<>(0);
+	
 	
 	public List displayTradeHistory(Employee user){
 		
@@ -74,7 +75,7 @@ public class TradeHistoryDao {
 		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
+		System.out.println(historyList);
 		return historyList;
 		
 		

@@ -15,6 +15,7 @@
 
 		<!-- Header menu buttons end -->
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
+<form name="homeform" action="TraderHomeServlet" method = "get"></form>
 		<main class="traderorderhistorymain">
 
 			<div class="menu__buttonbox">
