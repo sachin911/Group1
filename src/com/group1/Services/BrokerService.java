@@ -164,7 +164,7 @@ public class BrokerService {
 
 		float pl;
 		if (type == "BUY") {
-			pl = quantity * - price;
+			pl = quantity * price * -1;
 		} else { //SELL
 			pl = quantity * price;
 		}

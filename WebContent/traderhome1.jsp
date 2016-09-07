@@ -26,16 +26,17 @@
 		</header>
 <form name="homeform" action="TraderHomeServlet" method="get"></form>
 <form name="historyform" action="TradeHistoryServlet" method="get"></form>
+
 		<!-- Header menu buttons end -->
 		<main class="traderhomemain">
 			<div class="hero">
 				<article class="hero__block">
-					<h2 class="hero__heading">Total Assets</h2>
+					<h2 class="hero__heading">Current Assets</h2>
 					<p class="hero__data" name="heroassets"><%= request.getAttribute("totalassets") %></p>
 				</article>
 
 				<article class="hero__block">
-					<h2 class="hero__heading">Profit/ Loss</h2>
+					<h2 class="hero__heading">Current Investment</h2>
 					<p class="hero__data" name="heropl"><%= request.getAttribute("pl") %></p>
 				</article>
 
