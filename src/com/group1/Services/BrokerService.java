@@ -1,5 +1,7 @@
 package com.group1.Services;
 
+import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
@@ -12,19 +14,27 @@ public class BrokerService {
 	PortfolioDao portdao = new PortfolioDao();
 
 	Random rand = new Random();
+	
+	private static java.sql.Date getCurrentDate() {
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
+	}
 
 	public void broker() {
 		List<Order> pending = brokerdao.getPendingTrades();
 
 		for (Order o : pending) {
 			if (o.getOrder_type().equals("MARKET")) {
-				execute(o);
+				if (portdao.checkPortfolio(o)) {
+					System.out.println("Placing market order now..");
+					marketOrderFull(o);
+				}
 			} else {
 				final int ran = rand.nextInt(100);
-				System.out.println("Hello");
-				if (ran > 50) { }  // stay pending
-				else if (ran > 20) {execute(o); }   // get executed fully
-				else { partial(o); }   // partially
+				System.out.println("Checking out the market..");
+				if (ran > 50) { System.out.println("Nothing happening on market..");}  // stay pending
+				else if (ran > 20) {System.out.println("All shares for sale on market.."); execute(o); }   // get executed fully
+				else { System.out.println("Only a few shares available on the market.."); partial(o); }   // partially
 			}
 		}
 	}
@@ -34,28 +44,25 @@ public class BrokerService {
 
 		if (portdao.checkPortfolio(o)) {
 			switch(oType) {
-			case "MARKET": marketOrderFull(o); break;
 			case "LIMIT": limitOrderFull(o); break;
 			case "STOP": stopOrderFull(o); break;
 			case "STOP LIMIT": stopLimitOrderFull(o); break;
 			}
 
 		}
-
-
-
 	}
 
 	public void marketOrderFull(Order o) {
 
 		float price = (float) (rand.nextDouble() * 100);
-		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), price);
+		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), price);
 		// SET OPEN AND ALLOCATED QUANTITY
 
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
 
 		o.setExecuted_price(price);
+		o.setExecuted_date(getCurrentDate());
 		o.setPl(pl);
 		o.setStatus("EXECUTED");
 
@@ -67,12 +74,13 @@ public class BrokerService {
 	public void limitOrderFull(Order o) {
 
 
-		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
+		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), o.getLimit_price());
 
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
 
 		o.setExecuted_price(o.getLimit_price());
+		o.setExecuted_date(getCurrentDate());
 		o.setPl(pl);
 		o.setStatus("EXECUTED");
 
@@ -84,14 +92,14 @@ public class BrokerService {
 	public void stopOrderFull(Order o) {
 
 
-		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), o.getLimit_price());
+		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), o.getStop_price());
 
 		o.setOpen_quantity(o.getTotal_quantity());
 		o.setAllocated_quantity(0);
 
 		o.setExecuted_price(o.getStop_price());
+		o.setExecuted_date(getCurrentDate());
 		o.setPl(pl);
-		o.setOpen_quantity(o.getTotal_quantity());
 		o.setStatus("EXECUTED");
 
 
@@ -100,7 +108,23 @@ public class BrokerService {
 	}
 
 	public void stopLimitOrderFull(Order o) {
+		float max = 0;
+		float min =0;
+		
+	    int price = (int) (rand.nextInt((int) ((max - min) + 1)) + min);
+	    
+		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), price);
 
+		o.setOpen_quantity(o.getTotal_quantity());
+		o.setAllocated_quantity(0);
+		
+		o.setExecuted_price(price);
+		o.setExecuted_date(getCurrentDate());
+		o.setPl(pl);
+		o.setStatus("EXECUTED");
+		
+		brokerdao.updateTrades(o);
+		portdao.updatePortfolio(o);
 	}
 
 	public void partial(Order o) {
@@ -116,12 +140,11 @@ public class BrokerService {
 
 	}
 
-
 	public void limitOrderPartial(Order o) {
 
 		int open = rand.nextInt(o.getTotal_quantity() + 1);
 		//int open = (int) (rand.nextDouble() * 100 * o.getTotal_quantity());
-		float pl = calcAmount(o.getOrder_type(), open, o.getLimit_price());
+		float pl = calcAmount(o.getSide(), open, o.getLimit_price());
 
 
 		o.setOpen_quantity(open);
@@ -141,7 +164,7 @@ public class BrokerService {
 
 		int open = rand.nextInt(o.getTotal_quantity() + 1);
 		//		int open = (int) (rand.nextDouble() * 100 * o.getTotal_quantity());
-		float pl = calcAmount(o.getOrder_type(), o.getTotal_quantity(), o.getStop_price());
+		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), o.getStop_price());
 
 		o.setOpen_quantity(open);
 		o.setAllocated_quantity(o.getTotal_quantity() - open);
@@ -157,7 +180,22 @@ public class BrokerService {
 	}
 
 	public void stopLimitOrderPartial(Order o) {
+		float max = 0;
+		float min =0;
+		
+	    int price = (int) (rand.nextInt((int) ((max - min) + 1)) + min);
+		int open = rand.nextInt(o.getTotal_quantity() + 1);
+		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), price);
 
+		o.setOpen_quantity(open);
+		o.setAllocated_quantity(o.getTotal_quantity() - open);
+		
+		o.setExecuted_price(price);
+		o.setPl(pl);
+		o.setStatus("PARTIAL");
+		
+		brokerdao.updateTrades(o);
+		portdao.updatePortfolio(o);
 	}
 
 	public static float calcAmount(String type, int quantity, float price) {

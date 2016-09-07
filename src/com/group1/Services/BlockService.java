@@ -20,26 +20,22 @@ public class BlockService implements BlockServiceInterface {
 	 * the Employee object. This returns true if the block is actually created
 	 * and false if the dao function returns 0.
 	 */
-	public boolean createBlockService(Block block_order) {
+	public int createBlockService(Block block_order) {
 		BlockDao blockdao = new BlockDao();
-		boolean executed_status = false;
 		if (block_order == null) {
-			return executed_status;
+			return -1;
 		}
 
 		// dao function which actually adds the block row to the block table
 		int block_id = blockdao.createBlock(block_order);
 
-		executed_status = (block_id > 0) ? true : false;
-
-		if (executed_status) {
+		if (block_id > 0) {
 			block_order.setBlock_id(block_id);
-			executeBlockService(block_order);
+			//executeBlockService(block_order);
 		}
+		return block_id;
 
 		// block_created is the number of rows that were added to the table.
-		return executed_status;
-
 	}
 
 	/*
@@ -53,24 +49,23 @@ public class BlockService implements BlockServiceInterface {
 	 * pending and then calls the actual broker function which handles the
 	 * execution
 	 */
-	@Override
-	public boolean executeBlockService(Block block) {
-		// TODO Auto-generated method stub
-		boolean is_block_executed = false;
-		int block_id = block.getBlock_id();
-		BlockDao block_dao = new BlockDao();
-
-		if (block_id < 0 || block == null) {
-			return is_block_executed;
-		}
-
-		block_dao.updateOrdersInABlock(block);
-
-		// next step is to call the broker function to execute
-		BrokerService bs = new BrokerService();
-		bs.broker();
-
-		return false;
-	}
+//	public boolean executeBlockService(Block block) {
+//		// TODO Auto-generated method stub
+//		boolean is_block_executed = false;
+//		int block_id = block.getBlock_id();
+//		BlockDao block_dao = new BlockDao();
+//
+//		if (block_id < 0 || block == null) {
+//			return is_block_executed;
+//		}
+//
+//		block_dao.updateOrdersInABlock(block);
+//
+//		// next step is to call the broker function to execute
+////		BrokerService bs = new BrokerService();
+////		bs.broker();
+//
+//		return false;
+//	}
 
 }

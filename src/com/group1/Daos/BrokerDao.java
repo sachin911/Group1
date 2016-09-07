@@ -17,7 +17,6 @@ public class BrokerDao {
 		return new java.sql.Date(today.getTime());
 	}
 
-
 	Jdbc jdbc = new Jdbc();
 	List<Order> pendingTrades = new ArrayList<>();
 

@@ -40,7 +40,9 @@ public class AdminServlet extends HttpServlet {
 		List<Employee> employeelist=new ArrayList<Employee>();
 		employeelist = ac.getAllTraders();
 		session.setAttribute("el", employeelist);
-
+		List<Employee> nlist=new ArrayList<Employee>();
+		nlist = ac.getNTraders();
+		session.setAttribute("nl", nlist);
 		response.sendRedirect(request.getContextPath() + "/adminhome1.jsp");
 		//rd.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());

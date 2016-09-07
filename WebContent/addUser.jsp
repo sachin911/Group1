@@ -1,5 +1,7 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"
+    import="java.util.*,com.group1.Controllers.*"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -13,31 +15,46 @@
 		</header>
 		<main>
 			<article class="adduser">
-				<h2>Add a user</h2>
+				<h2>Add user</h2>
 				<form action="AddUserServlet" method="get">
-				<table class="adduser__table">
-					<tr>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Username</th>
-						<th>Password</th>
-						<th>Role</th>
-						<th>Manager</th>
-					</tr>
-					<tbody>
-						<tr>
-						<td><input type="text" name="first_name"></td>
-						<td><input type="text" name="last_name"></td>
-						<td><input type="text" name="username"></td>
-						<td><input type="text" name="password"></td>
-						<td><input type="text" name="role"></td>
-						<td><input type="text" name="pm_id"></td>
-					</tr>
-					</tbody>
-				</table>
-				<input class="generalbutton" type = "submit" value = "Add" onClick="location.href='adminhome1.jsp'">
+					
+				<p>First Name <input type="text" name="firstname" /></p>
+				<p>Last Name <input type="text" name="lastname" ></p>
+				<p>Username <input type="text" name="username" ></p>
+				<p>Password <input type="password" name="password" ></p>
+				<p>Role <!--  <input type="text" name="role" >-->
+				<select name="role" id="role" onchange="disable(this)">
+				<option value="Trader">Trader</option>
+				<option value="PM">PM</option>
+				<option value="Admin">Admin</option>
+				</select></p>
+				<p>Manager<!--  <input type="text" name="pm_id"  >--> 
+				<select name="pm_id" id="pm_id">
+				<%AdminController ac = new AdminController(); 
+				ArrayList<Integer> pmlist=ac.getpm_id();
+				System.out.println(pmlist);
+				for(int i=0;i<pmlist.size();i++)
+				{
+				%>
+				
+				<option value="<%=pmlist.get(i)%>"><%=pmlist.get(i)%></option>
+				<%} %>
+				</select></p>
+
+				<input class="generalbutton" type = "submit" value = "Edit">
+				<button class="generalbutton" onClick="adminhome1.jsp">Cancel</button>
 				</form>
 			</article>
 		</main>
+		<script>
+		function disable(sel)
+		{
+			var droplistval=sel.value;
+			if(droplistval==="Trader")
+				document.getElementById("pm_id").disabled=false;
+			else
+				document.getElementById("pm_id").disabled=true;
+		}
+		</script>
 	</body>
 </html>
