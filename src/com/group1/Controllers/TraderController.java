@@ -31,8 +31,6 @@ public class TraderController {
 				limit_price, stop_price);
 
 		OrderService.createBrokerOrder(o);
-		BrokerService bs = new BrokerService();
-		bs.broker();
 	}
 
 	public void createTraderBlockOrder(List<Order> order_list) {
@@ -58,15 +56,12 @@ public class TraderController {
 		}
 
 		executed_quantity = total_quantity - open_quantity;
-		
-
 		Block new_block = new Block(total_quantity, executed_quantity, open_quantity, order_date , executed_date , side, symbol, status, order_list, 0);
 		
-		
-		System.out.println(new_block.toString());
-		boolean is_block_created = block_service.createBlockService(new_block);
-		boolean blockUpdated = block_service.executeBlockService(new_block);
-		System.out.println("Block is created-------"+is_block_created + " and " + blockUpdated);
+		block_id = block_service.createBlockService(new_block);
+		new_block.setBlock_id(block_id);
+		block_service.executeBlockService(new_block);
+		//System.out.println("Block is created-------"+is_block_created + " and " + blockUpdated);
 	}
 	
 	public static void main(String[] args) {

@@ -62,10 +62,7 @@ public class BlockDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
-	
 		return row_id;
-
 	}
 	
 	/*
@@ -80,7 +77,7 @@ public class BlockDao {
 		
 		for(Order iter : order_list){
 			try {
-				pstmt = con.prepareStatement("update table order set status = 'PENDING', BLOCK_ID = ? where order_id = ?");
+				pstmt = con.prepareStatement("update order_table set status = 'PENDING', BLOCK_ID = ? where order_id = ?");
 				pstmt.setInt(1, block.getBlock_id());
 				pstmt.setInt(2, iter.getOrder_id());
 				pstmt.executeUpdate();
