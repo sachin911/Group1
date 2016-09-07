@@ -18,12 +18,13 @@ public class AdminService implements AdminServiceInterface {
 	}
 
 
-	public static List<Employee> getAllEmployees() {
-		return adminDao.getAllEmployees();
+	public static List<Employee> getAllTraders() {
+		return adminDao.getAllTraders();
 	}
 
 
 	public static boolean editEmployee(Employee user) {
+		System.out.println("Service");
 		return adminDao.editEmployee(user);
 	}
 

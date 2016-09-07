@@ -50,7 +50,6 @@ public class TradeHistoryDao {
 				order.setSide(result.getString("side"));
 				order.setSymbol(result.getString("symbol"));
 				order.setStatus(result.getString("status"));
-				order.setAccount_type(result.getString("account_type"));
 				order.setCurrency(result.getString("currency"));
 				order.setSide(result.getString("side"));
 				order.setOrder_type(result.getString("order_type"));

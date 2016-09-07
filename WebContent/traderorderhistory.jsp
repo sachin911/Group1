@@ -14,6 +14,7 @@
 
 
 		<!-- Header menu buttons end -->
+<form name="homeform" action="TraderHomeServlet" method="get"></form>	
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
 <form name="homeform" action="TraderHomeServlet" method = "get"></form>
 <form name="plform" action="PLServlet" method = "get"></form>
@@ -25,7 +26,7 @@
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="document.plform.submit()">
 				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
-				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='logoutservlet'">
 			</div>
 		</header>
 		<!-- Header menu buttons end -->
@@ -43,7 +44,7 @@
 							<th>Order Status</th>
 							<th>Order Type</th>
 							<th>Quantity</th>
-							<th>Term</th>
+							<th>Side</th>
 							<th>Price</th>
 						</tr>
 			<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
@@ -53,7 +54,6 @@
 							<th><%=list.get(i).getOrder_id()%></th>
 							<th><%=list.get(i).getOrder_date()%></th>
 							<th><%=list.get(i).getStatus()%></th>
-							<th><%=list.get(i).getAccount_type()%></th>
 							<th><%=list.get(i).getOpen_quantity()%></th>
 							<th><%=list.get(i).getSide()%></th>
 							<th><%=list.get(i).getExecuted_price()%></th>

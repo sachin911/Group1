@@ -23,6 +23,7 @@
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="document.plform.submit()">
 				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
 				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+
 			</div>
 		</header>
 		

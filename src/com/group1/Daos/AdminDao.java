@@ -90,19 +90,25 @@ public class AdminDao {
 	}
 
 	public boolean editEmployee(Employee user) {
+		System.out.println("Dao");
 		Connection con = jdbc.getCon();
 		boolean edited = false;
 		int result = 0;
 		PreparedStatement stmt = null;
 
 		try {
-			stmt = con.prepareStatement("update EMPLOYEE set Role = ?, Login_Attempts = ?, Pm_id = ? where userName = ?");
-			stmt.setString(1, user.getRole());
-			stmt.setLong(2, user.getLoginAttempts());
-			stmt.setLong(3, user.getPm_id());
-			stmt.setString(4, user.getUserName());
+			//stmt = con.prepareStatement("update EMPLOYEE set Role = ?, Login_Attempts = ?, Pm_id = ? where userName = ?");
+			stmt = con.prepareStatement("update EMPLOYEE set first_Name = ?, last_Name = ?, Role = ?, Pm_id = ?, Login_Attempts = ? where userName = ?");
+			stmt.setString(1, user.getFirst_Name());
+			stmt.setString(2, user.getLast_Name());
+			stmt.setString(3, user.getRole());
+			stmt.setInt(4, user.getPm_id());
+			stmt.setInt(5, user.getLoginAttempts());
+			stmt.setString(6, user.getUserName());
+
 			result = stmt.executeUpdate();
 			edited = true;
+			System.out.println("Updated");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -114,7 +120,7 @@ public class AdminDao {
 
 	}
 
-	public List<Employee> getAllEmployees() {
+	public List<Employee> getAllTraders() {
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
@@ -122,9 +128,9 @@ public class AdminDao {
 
 		try {
 			stmt = con.prepareStatement("select * from employee");
+			//stmt.setString(1, "Admin");
 			rs = stmt.executeQuery();
 			while (rs.next()) {
-
 				String first_name = rs.getString("first_name");
 				String last_name = rs.getString("last_name");
 				String role = rs.getString("role");
@@ -132,21 +138,16 @@ public class AdminDao {
 				String password = rs.getString("password");
 				int login_attempts = rs.getInt("login_attempts");
 				int pm_id = rs.getInt("pm_id");
-				if (role.equals("Trader")) {
-					Trader t = new Trader(userName, password, first_name, last_name, role, pm_id);
-					t.setLoginAttempts(login_attempts);
-					emps.add(t);
-				} else {			
-					Employee e = new Employee(userName, password, first_name, last_name, role);
-					e.setLoginAttempts(login_attempts);
-					emps.add(e);
-				}
+				Trader t = new Trader(userName, password, first_name, last_name, role, pm_id);
+				t.setLoginAttempts(login_attempts);
+				emps.add(t);
 			}
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+			try { rs.close(); } catch (Exception e) { /* ignored */ }
 			try { stmt.close(); } catch (Exception e) { /* ignored */ }
 			try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
