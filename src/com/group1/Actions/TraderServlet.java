@@ -64,8 +64,9 @@ public class TraderServlet extends HttpServlet {
 						Float.valueOf((String) obj.get("Limit Price")),
 						Float.valueOf((String) obj.get("Stop Price")));
 				orders.add(o);
-				tc.createTraderBlockOrder(orders);
 			} 
+			tc.createTraderBlockOrder(orders);
+
 		}else {	
 			JSONObject obj = new JSONObject(str_array[0]+"}");
 				tc.createTraderBokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),

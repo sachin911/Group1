@@ -23,12 +23,12 @@ public class PLDao {
 		try{
 			ResultSet result = null;
 			if(user.getRole().equals("PM")){
-			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ? HAVING STATUS = 'EXECUTED'");
+			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ? AND (STATUS = 'EXECUTED' OR STATUS = 'PARTIAL')");
 			stmt.setInt(1, user.getEmployee_id());
 			result = stmt.executeQuery();
 			}
 			else if(user.getRole().equals("Trader")){
-				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ? HAVING STATUS = 'EXECUTED'");
+				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ? AND (STATUS = 'EXECUTED' OR STATUS = 'PARTIAL')");
 				stmt.setInt(1, user.getEmployee_id());
 				result = stmt.executeQuery();
 			}
@@ -62,7 +62,7 @@ public class PLDao {
 				plList.add(order);
 				
 			}
-
+			System.out.println(plList);
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block

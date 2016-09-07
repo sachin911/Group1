@@ -17,7 +17,7 @@
 				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
 				<input type="button" class="menu__button selected" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
-				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="document.plform.submit()">
 				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
 				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='logoutservlet'">
 
@@ -25,6 +25,7 @@
 		</header>
 		<!-- Header menu buttons end -->
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
+<form name="plform" action="PLServlet" method = "get"></form>
 		<main class="traderinboxmain">
 			<div class="messages">
 				<h2 class="messages__header">Messages</h2>
