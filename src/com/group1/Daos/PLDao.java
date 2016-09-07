@@ -23,12 +23,12 @@ public class PLDao {
 		try{
 			ResultSet result = null;
 			if(user.getRole().equals("PM")){
-			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ? AND (STATUS = 'EXECUTED' OR STATUS = 'PARTIAL')");
+			stmt = con.prepareStatement("SELECT * FROM PORTFOLIO WHERE EMP_ID = ?");
 			stmt.setInt(1, user.getEmployee_id());
 			result = stmt.executeQuery();
 			}
 			else if(user.getRole().equals("Trader")){
-				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ? AND (STATUS = 'EXECUTED' OR STATUS = 'PARTIAL')");
+				stmt = con.prepareStatement("SELECT * FROM PORTFOLIO WHERE EMP_ID = ?");
 				stmt.setInt(1, user.getEmployee_id());
 				result = stmt.executeQuery();
 			}
@@ -36,33 +36,32 @@ public class PLDao {
 				
 				Order order = new Order();
 				
-				order.setOrder_id(result.getInt("order_id"));
-				order.setTotal_quantity(result.getInt("total_quantity"));
-				order.setOpen_quantity(result.getInt("open_quantity"));
-				order.setAllocated_quantity(result.getInt("allocated_quantity"));
+				//order.setOrder_id(result.getInt("order_id"));
+				//order.setTotal_quantity(result.getInt("total_quantity"));
+				order.setOpen_quantity(result.getInt("quantity"));
+				//order.setAllocated_quantity(result.getInt("allocated_quantity"));
 	
 	
-				order.setBlock_id(result.getInt("block_id"));
-				order.setSide(result.getString("side"));
+			//	order.setBlock_id(result.getInt("block_id"));
+			//	order.setSide(result.getString("side"));
 				order.setSymbol(result.getString("symbol"));
-				order.setStatus(result.getString("status"));
+			//	order.setStatus(result.getString("status"));
 				order.setCurrency(result.getString("currency"));
 	
-				order.setOrder_type(result.getString("order_type"));
+			//	order.setOrder_type(result.getString("order_type"));
 				
 				// Check date type
-				order.setOrder_date(result.getDate("order_date"));
-				order.setExecuted_date(result.getDate("executed_date"));
+			//	order.setOrder_date(result.getDate("order_date"));
+			//	order.setExecuted_date(result.getDate("executed_date"));
 				// Check date type
 				
-				order.setLimit_price(result.getInt("limit_price"));
-				order.setStop_price(result.getInt("stop_price"));
-				order.setExecuted_price(result.getInt("executed_price"));
+		//		order.setLimit_price(result.getInt("limit_price"));
+		//		order.setStop_price(result.getInt("stop_price"));
+				order.setExecuted_price(result.getFloat("price"));
 				
 				plList.add(order);
 				
 			}
-			System.out.println("This is within the function" + plList);
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block

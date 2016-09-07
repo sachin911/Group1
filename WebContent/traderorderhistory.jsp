@@ -37,21 +37,22 @@
 				<h2 class="orderhistory__header">Order History</h2>
 				<div class="scrollwrapper">
 					<table class="orderhistory__table">
-						<tr>
-							<th>Order Number</th>
-							<th>Date</th>
-							<th>Order Status</th>
-							<th>Order Type</th>
-							<th>Quantity</th>
-							<th>Side</th>
-							<th>Price</th>
+						<th name="ordernumber">Order Number</th>
+							<th name="date">Date</th>
+							<th name="symbol">Symbol</th>
+							<th name="orderstatus">Order Status</th>
+							<th name="ordertype">Order Type</th>
+							<th name="quantity">Quantity</th>
+							<th name="side">Side</th>
+							<th name="price">Price</th>
 						</tr>
-			<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
+						<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
                    if(list!=null){
 				for(int i = 0;i<list.size();i++){ %>
 					<tr>
 							<td><%=list.get(i).getOrder_id()%></td>
 							<td><%=list.get(i).getOrder_date()%></td>
+							<td><%=list.get(i).getSymbol()%></td>
 							<td><%=list.get(i).getStatus()%></td>
 							<td><%=list.get(i).getOrder_type()%></td>
 							<td><%=list.get(i).getOpen_quantity()%></td>

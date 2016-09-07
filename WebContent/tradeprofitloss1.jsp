@@ -39,7 +39,7 @@
 						<tr>
 							<th name="symbol">Symbol</th>
 							<th name="quantity">Quantity</th>
-							<th name="ordertype">Order Type</th>
+						<!--	<th name="ordertype">Order Type</th> -->
 							<th name="priceexecuted">Price Executed</th>
 							<th name="currentprice">Current Price</th>
 							<th name="basecurrency">Base Currency</th>
@@ -53,7 +53,7 @@
 					
 							<td><%=list.get(i).getSymbol()%></td>
 							<td><%=list.get(i).getOpen_quantity()%></td>
-							<td><%=list.get(i).getOrder_type()%></td>
+						<!--  	<td><%=list.get(i).getOrder_type()%></td> -->
 							<td><%=list.get(i).getExecuted_price()%></td>
 							<td><% Random rand = new Random();float current_price;%>
 							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></td>
