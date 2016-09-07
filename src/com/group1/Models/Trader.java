@@ -8,7 +8,10 @@ public class Trader extends Employee {
 		this.pm_id = pm_id;
 	}
 	
-	
+	public Trader(String userName, String password, String first_Name, String last_Name, String role, int pm_id,String active) {
+		super(userName, password, first_Name, last_Name, role,active);
+		this.pm_id = pm_id;
+	}
 	
 	@Override
 	public String toString() {
