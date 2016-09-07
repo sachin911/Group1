@@ -2,7 +2,9 @@ package com.group1.Actions;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.servlet.RequestDispatcher;
@@ -33,15 +35,25 @@ public class PMHomeServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		double[] myRand ={1,0,0,0,0,0,0.3,-0.1,0.04,0,0,0.134,-0.32,-0.142};
 		Random rand = new Random();float current_price, current_assets = 0, pl_assets = 0, executed_assets = 0;
+		Map<String, Double> map = new HashMap<String, Double>();
+		map.put("USD", 1.0);
+		map.put("AUD", (1.3 + myRand[1+ rand.nextInt(13)]));
+		map.put("GBP", (0.75 + myRand[1+ rand.nextInt(13)]));
+		map.put("INR", (66.38 + myRand[1+ rand.nextInt(13)]));
+		map.put("CAD", (1.29 + myRand[1+ rand.nextInt(13)]));
+		map.put("CHF", (0.97 + myRand[1+ rand.nextInt(13)]));
+		map.put("EUR", (0.89 + myRand[1+ rand.nextInt(13)]));
+		
 		
 		
 		HttpSession session = request.getSession();
 		Employee e = (Employee) session.getAttribute("obj");
-		System.out.println("e" + e.getEmployee_id());
+		System.out.println("e" + e.getEmployee_id() + " " + e.getRole());
 		
+	
+
 		PLController plController = new PLController();
 		List<Order> displayPlList = new ArrayList<>();
 		displayPlList = plController.PLCalculation(e.getEmployee_id(), e.getRole());
@@ -50,9 +62,9 @@ public class PMHomeServlet extends HttpServlet {
 		for(int i =0;i<displayPlList.size();i++){
 			
 			current_price = (float)((displayPlList.get(i).getExecuted_price() + rand.nextDouble()*15) - 5);
-			current_assets += current_price * displayPlList.get(i).getOpen_quantity();
-			executed_assets += displayPlList.get(i).getExecuted_price() * displayPlList.get(i).getOpen_quantity();
-			pl_assets += (displayPlList.get(i).getExecuted_price() - current_price) * displayPlList.get(i).getOpen_quantity();
+			current_assets += (current_price * displayPlList.get(i).getOpen_quantity())/map.get(displayPlList.get(i).getCurrency());
+			executed_assets += (displayPlList.get(i).getExecuted_price() * displayPlList.get(i).getOpen_quantity())/map.get(displayPlList.get(i).getCurrency());
+			pl_assets += ((displayPlList.get(i).getExecuted_price() - current_price) * displayPlList.get(i).getOpen_quantity())/map.get(displayPlList.get(i).getCurrency());
 			
 		}
 		float change = pl_assets/executed_assets;
@@ -60,6 +72,7 @@ public class PMHomeServlet extends HttpServlet {
 		request.setAttribute("current_assets", current_assets);
 		request.setAttribute("pl_assets", pl_assets);
 		request.setAttribute("change", change);
+		request.setAttribute("map", map);
 		
 		
 		RequestDispatcher rd=request.getRequestDispatcher("pmhome1.jsp");

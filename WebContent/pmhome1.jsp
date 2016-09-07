@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+    <%@ page import="java.util.*" %>
     <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
     <%@page import="java.util.ArrayList,com.group1.Models.Order"%>
+    <%@ page import="java.text.DecimalFormat" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html lang="en">
@@ -36,12 +37,12 @@
 			<div class="hero">
 				<article class="hero__block">
 					<h2 class="hero__heading">CURRENT ASSETS</h2>
-					<p class="hero__data" name="heroassets"><%= request.getAttribute("current_assets") %></p>
+					<p class="hero__data" name="heroassets">$ <%= request.getAttribute("current_assets") %></p>
 				</article>
 
 				<article class="hero__block">
 					<h2 class="hero__heading">PROFIT/LOSS</h2>
-					<p class="hero__data" name="heropl"><%= request.getAttribute("pl_assets") %></p>
+					<p class="hero__data" name="heropl">$ <%= request.getAttribute("pl_assets") %></p>
 				</article>
 
 				<article class="hero__block">
@@ -52,38 +53,28 @@
 			
 			
 			<div class="portfolio">
-				<h2 class="portfolio__header">Portfolio</h2>
-				<div class="scrollwrapper">
-					<table class="portfolio__table" name="pmportfolio">
-						<tr>
-							<th name="symbol">Symbol</th>
-							<th name="quantity">Quantity</th>
-							<th name="basecurrency">Base Currency</th>
-							<th name="executedprice">Executed Price</th>
-							<th name="currentshareprice">Current Share Price</th>
-							<th name="marketvalue">Market Value</th>
-							<th name="profitloss">Profit/loss</th>
-						</tr>
+		<h2 class="portfolio__header">USD vs.</h2>
+		<div class="scrollwrapper">
+			<table class="portfolio__table" name="traderportfolio">
+				<tr>
+					<th name="GBP">GBP</th>
+					<th name="INR">INR</th>
+					<th name="CAD">CAD</th>
+					<th name="CHF">CHF</th>
+					<th name="AUD">AUD</th>
+					<th name="EUR">EUR</th>
+				
+				</tr>
+				<% Map<String,Double> displayMap  = (Map<String,Double>) request.getAttribute("map");
+					DecimalFormat nf = new DecimalFormat("0.00");%>
+					<tr>
+					<td name="GBP"><%= nf.format(displayMap.get("GBP")) %></td>
+					<td name="INR"><%= nf.format(displayMap.get("INR")) %></td>
+					<td name="CAD"><%= nf.format(displayMap.get("CAD")) %></td>
+					<td name="CHF"><%= nf.format(displayMap.get("CHF")) %></td>
+					<td name="AUD"><%= nf.format(displayMap.get("AUD")) %></td>
+					<td name="EUR"><%= nf.format(displayMap.get("EUR")) %></td>
 					</tr>
-						<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
-						
-						if(tlist!=null)
-							{
-							for(Order o : tlist) {
-							
-						%>
-						<tr>
-						<td><%=o.getSymbol()%></td>
-						<td><%=o.getTotal_quantity()%></td>
-						<td><%=o.getCurrency() %></td>
-						<td>USD value</td>
-						<td><%=o.getExecuted_price() %></td>
-						<td>average price</td>
-						<td>current share price</td>
-						<td>market value</td>
-						<td><%=o.getPl() %></td>
-						</tr><% }
-						} %>
 					</table>
 				</div>
 			</div>
