@@ -2,7 +2,6 @@ package com.group1.Actions;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -12,15 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.SortingFocusTraversalPolicy;
 
-import org.apache.catalina.Session;
 import org.json.JSONObject;
 
 import com.group1.Controllers.TraderController;
 import com.group1.Models.Employee;
 import com.group1.Models.Order;
-import com.group1.Models.Trader;
 
 
 @WebServlet("/TraderServlet")
