@@ -35,9 +35,7 @@ public class TradeHistoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	//	int employee_id = 11;
 
-	//	String role = "PM";
 		
 		HttpSession session = request.getSession();
 		Employee e = (Employee) session.getAttribute("obj");

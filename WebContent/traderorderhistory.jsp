@@ -16,6 +16,7 @@
 		<!-- Header menu buttons end -->
 <form name="homeform" action="TraderHomeServlet" method="get"></form>	
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
+<form name="homeform" action="TraderHomeServlet" method = "get"></form>
 		<main class="traderorderhistorymain">
 
 			<div class="menu__buttonbox">
@@ -42,7 +43,7 @@
 							<th>Order Status</th>
 							<th>Order Type</th>
 							<th>Quantity</th>
-							<th>Term</th>
+							<th>Side</th>
 							<th>Price</th>
 						</tr>
 			<% ArrayList<Order> list = (ArrayList<Order>) request.getAttribute("displayList");
@@ -52,7 +53,6 @@
 							<th><%=list.get(i).getOrder_id()%></th>
 							<th><%=list.get(i).getOrder_date()%></th>
 							<th><%=list.get(i).getStatus()%></th>
-							<th><%=list.get(i).getAccount_type()%></th>
 							<th><%=list.get(i).getOpen_quantity()%></th>
 							<th><%=list.get(i).getSide()%></th>
 							<th><%=list.get(i).getExecuted_price()%></th>

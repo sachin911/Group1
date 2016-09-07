@@ -25,9 +25,9 @@ public class PortfolioDao {
 			if (rs != null && rs.next()) {   // Trader already owns some of the symbol
 
 				int currentQuantity = rs.getInt("quantity");  //Trader is selling symbol A
-				if (o.getSide().equals("SELL")) { 				// trader has enough of symbol to trade because of previous check				
-					pstmt = con.prepareStatement("update quantity set quantity = ? where emp_id = ? and symbol = ?");
-					int newQuantity = currentQuantity - o.getOpen_quantity(); //open is the amount we have
+				if (o.getSide().equals("SELL")) { 				// trader has enough of symbol to trade because of check				
+					pstmt = con.prepareStatement("update portfolio set quantity = ? where emp_id = ? and symbol = ?");
+					int newQuantity = currentQuantity - o.getOpen_quantity();
 					pstmt.setInt(1, newQuantity);
 					pstmt.setInt(2, o.getTrader_id());
 					pstmt.setString(3, o.getSymbol());
@@ -35,7 +35,7 @@ public class PortfolioDao {
 					result = true;			
 
 				} else {						//trader is buying symbol A and already owns some of it
-					pstmt = con.prepareStatement("update quantity set quantity = ? where emp_id = ? and symbol = ?");
+					pstmt = con.prepareStatement("update portfolio set quantity = ? where emp_id = ? and symbol = ?");
 					int newQuantity = currentQuantity + o.getOpen_quantity();
 					pstmt.setInt(1, newQuantity);
 					pstmt.setInt(2, o.getTrader_id());

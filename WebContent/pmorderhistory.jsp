@@ -48,7 +48,6 @@
 							<th><%=list.get(i).getOrder_id()%></th>
 							<th><%=list.get(i).getOrder_date()%></th>
 							<th><%=list.get(i).getStatus()%></th>
-							<th><%=list.get(i).getAccount_type()%></th>
 							<th><%=list.get(i).getOpen_quantity()%></th>
 							<th><%=list.get(i).getSide()%></th>
 							<th><%=list.get(i).getExecuted_price()%></th>
