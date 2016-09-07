@@ -14,7 +14,7 @@
 
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='pmhome1.jsp'">
+				<input type="button" class="menu__button" value="HOME" onClick="document.homeform.submit()">
 				<input type="button" class="menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='pmprofitloss.html'">
@@ -23,6 +23,7 @@
 			</div>
 		</header>
 		<!-- Header menu buttons end -->
+<form name="homeform" action="PMHomeServlet" method="get"></form>
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
 		<main class="orderhistorymain">
 		<!-- orderhistory table -->

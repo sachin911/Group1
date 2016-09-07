@@ -35,21 +35,25 @@ public class TradeHistoryServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int employee_id = 11;
+	//	int employee_id = 11;
 
-		String role = "PM";
+	//	String role = "PM";
+		
+		HttpSession session = request.getSession();
+		Employee e = (Employee) session.getAttribute("obj");
+		System.out.println("e" + e.getEmployee_id());
  
 		TradeHistoryController tradeHistoryController = new TradeHistoryController();
 		List<Order> displayList = new ArrayList<>();
 
-			displayList = tradeHistoryController.tradeHistory(employee_id, role);
+			displayList = tradeHistoryController.tradeHistory(e.getEmployee_id(), e.getRole());
 			request.setAttribute("displayList", displayList);
-			System.out.println(role);
-			if(role.equalsIgnoreCase("Trader")){
+			System.out.println(e.getRole());
+			if(e.getRole().equalsIgnoreCase("Trader")){
 			RequestDispatcher rd=request.getRequestDispatcher("traderorderhistory.jsp");  
 			rd.forward(request, response);
 			}
-			else if(role.equalsIgnoreCase("PM")){
+			else if(e.getRole().equalsIgnoreCase("PM")){
 			RequestDispatcher rd=request.getRequestDispatcher("pmorderhistory.jsp");  
 			rd.forward(request, response);
 			}
