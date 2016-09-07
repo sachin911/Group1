@@ -26,18 +26,18 @@
 		</header>
 <form name="homeform" action="TraderHomeServlet" method="get"></form>
 <form name="historyform" action="TradeHistoryServlet" method="get"></form>
-<%session=request.getSession(); %>
+
 		<!-- Header menu buttons end -->
 		<main class="traderhomemain">
 			<div class="hero">
 				<article class="hero__block">
 					<h2 class="hero__heading">Current Assets</h2>
-					<p class="hero__data" name="heroassets"><%= session.getAttribute("totalassets") %></p>
+					<p class="hero__data" name="heroassets"><%= request.getAttribute("totalassets") %></p>
 				</article>
 
 				<article class="hero__block">
 					<h2 class="hero__heading">Current Investment</h2>
-					<p class="hero__data" name="heropl"><%= session.getAttribute("pl") %></p>
+					<p class="hero__data" name="heropl"><%= request.getAttribute("pl") %></p>
 				</article>
 
 				<article class="hero__block">
@@ -60,7 +60,7 @@
 							<th name="marketvalue">Market Value</th>
 							<th name="profitloss">Profit/loss</th>
 						</tr>
-						<%ArrayList<Order> tlist = (ArrayList<Order>)session.getAttribute("ol");
+						<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
 						
 						if(tlist!=null)
 							{

@@ -39,10 +39,10 @@ public class AdminServlet extends HttpServlet {
 		AdminController ac = new AdminController();
 		List<Employee> el=new ArrayList<Employee>();
 		el = ac.getAllEmployees();
-		session.setAttribute("el", el);
+		request.setAttribute("el", el);
 
-response.sendRedirect("adminhome1.jsp");
-		//rd.forward(request, response);
+
+		rd.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

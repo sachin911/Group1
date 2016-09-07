@@ -38,14 +38,14 @@ public class PMHomeServlet extends HttpServlet {
 		TraderController tr =  new TraderController();
 		int ta = tr.getTotalAssets(e.getEmployee_id());
 		int pl = tr.getPL(e.getEmployee_id());
-		session.setAttribute("pl", pl);
-		session.setAttribute("totalassets", ta);
+		request.setAttribute("pl", pl);
+		request.setAttribute("totalassets", ta);
 		ArrayList<Order> ol = new ArrayList<Order>();
 		ol=tr.getlist(e.getEmployee_id());
-		session.setAttribute("ol", ol);
-response.sendRedirect("pmhome1.jsp");
+		request.setAttribute("ol", ol);
 
-		//rd.forward(request, response);
+
+		rd.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
