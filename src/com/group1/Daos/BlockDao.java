@@ -29,7 +29,7 @@ public class BlockDao {
 		List<Order> order_list = new ArrayList<Order>();
 		order_list = block_order.getOrder_list();
 		int total_quantity = block_order.getTotal_quantity();
-		int open_quantity = block_order.getTotal_quantity();
+		int allocated_quantity = block_order.getTotal_quantity();
 		String side = order_list.get(0).getSide();
 		String status = order_list.get(0).getStatus();
 		String symbol = order_list.get(0).getSymbol();
@@ -46,8 +46,8 @@ public class BlockDao {
 			pstmt.setString(2, symbol);
 			pstmt.setString(3, "PENDING");
 			pstmt.setInt(4, total_quantity);
-			pstmt.setInt(5, open_quantity);
-			pstmt.setInt(6, 0);
+			pstmt.setInt(5, 0); // open quantity is what you own
+			pstmt.setInt(6, allocated_quantity); // thus allocated starts off full
 			pstmt.setDate(7, ordered_date);
 			pstmt.setNull(8, java.sql.Types.DATE);
 			pstmt.executeUpdate();
