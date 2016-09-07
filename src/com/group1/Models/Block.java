@@ -7,27 +7,20 @@ import java.util.List;
 public class Block {
 
 	int total_quantity = 0;
-	int executed_quantity, open_quantity;
+	int allocated_quantity, open_quantity;
 	Date order_date, executed_date;
 	String side, symbol, status;
 	List<Order> order_list = new ArrayList<Order>();
 	int block_id;
 
-	public Block(int total_quantity, int executed_quantity, int open_quantity, Date order_date, Date executed_date,
-			String side, String symbol, String status, List<Order> order_list, int block_id) {
+	public Block(int total_quantity, Date order_date, String side, String symbol, List<Order> order_list) {
 		super();
 
 		this.total_quantity = total_quantity;
-		this.executed_quantity = executed_quantity;
-		this.open_quantity = open_quantity;
 		this.order_date = order_date;
-		this.executed_date = executed_date;
 		this.side = side;
 		this.symbol = symbol;
-
-		this.status = status;
 		this.order_list = order_list;
-		this.block_id = block_id;
 
 	}
 
@@ -39,12 +32,12 @@ public class Block {
 		this.total_quantity = total_quantity;
 	}
 
-	public int getExecuted_quantity() {
-		return executed_quantity;
+	public int getAllocated_quantity() {
+		return allocated_quantity;
 	}
 
-	public void setExecuted_quantity(int executed_quantity) {
-		this.executed_quantity = executed_quantity;
+	public void setAllocated_quantity(int allocated_quantity) {
+		this.allocated_quantity = allocated_quantity;
 	}
 
 	public int getOpen_quantity() {
@@ -113,7 +106,7 @@ public class Block {
 
 	@Override
 	public String toString() {
-		return "Block [total_quantity=" + total_quantity + ", executed_quantity=" + executed_quantity
+		return "Block [total_quantity=" + total_quantity + ", allocated_quantity=" + allocated_quantity
 				+ ", open_quantity=" + open_quantity + ", order_date=" + order_date + ", executed_date=" + executed_date
 				+ ", side=" + side + ", symbol=" + symbol + ", status=" + status + ", order_list=" + order_list
 				+ ", block_id=" + block_id + "]";

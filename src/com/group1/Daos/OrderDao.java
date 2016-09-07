@@ -14,10 +14,11 @@ public class OrderDao {
 	    return new java.sql.Date(today.getTime());
 	}
 
-	public boolean createBrokerOrder(Order o)
+	public int createBrokerOrder(Order o)
 	{
 		Jdbc jobj = new Jdbc();
-		boolean result = false;
+		ResultSet rs = null;
+		int order_id = 0;
 		Connection con=jobj.getCon();
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
 				+ "open_quantity, allocated_quantity, status, pm_id, trader_id,block_id, " 
@@ -25,7 +26,7 @@ public class OrderDao {
 				+ "values(?,?,?,?,?   ,?,?,?,?,?   ,?,?,?,?,?,?)";
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql, new String[] {"order_id"} );
 			pstmt.setString(1,o.getSide()); // have
 			pstmt.setString(2,o.getSymbol()); //have 
 			pstmt.setInt(3,o.getTotal_quantity()); // have
@@ -48,45 +49,50 @@ public class OrderDao {
 			pstmt.setString(15, o.getOrder_type());  // have
 			pstmt.setFloat(16, 0);
 			//String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-
 			pstmt.executeUpdate();
+			
+			rs = pstmt.getGeneratedKeys();
+			if(rs.next()){
+				order_id = rs.getInt(1);
+				System.out.println(order_id);
+			}
+			
 			System.out.println("Order created");
 			System.out.println(o.toString());
-
-			
-			result = true;
 
 		} catch (SQLException e) {
 			 //TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
-		return result;
+		return order_id;
 	}
 	
 	
-	public boolean createPMAssignedOrder(Order o)
+	public int createPMAssignedOrder(Order o)
 	{
 		Jdbc jobj = new Jdbc();
-		boolean result = false;
+		ResultSet rs = null;
+		int order_id = 0;
 		Connection con=jobj.getCon();
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
-				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id, block_id, " 
+				+ "open_quantity, allocated_quantity, status, pm_id, trader_id, block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?  ,?,?,?,?,?,   ?,?,?,?,?,?)";
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement(sql);
+			pstmt = con.prepareStatement(sql, new String[] {"order_id"} );
 			pstmt.setString(1,o.getSide()); // have
 			pstmt.setString(2,o.getSymbol()); //have 
 			pstmt.setInt(3,o.getTotal_quantity()); // have
 			pstmt.setFloat(4, o.getLimit_price()); // check aagainst Order Type
 			pstmt.setFloat(5, o.getStop_price());  // check against order Type
-			pstmt.setInt(6,o.getOpen_quantity()); //           TOGETHER SUMS
-			pstmt.setInt(7,o.getAllocated_quantity()); //      TOTAL Q, BUT NEED BA input
+			pstmt.setInt(6,0); //           TOGETHER SUMS
+			pstmt.setInt(7,o.getTotal_quantity()); //      TOTAL Q, BUT NEED BA input
 			pstmt.setString(8, "PM ASSIGNED");   // AUTO- PM Assigned
 			pstmt.setInt(9,o.getPm_id());  // have
 			pstmt.setInt(10,o.getTrader_id());  // have or possibly blank
@@ -96,22 +102,29 @@ public class OrderDao {
 			
 			// CHECK DATE TIME FORMAT !!!
 			pstmt.setDate(12, getCurrentDate());
-			pstmt.setDate(13,o.getExecuted_date());
+			pstmt.setNull(13, java.sql.Types.DATE);
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			
 			pstmt.setString(14, o.getCurrency());  // have
 			pstmt.setString(15, o.getOrder_type());  // have
-			pstmt.setFloat(16, o.getExecuted_price());
+			pstmt.setFloat(16, 0);
 			//String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
 			pstmt.executeUpdate();
+			
+			rs = pstmt.getGeneratedKeys();
+			if(rs.next()){
+				order_id = rs.getInt(1);
+				System.out.println(order_id);
+			}
+			
 			System.out.println("Order created");
-			result = true;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
@@ -124,7 +137,7 @@ public class OrderDao {
 		}
 		
 		
-		return result;
+		return order_id;
 	}
 
 

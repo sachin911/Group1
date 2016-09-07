@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
+import com.group1.Controllers.PMController;
 import com.group1.Controllers.TraderController;
 import com.group1.Models.Employee;
 import com.group1.Models.Order;
@@ -42,20 +43,29 @@ public class PMServlet extends HttpServlet {
 		output = order_arr.replace("[", "").replace("]", "").replace("{},", "").replace(",{\"\":\"on\"}", "");
 		System.out.println(output);
 		String[] str_array = output.split(Pattern.quote("},"));
-		TraderController tc = new TraderController();
+		PMController pmc = new PMController();
 		HttpSession session = request.getSession();
 		Employee e = (Employee)session.getAttribute("obj");
 		System.out.println("session-----------"+session.getAttribute("test")+ " " + e.toString());
 
 		JSONObject obj = new JSONObject(str_array[0]+"}");
 		
-		
-		tc.createTraderBokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
+		// do check to SEND TO BROKER OR TRADER
+		// 
+		// if sent to broker
+		pmc.createPMBrokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
+				e.getPm_id() , e.getPm_id(),
+				(String)obj.get("Side") , (String)obj.get("Symbol"),
+				(String)obj.get("Currency"),(String)obj.get("Order Type"),
+				Float.valueOf((String) obj.get("Limit Price")),
+				Float.valueOf((String) obj.get("Stop Price")));	
+		// else 
+		pmc.createPMTraderOrder(Integer.valueOf((String) obj.get("Total Quantity")),
 				e.getPm_id() , e.getEmployee_id(),
 				(String)obj.get("Side") , (String)obj.get("Symbol"),
 				(String)obj.get("Currency"),(String)obj.get("Order Type"),
 				Float.valueOf((String) obj.get("Limit Price")),
 				Float.valueOf((String) obj.get("Stop Price")));	
-
+		
 	}		
 }

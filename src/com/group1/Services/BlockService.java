@@ -33,6 +33,7 @@ public class BlockService implements BlockServiceInterface {
 			block_order.setBlock_id(block_id);
 			//executeBlockService(block_order);
 		}
+		return block_id;
 
 		// block_created is the number of rows that were added to the table.
 	}
@@ -48,24 +49,23 @@ public class BlockService implements BlockServiceInterface {
 	 * pending and then calls the actual broker function which handles the
 	 * execution
 	 */
-	@Override
-	public boolean executeBlockService(Block block) {
-		// TODO Auto-generated method stub
-		boolean is_block_executed = false;
-		int block_id = block.getBlock_id();
-		BlockDao block_dao = new BlockDao();
-
-		if (block_id < 0 || block == null) {
-			return is_block_executed;
-		}
-
-		block_dao.updateOrdersInABlock(block);
-
-		// next step is to call the broker function to execute
-//		BrokerService bs = new BrokerService();
-//		bs.broker();
-
-		return false;
-	}
+//	public boolean executeBlockService(Block block) {
+//		// TODO Auto-generated method stub
+//		boolean is_block_executed = false;
+//		int block_id = block.getBlock_id();
+//		BlockDao block_dao = new BlockDao();
+//
+//		if (block_id < 0 || block == null) {
+//			return is_block_executed;
+//		}
+//
+//		block_dao.updateOrdersInABlock(block);
+//
+//		// next step is to call the broker function to execute
+////		BrokerService bs = new BrokerService();
+////		bs.broker();
+//
+//		return false;
+//	}
 
 }
