@@ -84,6 +84,11 @@ public class Employee {
 	public int getPm_id() {
 		// TODO Auto-generated method stub
 		return pm_id;
+	}
+	
+	public void setPm_id(int pm_id) {
+		// TODO Auto-generated method stub
+		this.pm_id = pm_id;
 	}	
 	
 	

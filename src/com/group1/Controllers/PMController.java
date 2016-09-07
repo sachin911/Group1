@@ -9,7 +9,7 @@ public class PMController {
 	public boolean createPMBrokerOrder(int total_quantity, int pm_id, int trader_id, String side, String symbol, 
 			String account_type, String currency, String order_type,float limit_price, float stop_price) {
 		
-		Order o = new Order(total_quantity, pm_id, pm_id, side, symbol, account_type, currency,
+		Order o = new Order(total_quantity, pm_id, pm_id, side, symbol, currency,
 				order_type, limit_price, stop_price);
 		
 		return OrderService.createBrokerOrder(o);
@@ -19,7 +19,7 @@ public class PMController {
 	public boolean createPMTraderOrder(int total_quantity, int pm_id, int trader_id, String side, String symbol, 
 			String account_type, String currency, String order_type,float limit_price, float stop_price) {
 		
-		Order o = new Order(total_quantity, pm_id, trader_id, side, symbol, account_type, currency,
+		Order o = new Order(total_quantity, pm_id, trader_id, side, symbol, currency,
 				order_type, limit_price, stop_price);
 		
 		return OrderService.createPMAssignedOrder(o);
