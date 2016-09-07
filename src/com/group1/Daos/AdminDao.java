@@ -90,6 +90,7 @@ public class AdminDao {
 	}
 
 	public boolean editEmployee(Employee user) {
+		System.out.println("Dao");
 		Connection con = jdbc.getCon();
 		boolean edited = false;
 		int result = 0;
@@ -97,13 +98,17 @@ public class AdminDao {
 
 		try {
 			//stmt = con.prepareStatement("update EMPLOYEE set Role = ?, Login_Attempts = ?, Pm_id = ? where userName = ?");
-			stmt = con.prepareStatement("update EMPLOYEE set Login_Attempts = 0 where userName = ?");
-			//stmt.setString(1, user.getRole());
-//			stmt.setLong(2, user.getLoginAttempts());
-//			stmt.setLong(3, user.getPm_id());
-			stmt.setString(1, user.getUserName());
+			stmt = con.prepareStatement("update EMPLOYEE set first_Name = ?, last_Name = ?, Role = ?, Pm_id = ?, Login_Attempts = ? where userName = ?");
+			stmt.setString(1, user.getFirst_Name());
+			stmt.setString(2, user.getLast_Name());
+			stmt.setString(3, user.getRole());
+			stmt.setInt(4, user.getPm_id());
+			stmt.setInt(5, user.getLoginAttempts());
+			stmt.setString(6, user.getUserName());
+
 			result = stmt.executeUpdate();
 			edited = true;
+			System.out.println("Updated");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,11 +1,6 @@
 package com.group1.Actions;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.group1.Controllers.AdminController;
-import com.group1.Models.Employee;
 
 /**
- * Servlet implementation class AddUserServlet
+ * Servlet implementation class EditUserServlet
  */
-@WebServlet("/AddUserServlet")
-public class AddUserServlet extends HttpServlet {
+@WebServlet("/EditUserServlet")
+public class EditUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
-    public AddUserServlet() {
+    public EditUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,11 +34,12 @@ public class AddUserServlet extends HttpServlet {
 		int pm_id = Integer.parseInt(pm_idStr);
 
 		AdminController ac = new AdminController();
-		boolean result = ac.AddAdminController(username, password, first_name, last_name, role, pm_id);
+		boolean result = ac.EditAdminController(username, password, first_name, last_name, role, pm_id);
 		System.out.println(result);
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append("Served at: ").append(request.getContextPath());		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

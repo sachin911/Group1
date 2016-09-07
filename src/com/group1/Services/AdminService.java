@@ -24,6 +24,7 @@ public class AdminService implements AdminServiceInterface {
 
 
 	public static boolean editEmployee(Employee user) {
+		System.out.println("Service");
 		return adminDao.editEmployee(user);
 	}
 

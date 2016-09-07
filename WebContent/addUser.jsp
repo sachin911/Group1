@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -12,7 +14,7 @@
 		<main>
 			<article class="adduser">
 				<h2>Add a user</h2>
-				<form action="AddAdminServlet" method="get">
+				<form action="AddUserServlet" method="get">
 				<table class="adduser__table">
 					<tr>
 						<th>First Name</th>
@@ -29,11 +31,11 @@
 						<td><input type="text" name="username"></td>
 						<td><input type="text" name="password"></td>
 						<td><input type="text" name="role"></td>
-						<td><input type="text" name="manager"></td>
+						<td><input type="text" name="pm_id"></td>
 					</tr>
 					</tbody>
 				</table>
-				<input type = "submit" value = "Add">
+				<input class="generalbutton" type = "submit" value = "Add" onClick="location.href='adminhome1.jsp'">
 				</form>
 			</article>
 		</main>
