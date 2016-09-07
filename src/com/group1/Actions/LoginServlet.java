@@ -64,7 +64,8 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("obj", e);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("pmhome1.jsp");
-				rd.forward(request, response);
+				//rd.forward(request, response);
+				response.sendRedirect("PMHomeServlet");
 			}
 			if (userValidity.equals("Valid User")
 					&& typeOfUser.equalsIgnoreCase("Trader")) {
@@ -74,10 +75,11 @@ public class LoginServlet extends HttpServlet {
 
 			System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("traderhome1.jsp");
+					.getRequestDispatcher("traderhome1.jsp");
 //				RequestDispatcher rd = request
 //						.getRequestDispatcher("TraderHomeServlet.java");
-				rd.forward(request, response);
+				//rd.forward(request, response);
+						response.sendRedirect("TraderHomeServlet");
 			}
 			if (userValidity.equals("Valid User")
 					&& typeOfUser.equalsIgnoreCase("Admin")) {
@@ -87,7 +89,8 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("adminhome.html");
-				rd.forward(request, response);
+				//rd.forward(request, response);
+				response.sendRedirect("AdminServlet");
 			}
 			
 			

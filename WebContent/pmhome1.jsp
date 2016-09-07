@@ -35,12 +35,12 @@
 			<div class="hero">
 				<article class="hero__block">
 					<h2 class="hero__heading">Total Assets</h2>
-					<p class="hero__data" name="heroassets">data</p>
+					<p class="hero__data" name="heroassets"><%=session.getAttribute("totalassets") %></p>
 				</article>
 
 				<article class="hero__block">
 					<h2 class="hero__heading">Profit/ Loss</h2>
-					<p class="hero__data" name="heropl">data</p>
+					<p class="hero__data" name="heropl"><%=session.getAttribute("pl") %></p>
 				</article>
 
 				<article class="hero__block">
@@ -64,7 +64,7 @@
 							<th name="profitloss">Profit/loss</th>
 						</tr>
 					</tr>
-						<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
+						<%ArrayList<Order> tlist = (ArrayList<Order>)session.getAttribute("ol");
 						
 						if(tlist!=null)
 							{
