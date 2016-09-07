@@ -20,9 +20,9 @@ public class OrderDao {
 		boolean result = false;
 		Connection con=jobj.getCon();
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
-				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id,block_id, " 
+				+ "open_quantity, allocated_quantity, status, pm_id, trader_id,block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?   ,?,?,?,?,?   ,?,?,?,?,?,?)";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -31,8 +31,8 @@ public class OrderDao {
 			pstmt.setInt(3,o.getTotal_quantity()); // have
 			pstmt.setFloat(4, o.getLimit_price()); // check against Order Type
 			pstmt.setFloat(5, o.getStop_price());  // check against order Type
-			pstmt.setInt(6,o.getOpen_quantity()); //           TOGETHER SUMS
-			pstmt.setInt(7,o.getAllocated_quantity()); //      TOTAL Q, BUT NEED BA input
+			pstmt.setInt(6,0); //           TOGETHER SUMS
+			pstmt.setInt(7,o.getTotal_quantity()); //      TOTAL Q, BUT NEED BA input
 			pstmt.setString(8, "PENDING");   // AUTO-PENDING if sent to Broker
 			pstmt.setInt(9,o.getPm_id());  // have
 			pstmt.setInt(10,o.getTrader_id());  // have or possibly blank
@@ -41,12 +41,12 @@ public class OrderDao {
 			
 			// CHECK DATE TIME FORMAT !!!
 			pstmt.setDate(12, getCurrentDate());
-			pstmt.setDate(13,o.getExecuted_date());
+			pstmt.setNull(13, java.sql.Types.DATE);
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			
 			pstmt.setString(14,o.getCurrency());  // have
 			pstmt.setString(15, o.getOrder_type());  // have
-			pstmt.setFloat(16, o.getExecuted_price());
+			pstmt.setFloat(16, 0);
 			//String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
 			pstmt.executeUpdate();
@@ -158,13 +158,6 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		return result;
 
@@ -181,10 +174,10 @@ public class OrderDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement("select count(distinct(symbol)) from order_table where trader_id= ?");
+			pstmt = con.prepareStatement("select count(distinct(symbol)) from portfolio where emp_id = ?");
 			pstmt.setInt(1, trader_id);
 			
-			rs=pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			while(rs.next())
 			{
 				result=rs.getInt(1);
@@ -200,13 +193,6 @@ public class OrderDao {
 		    try { rs.close(); } catch (Exception e) { /* ignored */ }
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
-		}
-		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		
 		
@@ -245,13 +231,6 @@ public class OrderDao {
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
-		try {
-			con.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 		return result;
 	}
@@ -266,7 +245,7 @@ public class OrderDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		try {
-			pstmt = con.prepareStatement("select symbol,total_quantity,currency,executed_price,pl from order_table where trader_id= ?");
+			pstmt = con.prepareStatement("select symbol, quantity from portfolio where emp_id= ?");
 			pstmt.setInt(1, trader_id);
 			
 			rs=pstmt.executeQuery();
@@ -276,9 +255,6 @@ public class OrderDao {
 				Order tmp = new Order();
 				tmp.setSymbol(rs.getString(1));
 				tmp.setTotal_quantity(rs.getInt(2));
-				tmp.setCurrency(rs.getString(3));
-				tmp.setExecuted_price(rs.getFloat(4));
-				tmp.setPl(rs.getFloat(5));
 				result.add(tmp);
 			}
 				

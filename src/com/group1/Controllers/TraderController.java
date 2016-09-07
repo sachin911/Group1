@@ -11,6 +11,7 @@ import com.group1.Models.Block;
 
 import com.group1.Models.Order;
 import com.group1.Services.BlockService;
+import com.group1.Services.BrokerService;
 import com.group1.Services.OrderService;
 
 public class TraderController {
@@ -30,6 +31,8 @@ public class TraderController {
 				limit_price, stop_price);
 
 		OrderService.createBrokerOrder(o);
+		BrokerService bs = new BrokerService();
+		bs.broker();
 	}
 
 	public void createTraderBlockOrder(List<Order> order_list) {
@@ -58,9 +61,12 @@ public class TraderController {
 		
 
 		Block new_block = new Block(total_quantity, executed_quantity, open_quantity, order_date , executed_date , side, symbol, status, order_list, 0);
+		
+		
 		System.out.println(new_block.toString());
 		boolean is_block_created = block_service.createBlockService(new_block);
-		System.out.println("Block is created-------"+is_block_created);
+		boolean blockUpdated = block_service.executeBlockService(new_block);
+		System.out.println("Block is created-------"+is_block_created + " and " + blockUpdated);
 	}
 	
 	public static void main(String[] args) {
@@ -80,7 +86,7 @@ public class TraderController {
 	public int getTotalAssets(int trader_id)
 	{
 		OrderService os =  new OrderService();
-		int tassets=os.getAssets(trader_id);
+		int tassets = os.getAssets(trader_id);
 		
 		
 		return tassets;
@@ -88,7 +94,7 @@ public class TraderController {
 	public int getPL(int trader_id)
 	{
 		OrderService os =  new OrderService();
-		int tassets=os.getpl(trader_id);
+		int tassets = os.getpl(trader_id);
 		
 		
 		return tassets;
@@ -96,7 +102,7 @@ public class TraderController {
 	public ArrayList<Order> getlist(int trader_id)
 	{
 		OrderService os =  new OrderService();
-		ArrayList<Order> tassets=os.getlist(trader_id);
+		ArrayList<Order> tassets = os.getlist(trader_id);
 		
 		
 		return tassets;

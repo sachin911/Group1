@@ -1,7 +1,9 @@
 package com.group1.Actions;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.servlet.ServletException;
@@ -13,24 +15,23 @@ import javax.servlet.http.HttpSession;
 import javax.swing.SortingFocusTraversalPolicy;
 
 import org.apache.catalina.Session;
-import org.codehaus.jackson.map.JsonDeserializer;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.json.JSONObject;
 
 import com.group1.Controllers.TraderController;
 import com.group1.Models.Employee;
+import com.group1.Models.Order;
 import com.group1.Models.Trader;
 
 
 @WebServlet("/TraderServlet")
 public class TraderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
 
-    public TraderServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public TraderServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -48,19 +49,33 @@ public class TraderServlet extends HttpServlet {
 		TraderController tc = new TraderController();
 		HttpSession session = request.getSession();
 		Employee e = (Employee)session.getAttribute("obj");
-		System.out.println("session-----------"+session.getAttribute("test"));
+		System.out.println("session-----------"+session.getAttribute("test")+ " " + e.toString());
 		
-//		for(int i = 0; i<str_array.length; i++){
-//			JSONObject obj = new JSONObject(str_array[i]+"}");
-//			tc.createTraderBokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
-//					e.getPm_id() , e.getEmployeeId(),
-//					(String)obj.get("Side") , (String)obj.get("Symbol"),
-//					(String)obj.get("Currency"),(String)obj.get("Order Type"),
-//					Float.valueOf((String) obj.get("Limit Price")),
-//					Float.valueOf((String) obj.get("Stop Price")));
-//			//System.out.println(obj.get("Symbol"));
-//			//printJsonObject(obj);
-//		}	
-	}
-	
+		List<Order> orders = new ArrayList<Order>();
+		
+		
+		if(str_array.length > 1){
+			for(int i = 0; i<str_array.length; i++){
+				JSONObject obj = new JSONObject(str_array[i]+"}");
+				Order o = new Order((Integer.valueOf((String) obj.get("Total Quantity"))),
+						e.getPm_id() , e.getEmployee_id(),
+						(String)obj.get("Side") , (String)obj.get("Symbol"),
+						(String)obj.get("Currency"),(String)obj.get("Order Type"),
+						Float.valueOf((String) obj.get("Limit Price")),
+						Float.valueOf((String) obj.get("Stop Price")));
+				orders.add(o);
+				tc.createTraderBlockOrder(orders);
+			} 
+		}else {	
+			JSONObject obj = new JSONObject(str_array[0]+"}");
+				tc.createTraderBokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
+						e.getPm_id() , e.getEmployee_id(),
+						(String)obj.get("Side") , (String)obj.get("Symbol"),
+						(String)obj.get("Currency"),(String)obj.get("Order Type"),
+						Float.valueOf((String) obj.get("Limit Price")),
+						Float.valueOf((String) obj.get("Stop Price")));
+			}	
+
+		}
+
 }

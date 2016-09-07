@@ -80,8 +80,9 @@ public class BlockDao {
 		
 		for(Order iter : order_list){
 			try {
-				pstmt = con.prepareStatement("update table order set status = 'pending' where order_id = ?");
-				pstmt.setInt(1, iter.getOrder_id());
+				pstmt = con.prepareStatement("update table order set status = 'PENDING', BLOCK_ID = ? where order_id = ?");
+				pstmt.setInt(1, block.getBlock_id());
+				pstmt.setInt(2, iter.getOrder_id());
 				pstmt.executeUpdate();
 				rows_updated++;
 				con.close();

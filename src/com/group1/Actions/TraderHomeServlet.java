@@ -1,5 +1,6 @@
 package com.group1.Actions;
 import com.group1.Controllers.*;
+import com.group1.Models.Employee;
 import com.group1.Models.Order;
 
 import java.util.*;
@@ -11,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class TraderHomeServlet
@@ -18,33 +20,39 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/TraderHomeServlet")
 public class TraderHomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public TraderHomeServlet() {
-        super();
-        
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public TraderHomeServlet() {
+		super();
+
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		 RequestDispatcher rd=request.getRequestDispatcher("traderhome1.jsp");  
-		 TraderController tr =  new TraderController();
-		int ta= tr.getTotalAssets(16);
-		int pl=tr.getPL(16);
+
+		
+		HttpSession session = request.getSession();
+		Employee e = (Employee) session.getAttribute("obj");
+		System.out.println("e" + e.getEmployee_id());
+		
+		RequestDispatcher rd=request.getRequestDispatcher("traderhome1.jsp");
+		TraderController tr =  new TraderController();
+		int ta = tr.getTotalAssets(e.getEmployee_id());
+		int pl = tr.getPL(e.getEmployee_id());
 		request.setAttribute("pl", pl);
-		 request.setAttribute("totalassets", ta);
-		 ArrayList<Order> ol=new ArrayList<Order>();
-		 ol=tr.getlist(16);
-		 request.setAttribute("ol", ol);
-		
-		
-			rd.forward(request, response);
+		request.setAttribute("totalassets", ta);
+		ArrayList<Order> ol=new ArrayList<Order>();
+		ol=tr.getlist(e.getEmployee_id());
+		request.setAttribute("ol", ol);
+
+
+		rd.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

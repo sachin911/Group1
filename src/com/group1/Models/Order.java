@@ -21,7 +21,7 @@ public class Order {
 		this.order_type = order_type;
 		this.limit_price = limit_price;
 		this.stop_price = stop_price;
-		this.status = "pending";
+		this.status = "PENDING";
 	}
 
 	// public Order(int order_id, int total_quantity, int open_quantity,
