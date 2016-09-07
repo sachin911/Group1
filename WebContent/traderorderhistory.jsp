@@ -25,7 +25,7 @@
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
 				<input type="button" class="menu__button selected" value="ORDER HISTORY" onClick="document.historyform.submit()">
-				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='logoutservlet'">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='Logoutservlet'">
 			</div>
 		</header>
 		<!-- Header menu buttons end -->

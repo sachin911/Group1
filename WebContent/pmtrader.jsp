@@ -25,7 +25,7 @@
 			type="button" class="menu__button" value="ORDER HISTORY"
 			onClick="document.historyform.submit()"> <input type="button"
 			class="menu__button logoutbutton" value="LOG OUT"
-			onClick="location.href='logoutservlet'">
+			onClick="location.href='Logoutservlet'">
 	</div>
 	</header>
 	<!-- Header menu buttons end -->

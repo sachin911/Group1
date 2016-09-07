@@ -22,7 +22,7 @@
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='pmprofitloss.html'">
 				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
-				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='logoutservlet'">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='Logoutservlet'">
 			</div>
 		</header>
 		

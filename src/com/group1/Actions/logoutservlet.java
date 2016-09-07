@@ -17,13 +17,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class logoutservlet
  */
 @WebServlet("/logoutservlet")
-public class logoutservlet extends HttpServlet implements Filter {
+public class Logoutservlet extends HttpServlet implements Filter {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public logoutservlet() {
+    public Logoutservlet() {
         super();
         // TODO Auto-generated constructor stub
     }

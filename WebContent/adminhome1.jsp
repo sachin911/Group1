@@ -19,7 +19,7 @@
 <form name="adminHomeForm" action="AdminServlet" method="get"></form>
 
 <button name="AddUser" onClick="location.href='addUser.jsp'">Add</button>
-<button name="LogOut" onClick="location.href='logoutservlet'">Log Out</button>
+<button name="LogOut" onClick="location.href='Logoutservlet'">Log Out</button>
 
 <main>
 <article class="employeetable">
