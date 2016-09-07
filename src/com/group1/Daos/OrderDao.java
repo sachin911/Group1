@@ -22,7 +22,7 @@ public class OrderDao {
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
 				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id,block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -34,20 +34,19 @@ public class OrderDao {
 			pstmt.setInt(6,o.getOpen_quantity()); //           TOGETHER SUMS
 			pstmt.setInt(7,o.getAllocated_quantity()); //      TOTAL Q, BUT NEED BA input
 			pstmt.setString(8, "PENDING");   // AUTO-PENDING if sent to Broker
-			pstmt.setString(9,o.getAccount_type()); // have
-			pstmt.setInt(10,o.getPm_id());  // have
-			pstmt.setInt(11,o.getTrader_id());  // have or possibly blank
+			pstmt.setInt(9,o.getPm_id());  // have
+			pstmt.setInt(10,o.getTrader_id());  // have or possibly blank
 			
-			pstmt.setNull(12, java.sql.Types.INTEGER);
+			pstmt.setNull(11, java.sql.Types.INTEGER);
 			
 			// CHECK DATE TIME FORMAT !!!
-			pstmt.setDate(13, getCurrentDate());
-			pstmt.setDate(14,o.getExecuted_date());
+			pstmt.setDate(12, getCurrentDate());
+			pstmt.setDate(13,o.getExecuted_date());
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			
-			pstmt.setString(15,o.getCurrency());  // have
-			pstmt.setString(16, o.getOrder_type());  // have
-			pstmt.setFloat(17, o.getExecuted_price());
+			pstmt.setString(14,o.getCurrency());  // have
+			pstmt.setString(15, o.getOrder_type());  // have
+			pstmt.setFloat(16, o.getExecuted_price());
 			//String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
 			pstmt.executeUpdate();
@@ -84,7 +83,7 @@ public class OrderDao {
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
 				+ "open_quantity, allocated_quantity, status, account_type, pm_id, trader_id, block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
-				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ "values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -96,21 +95,20 @@ public class OrderDao {
 			pstmt.setInt(6,o.getOpen_quantity()); //           TOGETHER SUMS
 			pstmt.setInt(7,o.getAllocated_quantity()); //      TOTAL Q, BUT NEED BA input
 			pstmt.setString(8, "PM ASSIGNED");   // AUTO- PM Assigned
-			pstmt.setString(9,o.getAccount_type()); // have
-			pstmt.setInt(10,o.getPm_id());  // have
-			pstmt.setInt(11,o.getTrader_id());  // have or possibly blank
+			pstmt.setInt(9,o.getPm_id());  // have
+			pstmt.setInt(10,o.getTrader_id());  // have or possibly blank
 			
 			
-			pstmt.setNull(12, java.sql.Types.INTEGER);
+			pstmt.setNull(11, java.sql.Types.INTEGER);
 			
 			// CHECK DATE TIME FORMAT !!!
-			pstmt.setDate(13, getCurrentDate());
-			pstmt.setDate(14,o.getExecuted_date());
+			pstmt.setDate(12, getCurrentDate());
+			pstmt.setDate(13,o.getExecuted_date());
 			/// EXECUTED DATE MUST BE NULLABLE IN DATABASE
 			
-			pstmt.setString(15, o.getCurrency());  // have
-			pstmt.setString(16, o.getOrder_type());  // have
-			pstmt.setFloat(17, o.getExecuted_price());
+			pstmt.setString(14, o.getCurrency());  // have
+			pstmt.setString(15, o.getOrder_type());  // have
+			pstmt.setFloat(16, o.getExecuted_price());
 			//String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
 
 			pstmt.executeUpdate();

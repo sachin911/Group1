@@ -5,11 +5,11 @@ import java.sql.Date;
 public class Order {
 
 	int order_id, total_quantity, open_quantity, allocated_quantity, pm_id, trader_id, block_id;
-	String side, symbol, status, account_type, currency, order_type;
+	String side, symbol, status, currency, order_type;
 	Date order_date, executed_date;
 	float limit_price, stop_price, executed_price, pl;
 
-	public Order(int total_quantity, int pm_id, int trader_id, String side, String symbol, String account_type,
+	public Order(int total_quantity, int pm_id, int trader_id, String side, String symbol,
 			String currency, String order_type, float limit_price, float stop_price) {
 		this.total_quantity = total_quantity;
 		this.allocated_quantity = total_quantity;
@@ -17,7 +17,6 @@ public class Order {
 		this.trader_id = trader_id;
 		this.side = side;
 		this.symbol = symbol;
-		this.account_type = account_type;
 		this.currency = currency;
 		this.order_type = order_type;
 		this.limit_price = limit_price;
@@ -137,14 +136,6 @@ public class Order {
 		this.status = status;
 	}
 
-	public String getAccount_type() {
-		return account_type;
-	}
-
-	public void setAccount_type(String account_type) {
-		this.account_type = account_type;
-	}
-
 	public String getCurrency() {
 		return currency;
 	}
@@ -214,7 +205,7 @@ public class Order {
 		return "Order [order_id=" + order_id + ", total_quantity=" + total_quantity + ", open_quantity=" + open_quantity
 				+ ", allocated_quantity=" + allocated_quantity + ", pm_id=" + pm_id + ", trader_id=" + trader_id
 				+ ", block_id=" + block_id + ", side=" + side + ", symbol=" + symbol + ", status=" + status
-				+ ", account_type=" + account_type + ", currency=" + currency + ", order_type=" + order_type
+				+ ", account_type=" +  ", currency=" + currency + ", order_type=" + order_type
 				+ ", order_date=" + order_date + ", executed_date=" + executed_date + ", limit_price=" + limit_price
 				+ ", stop_price=" + stop_price + ", executed_price=" + executed_price + ", pl=" + pl + "]";
 	}

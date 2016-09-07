@@ -24,9 +24,9 @@ public class TraderController {
 	// make individual orders -- this is sent to the broker with all info filled
 	// out
 	public void createTraderBokerOrder(int total_quantity, int pm_id, int trader_id, String side, String symbol,
-			String account_type, String currency, String order_type, float limit_price, float stop_price) {
+			 String currency, String order_type, float limit_price, float stop_price) {
 
-		Order o = new Order(total_quantity, pm_id, trader_id, side, symbol, account_type, currency, order_type,
+		Order o = new Order(total_quantity, pm_id, trader_id, side, symbol, currency, order_type,
 				limit_price, stop_price);
 
 		OrderService.createBrokerOrder(o);
@@ -64,16 +64,16 @@ public class TraderController {
 	}
 	
 	public static void main(String[] args) {
-		Order o1 = new Order(10, 11, 15, "BUY","TATA", "Dont care", "USD", "MARKET", 0, 0);
-		Order o2 = new Order(30, 11, 15, "BUY","TATA", "Dont care", "USD", "MARKET", 0, 0);
+//		Order o1 = new Order(10, 11, 15, "BUY","TATA", "Dont care", "USD", "MARKET", 0, 0);
+//		Order o2 = new Order(30, 11, 15, "BUY","TATA", "Dont care", "USD", "MARKET", 0, 0);
 
-		List<Order> order_list = new ArrayList<Order>();
-		order_list.add(o1);
-		order_list.add(o2);
-
-		
-		TraderController tc = new TraderController();
-		tc.createTraderBlockOrder(order_list);
+//		List<Order> order_list = new ArrayList<Order>();
+//		order_list.add(o1);
+//		order_list.add(o2);
+//
+//		
+//		TraderController tc = new TraderController();
+//		tc.createTraderBlockOrder(order_list);
 		
 	}
 
