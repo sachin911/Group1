@@ -18,8 +18,8 @@ public class AdminService implements AdminServiceInterface {
 	}
 
 
-	public static List<Employee> getAllEmployees() {
-		return adminDao.getAllEmployees();
+	public static List<Employee> getAllTraders() {
+		return adminDao.getAllTraders();
 	}
 
 

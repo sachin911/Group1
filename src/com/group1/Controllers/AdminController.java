@@ -54,8 +54,8 @@ public class AdminController {
 		return AdminService.editEmployee(e);
 	}
 	
-	public List<Employee> getAllEmployees() {
-		return AdminService.getAllEmployees();
+	public List<Employee> getAllTraders() {
+		return AdminService.getAllTraders();
 	}
 	
 	

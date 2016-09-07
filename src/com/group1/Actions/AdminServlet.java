@@ -33,15 +33,15 @@ public class AdminServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Employee e = (Employee) session.getAttribute("obj");
-		System.out.println("e" + e.getEmployee_id());
+		System.out.println("e admin");
 		
 		RequestDispatcher rd=request.getRequestDispatcher("adminhome1.jsp");
 		AdminController ac = new AdminController();
 		List<Employee> employeelist=new ArrayList<Employee>();
-		employeelist = ac.getAllEmployees();
+		employeelist = ac.getAllTraders();
 		request.setAttribute("el", employeelist);
 
-
+		//response.sendRedirect(request.getContextPath() + "/adminhome1.jsp");
 		rd.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
