@@ -42,6 +42,7 @@ public class AdminController {
 	}
 	
 	public boolean EditAdminController(String username, String password, String first_name, String last_name, String role, int pm_id) {	
+		System.out.println("Controller");
 		if (role.equals("PM")) {
 			this.e = new PM(username, password, first_name, last_name, role);
 		} else if (role.equals("Trader")) {
@@ -54,8 +55,8 @@ public class AdminController {
 		return AdminService.editEmployee(e);
 	}
 	
-	public List<Employee> getAllEmployees() {
-		return AdminService.getAllEmployees();
+	public List<Employee> getAllTraders() {
+		return AdminService.getAllTraders();
 	}
 	
 	

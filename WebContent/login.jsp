@@ -20,28 +20,37 @@
                      class="login__input" name="password" placeholder="Password" required>
                      <input type="submit" class="login__submit" value="Login"
                      name="submit" id="submitbutton" ">
- 
+
 <% if(null!=request.getAttribute("error"))
               {%>
        <p><%=request.getAttribute("error")%></p>
               <%}%>
-      
+
        <%--   <%
                       if(request.getAttribute("buttondisable")){
               %>
                   <input type="submit" class="login__submit" value="Login"
                      name="submit" id="submitbutton"  disabled="disabled">
- 
+
               <%
                       } else { 
               %>
                 <input type="submit" class="login__submit" value="Login"
                      name="submit" id="submitbutton" ">
- 
+
               <%
                       } 
               %>--%>
        </form>
+
+
+
+       </main>
+         
+       
+</body>
+</html>
+
  
  
        </main>
@@ -49,3 +58,4 @@
       
 </body>
 </html>
+

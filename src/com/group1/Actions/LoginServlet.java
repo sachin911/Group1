@@ -58,7 +58,8 @@ public class LoginServlet extends HttpServlet {
 			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("PM")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-				RequestDispatcher rd = request.getRequestDispatcher("PMHomeServlet");
+				RequestDispatcher rd = request
+						.getRequestDispatcher("PMHomeServlet");
 
 				rd.forward(request, response);
 			}
@@ -68,13 +69,19 @@ public class LoginServlet extends HttpServlet {
 				session.setMaxInactiveInterval(20 * 60);
 				session.setAttribute("obj", e);
 
+
+			System.out.println(obj);
+				RequestDispatcher rd = request
+						.getRequestDispatcher("TraderHomeServlet");
+//				RequestDispatcher rd = request
+//						.getRequestDispatcher("TraderHomeServlet.java");
+
 				session.setAttribute("test", "sachin");
 				System.out.println(session.getAttribute("obj").toString());
 
-				System.out.println(obj);
-				RequestDispatcher rd = request.getRequestDispatcher("TraderHomeServlet");
 				// RequestDispatcher rd = request
 				// .getRequestDispatcher("TraderHomeServlet.java");
+
 
 				rd.forward(request, response);
 			}
@@ -83,9 +90,15 @@ public class LoginServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
 				System.out.println(obj);
+				RequestDispatcher rd = request
+						.getRequestDispatcher("AdminServlet");
+				response.sendRedirect("AdminServlet");
+				//rd.forward(request, response);
 
-				RequestDispatcher rd = request.getRequestDispatcher("AdminHomeServlet");
-				rd.forward(request, response);
+//
+//				RequestDispatcher rd = request.getRequestDispatcher("AdminHomeServlet");
+//				rd.forward(request, response);
+
 			}
 			if (userValidity.equals("Invalid password") && typeOfUser.equalsIgnoreCase("null")) {
 				System.out.println(userValidity + typeOfUser);
