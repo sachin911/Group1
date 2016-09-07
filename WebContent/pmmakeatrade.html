@@ -1,31 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
 <head>
 <meta charset="UTF-8">
 <title>Trader Make a Trade</title>
 <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-	<header class="traderMenu">
-		<img class="traderMenu__logo" src="images/Logo.png">
+<head>
+<meta charset="UTF-8">
+<title>PM Make a Trade</title>
+<link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+	<header class="menu">
+		<img class="menu__logo" src="images/Logo.png">
 
 		<!-- Menu buttons -->
-		<div class="traderMenu__buttonbox">
-			<input type="button" class="traderMenu__button" value="HOME"
-				onClick="location.href='pmhome.html'"> <input type="button"
-				class="traderMenu__button" value="TRADERS"
+		<div class="menu__buttonbox">
+			<input type="button" class="menu__button" value="HOME"
+				onClick="location.href='pmhome1.jsp'"> <input type="button"
+				class="menu__button" value="TRADERS"
 				onClick="location.href='pmtraders.html'"> <input
-				type="button" class="traderMenu__button selected"
-				value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
-			<input type="button" class="traderMenu__button" value="PROFIT/LOSS"
+				type="button" class="menu__button selected" value="MAKE A TRADE"
+				onClick="location.href='pmmakeatrade.html'"> <input
+				type="button" class="menu__button" value="PROFIT/LOSS"
 				onClick="location.href='pmprofitloss.html'"> <input
-				type="button" class="traderMenu__button" value="ORDER HISTORY"
-				onClick="location.href='pmorderhistory.html'"> <input
-				type="button" class="traderMenu__button logoutbutton"
-				value="LOG OUT" onClick="location.href='login.html'">
+				type="button" class="menu__button" value="ORDER HISTORY"
+				onClick="document.historyform.submit()"> <input
+				type="button" class="menu__button logoutbutton" value="LOG OUT"
+				onClick="location.href='login.html'">
 		</div>
 	</header>
+	</body>
 	<!-- Header menu buttons end -->
 
 	<main class="pmmakeatrademain">
@@ -73,65 +79,4 @@
 
 	<script src="JavaScript/makeatradepm.js"></script>
 </body>
-=======
-	<head>
-		<meta charset="UTF-8">
-		<title>PM Make a Trade</title>
-		<link rel="stylesheet" href="style/style.css">
-	</head>
-	<body>
-		<header class="menu">
-			<img class="menu__logo" src="images/Logo.png">
-
-			<!-- Menu buttons -->
-			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='pmhome1.jsp'">
-				<input type="button" class="menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
-				<input type="button" class="menu__button selected" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
-				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='pmprofitloss.html'">
-				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
-				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
-			</div>
-		</header>
-		<!-- Header menu buttons end -->
-<form name="historyform" action="TradeHistoryServlet" method = "get"></form>
-		<main class="pmmakeatrademain">
-			<div class="makeatrade">
-				<h2 class="makeatrade__header">Make a Trade</h2>
-				<div class="scrollwrapper">
-					<form method="post">
-						<table class="makeatrade__table" id="maketradetable" name="tradetable">
-							<tr>
-								<th name="side">Trader/Broker?</th>
-								<th name="side">Side</th>
-								<th name="symbol">Symbol</th>
-								<th name="totalquantity">Total Quantity</th>
-								<th name="currency">Currency</th>
-								<th name="limitprice">Limit Price</th>
-								<th name="stopprice">Stop Price</th>
-								<th name="ordertype">Order Type</th>
-							</tr>
-							<tbody>
-							<tr>
-								<td><input type="text" class="table__input" name="sideinput"></td>
-								<td><input type="text" class="table__input" name="symbolinput"></td>
-								<td><input type="text" class="table__input" name="totalquantityinput"></td>
-								<td><input type="text" class="table__input" name="currencyinput"></td>
-								<td><input type="text" class="table__input" name="limitpriceinput"></td>
-								<td><input type="text" class="table__input" name="stoppriceinput"></td>
-								<td><input type="text" class="table__input" name="ordertypeinput"></td>
-								<td><input type="text" class="table__input" name="ordertypeinput"></td>
-							</tr>
-							</tbody>
-						</table>
-						</form>
-				</div>
-					<button onclick="addRow('maketradetable')" class="createbutton generalbutton" name="addbutton">Add row</button>
-					<button onclick="deleteRow('maketradetable')" class="deletebutton generalbutton" name="deletebutton">Delete row</button>
-					<input type="submit" class="submittrade generalbutton" value="Submit" name="submittradebutton">
-			</div>
-		</main>
-		<script src="JavaScript/makeatrade.js"></script>
-	</body>
->>>>>>> 8882f5e463447c14fefa63f5571f23b3f5f85eb1
 </html>
