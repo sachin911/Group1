@@ -68,7 +68,7 @@
 					<th name="marketvalue">Market Value</th>
 					<th name="profitloss">Profit/loss</th>
 				</tr>
-		<!--  		<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
+			<%ArrayList<Order> tlist = (ArrayList<Order>)request.getAttribute("ol");
 						
 						if(tlist!=null)
 							{
@@ -87,7 +87,7 @@
 					<td><%=o.getPl() %></td>
 				</tr>
 				<% }
-						} %> -->
+						} %> 
 				<tbody>
 					
 				</tbody>

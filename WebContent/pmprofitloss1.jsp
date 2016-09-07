@@ -48,14 +48,14 @@
 				for(int i = 0;i<list.size();i++){ %>
 					<tr>
 					
-							<th><%=list.get(i).getSymbol()%></th>
-							<th><%=list.get(i).getOpen_quantity()%></th>
-							<th><%=list.get(i).getOrder_type()%></th>
-							<th><%=list.get(i).getExecuted_price()%></th>
-							<th ><% Random rand = new Random();float current_price;%>
-							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></th>
-							<th><%=list.get(i).getCurrency()%></th>
-							<th><%float pl; %><%= pl = (float) (list.get(i).getExecuted_price() - current_price) * list.get(i).getOpen_quantity() %></th>
+							<td><%=list.get(i).getSymbol()%></td>
+							<td><%=list.get(i).getOpen_quantity()%></td>
+							<td><%=list.get(i).getOrder_type()%></td>
+							<td><%=list.get(i).getExecuted_price()%></td>
+							<td><% Random rand = new Random();float current_price;%>
+							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></td>
+							<td><%=list.get(i).getCurrency()%></td>
+							<td><%float pl; %><%= pl = (float) (list.get(i).getExecuted_price() - current_price) * list.get(i).getOpen_quantity() %></td>
 						</tr>
 		<% 	}}%>
 						<tbody>
