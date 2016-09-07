@@ -1,6 +1,7 @@
 package com.group1.Controllers;
 
 import com.group1.Models.Order;
+import com.group1.Services.BrokerService;
 import com.group1.Services.OrderService;
 
 public class PMController {
@@ -14,6 +15,9 @@ public class PMController {
 		
 		int oid = OrderService.createBrokerOrder(o);
 		o.setOrder_id(oid);
+		
+		BrokerService bs = new BrokerService();
+		bs.broker();
 
 	}
 	

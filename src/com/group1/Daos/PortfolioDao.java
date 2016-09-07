@@ -24,16 +24,21 @@ public class PortfolioDao {
 			rs = pstmt.executeQuery();
 
 			if (rs != null && rs.next()) {   // Trader already owns some of the symbol
-
+				System.out.println("Trader has some of the symbol");
 				int currentQuantity = rs.getInt("quantity");  //Trader is selling symbol A
 				float currentPrice = rs.getFloat("price");
-				if (o.getSide().equals("SELL")) { 				// trader has enough of symbol to trade because of check				
+				if (o.getSide().equals("SELL")) { 				// trader has enough of symbol to trade because of check
+					System.out.println("Trader is selling some of his stuff");
 					pstmt = con.prepareStatement("update portfolio set quantity = ?, price = ? where emp_id = ? and symbol = ? and currency = ?");
-					int diff = 1 - (currentQuantity - o.getOpen_quantity());
-					float newPrice = diff * currentPrice; 
+					
+					double w1 = (((double)o.getOpen_quantity()) / currentQuantity ); // get weight of subtraction
+					double w2 = 1 - w1;												// get reverse weight
+					double p1 = w1 * o.getExecuted_price();							// get weighted price for subtraction
+					double p2 = w2 * currentPrice; 									// get weighted price for original
+					double newPrice = p1 + p2;										// add
 					int newQuantity = currentQuantity - o.getOpen_quantity();
 					pstmt.setInt(1, newQuantity);
-					pstmt.setFloat(2, newPrice);
+					pstmt.setFloat(2, (float) newPrice);
 					pstmt.setInt(3, o.getTrader_id());
 					pstmt.setString(4, o.getSymbol());
 					pstmt.setString(5,  o.getCurrency());
@@ -41,15 +46,23 @@ public class PortfolioDao {
 					result = true;			
 
 				} else {						//trader is buying symbol A and already owns some of it
+					System.out.println("Trader is adding to his stuff");
+
 					pstmt = con.prepareStatement("update portfolio set quantity = ?, price = ? where emp_id = ? and symbol = ? and currency = ?");
 					int newQuantity = currentQuantity + o.getOpen_quantity();
-					float w1 = currentQuantity/newQuantity;
-					float w2 = o.getOpen_quantity()/newQuantity;
-					float p1 = w1 * currentPrice;
-					float p2 = w2 * o.getExecuted_price();
-					float newPrice = p1 + p2;
+					double w1 = ((double)currentQuantity)/newQuantity;
+					double w2 = ((double)o.getOpen_quantity())/newQuantity;
+					double p1 = w1 * currentPrice;
+					double p2 = w2 * o.getExecuted_price();
+					
+					
+//					double w1 = (((double)o.getOpen_quantity()) / currentQuantity );		// get weight of new stocks
+//					double w2 = 1 - w1;														// get reverse weight
+//					double p1 = w1 * o.getExecuted_price();									// get weighted price for subtraction
+//					double p2 = w2 * currentPrice; 											// get weighted price for original
+					double newPrice = p1 + p2;												// add
 					pstmt.setInt(1, newQuantity);
-					pstmt.setFloat(2, newPrice);
+					pstmt.setFloat(2, (float) newPrice);
 					pstmt.setInt(3, o.getTrader_id());
 					pstmt.setString(4, o.getSymbol());
 					pstmt.setString(5,  o.getCurrency());
@@ -58,8 +71,11 @@ public class PortfolioDao {
 				}
 			} else {			// he does not have any of stock so cannot sell, or needs to add
 				if (o.getSide().equals("SELL")) { 					//Trader is selling symbol A
+					System.out.println("Trader doesnt have any of the symbol stuff");
+
 					result = false;							 // if trader is trying to sell what he doesnt have
 				} else {									// trader is buying a new stock
+					System.out.println("Trader is buying a new symbol");
 					pstmt = con.prepareStatement("insert into portfolio (emp_id, symbol, quantity, currency, price) values(?,?,?,?,?)");
 					pstmt.setInt(1, o.getTrader_id());
 					pstmt.setString(2, o.getSymbol());

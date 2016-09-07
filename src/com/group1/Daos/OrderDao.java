@@ -69,6 +69,8 @@ public class OrderDao {
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
 		
+		// CALL BROKER BUT WITH A CHECK
+		
 		return order_id;
 	}
 	

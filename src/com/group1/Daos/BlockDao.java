@@ -71,6 +71,9 @@ public class BlockDao {
 			try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 			try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+		
+		//BROKER CALL
+		
 		return row_id;
 	}
 

@@ -24,7 +24,7 @@ public class TraderController {
 
 	// make individual orders -- this is sent to the broker with all info filled
 	// out
-	public void createTraderBokerOrder(int total_quantity, int pm_id, int trader_id, String side, String symbol,
+	public void createTraderBrokerOrder(int total_quantity, int pm_id, int trader_id, String side, String symbol,
 			String currency, String order_type, float limit_price, float stop_price) {
 
 		Order o = new Order(total_quantity, pm_id, trader_id, side, symbol, currency, order_type,
@@ -32,6 +32,10 @@ public class TraderController {
 
 		int oid = OrderService.createBrokerOrder(o);
 		o.setOrder_id(oid);	
+		
+		BrokerService bs = new BrokerService();
+		bs.broker();
+		
 	}
 
 	public void createTraderBlockOrder(List<Order> order_list) {
@@ -62,8 +66,13 @@ public class TraderController {
 
 		block_id = block_service.createBlockService(new_block);
 		new_block.setBlock_id(block_id);
+		
+		BrokerService bs = new BrokerService();
+		bs.broker();
 		//block_service.executeBlockService(new_block);
 		//System.out.println("Block is created-------"+is_block_created + " and " + blockUpdated);
+		
+		// Call Broker
 	}
 
 	public static void main(String[] args) {
