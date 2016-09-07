@@ -16,7 +16,6 @@
 			<img class="menu__logo" src="images/Logo.png">
 
 			<!-- Menu buttons -->
-<<<<<<< HEAD
 			<div class="traderMenu__buttonbox">
 				<input type="button" class="Menu__button selected" value="HOME" onClick="document.homeform.submit()">
 				<input type="button" class="Menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
