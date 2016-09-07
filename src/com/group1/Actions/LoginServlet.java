@@ -87,7 +87,8 @@ public class LoginServlet extends HttpServlet {
 				System.out.println(obj);
 				RequestDispatcher rd = request
 						.getRequestDispatcher("AdminServlet");
-				rd.forward(request, response);
+				response.sendRedirect("AdminServlet");
+				//rd.forward(request, response);
 			}
 			
 			

@@ -18,7 +18,7 @@
 
 	<form name="adminHomeForm" action="AdminServlet" method="get"></form>
 
-	<button name = "AddUser" onclick="location.href='adminadduser.html'" >Add New User</button>
+	<button name = "AddUser" onclick="location.href='adminadduser.html'">Add New User</button>
 
 	<main>
 	<article class="employeetable">
@@ -35,15 +35,15 @@
 				
 			</tr>
 
-			<% ArrayList<Employee> list = (ArrayList<Employee>) request.getAttribute("el");
+			<% ArrayList<Employee> list = (ArrayList<Employee>) session.getAttribute("el");
                    if(list!=null){
 				for(int i = 0;i<list.size();i++){ %>
 			<tr>
 				<th><%=list.get(i).getFirst_Name()  + " " + list.get(i).getLast_Name() %></th>
 				<th><%=list.get(i).getRole()%></th>
 				<th><%=list.get(i).getLoginAttempts()%></th>
-				<th><button name = "remove" onclick="removeEmp()">Remove</button></th>
-				<th><button name = "edit" onclick= "editEmp()">Reset Login</button></th>
+				<th><button class="generalbutton" name = "remove" onclick="removeEmp()">Remove</button></th>
+				<th><button class="generalbutton" name = "edit" onclick= "editEmp()">Reset Login</button></th>
 				
 
 			</tr>

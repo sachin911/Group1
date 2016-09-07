@@ -12,25 +12,29 @@
 		<main>
 			<article class="adduser">
 				<h2>Add a user</h2>
-				<table class="adduser__table" name="adduser">
+				<form action="AddAdminServlet" method="get">
+				<table class="adduser__table">
 					<tr>
-						<th name="name">Name</th>
-						<th name="username">Username</th>
-						<th name="password">Password</th>
-						<th name="role">Role</th>
-						<th name="username">Manager</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Username</th>
+						<th>Password</th>
+						<th>Role</th>
+						<th>Manager</th>
 					</tr>
 					<tbody>
 						<tr>
-						<td name="name"><input type="text" name="name"></td>
-						<td name="username"><input type="text" name="username"></td>
-						<td name="password"><input type="text" name="password"></td>
-						<td name="role"><input type="text" name="role"></td>
-						<td name="manager"><input type="text" name="manager"></td>
+						<td><input type="text" name="first_name"></td>
+						<td><input type="text" name="last_name"></td>
+						<td><input type="text" name="username"></td>
+						<td><input type="text" name="password"></td>
+						<td><input type="text" name="role"></td>
+						<td><input type="text" name="manager"></td>
 					</tr>
 					</tbody>
 				</table>
-				<button name = "addUser" action = "AddAdminServlet" method = "get" onClick = "location.href:'adminadduser.html'">Add</button>
+				<input type = "submit" value = "Add">
+				</form>
 			</article>
 		</main>
 	</body>
