@@ -20,34 +20,18 @@ import com.group1.Models.Employee;
 
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 
-	private static final long serialVersionUID = 10L;
+	public LoginServlet() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-
-	/*
-	 * int eid; int pmid; String pass; int attempts; String role;
-	 * 
-	 * public LoginServlet(String username, String pass2, int attempts2, String
-	 * role2, int eid2, int pmid2) {
-	 * 
-	 * this.pass = pass2; this.attempts = attempts2; this.role = role2; this.eid
-	 * = eid2; this.pmid = pmid2;
-	 * 
-	 * }
-	 */
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		Integer key;
 		String value = null;
+		System.out.println("kms");
 
 		String userValidity;
 		String typeOfUser;
@@ -57,76 +41,93 @@ public class LoginServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		List<Object> li = new ArrayList<>();
-		Object obj=new Object();
+		Object obj = new Object();
 
 		LoginController logincontroller = new LoginController();
 		try {
 			li = logincontroller.callLogin(username, password);
 			map = (Map<Integer, String>) li.get(0);
-			
-             System.out.println(li.size());
+
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);
 			// eid=Integer.parseInt(map.get(3));
-			if(userValidity.equals("Valid User")){
-				e=(Employee) li.get(1);
+			if (userValidity.equals("Valid User")) {
+				e = (Employee) li.get(1);
 			}
-			
-			
-			if (userValidity.equals("Valid User")
-					&& typeOfUser.equalsIgnoreCase("PM")) {
+
+			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("PM")) {
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("pmhome.html");
+						.getRequestDispatcher("PMHomeServlet");
+
 				rd.forward(request, response);
 			}
-			if (userValidity.equals("Valid User")
-					&& typeOfUser.equalsIgnoreCase("Trader")) {
+			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Trader")) {
+				System.out.println(userValidity + typeOfUser);
+				HttpSession session = request.getSession();
+				session.setMaxInactiveInterval(20 * 60);
+				session.setAttribute("obj", e);
+
+
+			System.out.println(obj);
+				RequestDispatcher rd = request
+						.getRequestDispatcher("TraderHomeServlet");
+//				RequestDispatcher rd = request
+//						.getRequestDispatcher("TraderHomeServlet.java");
+
+				session.setAttribute("test", "sachin");
+				System.out.println(session.getAttribute("obj").toString());
+
+				// RequestDispatcher rd = request
+				// .getRequestDispatcher("TraderHomeServlet.java");
+
+
+				rd.forward(request, response);
+			}
+			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Admin")) {
 				System.out.println(userValidity + typeOfUser);
 				HttpSession session = request.getSession();
 				session.setAttribute("obj", e);
-			System.out.println(obj);
+				System.out.println(obj);
 				RequestDispatcher rd = request
-						.getRequestDispatcher("traderhome.html");
-				rd.forward(request, response);
+						.getRequestDispatcher("AdminServlet");
+				response.sendRedirect("AdminServlet");
+				//rd.forward(request, response);
+
+//
+//				RequestDispatcher rd = request.getRequestDispatcher("AdminHomeServlet");
+//				rd.forward(request, response);
+
 			}
-			if (userValidity.equals("Valid User")
-					&& typeOfUser.equalsIgnoreCase("Admin")) {
-				System.out.println(userValidity + typeOfUser);
-				HttpSession session = request.getSession();
-				session.setAttribute("obj", e);
-			System.out.println(obj);
-				RequestDispatcher rd = request
-						.getRequestDispatcher("adminhome.html");
-				rd.forward(request, response);
-			}
-			if (userValidity.equals("Invalid password")
-					&& typeOfUser.equalsIgnoreCase("null")) {
+			if (userValidity.equals("Invalid password") && typeOfUser.equalsIgnoreCase("null")) {
 				System.out.println(userValidity + typeOfUser);
 				request.setAttribute("error", "Invalid Username/Password");
-				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("Login1.jsp");
+			}
+
+			if (userValidity.equals("Invalid password") && typeOfUser.equalsIgnoreCase("null")) {
+				System.out.println(userValidity + typeOfUser);
+				request.setAttribute("error", "Invalid Username/Password");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 
 				rd.forward(request, response);
 			}
-			if (userValidity.equals("block account")
-					&& typeOfUser.equalsIgnoreCase("null")) {
+			if (userValidity.equals("block account") && typeOfUser.equalsIgnoreCase("null")) {
 				// System.out.println(userValidity+typeOfUser);
 				// request.setAttribute("buttondisable", true);
-				request.setAttribute("error",
-						"Your account is blocked, Contact admin to activate");
-				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+
+				request.setAttribute("error", "Your account is blocked, Contact admin to activate");
+				request.setAttribute("error", "Your account is blocked, Contact admin to activate");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+
 				rd.forward(request, response);
 			}
-			if (userValidity.equals("Invalid user")
-					&& typeOfUser.equalsIgnoreCase("null")) {
+			if (userValidity.equals("Invalid user") && typeOfUser.equalsIgnoreCase("null")) {
 				// System.out.println(userValidity+typeOfUser);
 
-				RequestDispatcher rd = request
-						.getRequestDispatcher("Login1.jsp");
+				RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+
 				request.setAttribute("error", "Invalid Username/Password");
 				rd.forward(request, response);
 			}
@@ -136,8 +137,10 @@ public class LoginServlet extends HttpServlet {
 
 		}
 	}
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

@@ -1,5 +1,7 @@
 package com.group1.Services;
 
+import java.util.List;
+
 import com.group1.Daos.AdminDao;
 import com.group1.Models.Employee;
 
@@ -16,10 +18,13 @@ public class AdminService implements AdminServiceInterface {
 	}
 
 
-
+	public static List<Employee> getAllTraders() {
+		return adminDao.getAllTraders();
+	}
 
 
 	public static boolean editEmployee(Employee user) {
+		System.out.println("Service");
 		return adminDao.editEmployee(user);
 	}
 

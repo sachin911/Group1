@@ -13,27 +13,31 @@ import com.group1.Models.Order;
 public class TradeHistoryDao {
 
 	Jdbc jdbc = new Jdbc();
-	public List<Order> historyList = new ArrayList<>();
+	public List<Order> historyList = new ArrayList<>(0);
+	
 	
 	public List displayTradeHistory(Employee user){
 		
+
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt = null;
+
+	
+
 		
 		try{
 			ResultSet result = null;
 			if(user.getRole().equals("PM")){
 			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ?");
-			stmt.setInt(1, user.getEmployeeId());
+			stmt.setInt(1, user.getEmployee_id());
 			result = stmt.executeQuery();
 			}
 			else if(user.getRole().equals("Trader")){
 				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ?");
-				stmt.setInt(1, user.getEmployeeId());
+				stmt.setInt(1, user.getEmployee_id());
 				result = stmt.executeQuery();
 			}
 			while(result.next()){
-				
 				Order order = new Order();
 				
 				order.setOrder_id(result.getInt("order_id"));
@@ -46,7 +50,6 @@ public class TradeHistoryDao {
 				order.setSide(result.getString("side"));
 				order.setSymbol(result.getString("symbol"));
 				order.setStatus(result.getString("status"));
-				order.setAccount_type(result.getString("account_type"));
 				order.setCurrency(result.getString("currency"));
 				order.setSide(result.getString("side"));
 				order.setOrder_type(result.getString("order_type"));
@@ -61,8 +64,8 @@ public class TradeHistoryDao {
 				order.setExecuted_price(result.getInt("executed_price"));
 				
 				historyList.add(order);
-			}
-
+				}
+				
 		}
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -71,7 +74,7 @@ public class TradeHistoryDao {
 		    try { stmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
+		System.out.println(historyList);
 		return historyList;
 		
 		

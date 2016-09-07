@@ -15,8 +15,8 @@ public class LoginController {
 	public List<Object> callLogin(String username, String password) throws SQLException {
 		return ls.authenticateEmployee(username, password);
 	}
-	public static void main(String[] args) throws SQLException {
-		ls.authenticateEmployee("pat", "titos");
-	}
+//	public static void main(String[] args) throws SQLException {
+//		ls.authenticateEmployee("pat", "titos");
+//	}
 
 }

@@ -24,12 +24,12 @@ public class PLDao {
 			ResultSet result = null;
 			if(user.getRole().equals("PM")){
 			stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE PM_ID = ? HAVING STATUS = 'EXECUTED'");
-			stmt.setInt(1, user.getEmployeeId());
+			stmt.setInt(1, user.getEmployee_id());
 			result = stmt.executeQuery();
 			}
 			else if(user.getRole().equals("Trader")){
 				stmt = con.prepareStatement("SELECT * FROM ORDER_TABLE WHERE TRADER_ID = ? HAVING STATUS = 'EXECUTED'");
-				stmt.setInt(1, user.getEmployeeId());
+				stmt.setInt(1, user.getEmployee_id());
 				result = stmt.executeQuery();
 			}
 			while(result.next()){
@@ -46,7 +46,6 @@ public class PLDao {
 				order.setSide(result.getString("side"));
 				order.setSymbol(result.getString("symbol"));
 				order.setStatus(result.getString("status"));
-				order.setAccount_type(result.getString("account_type"));
 				order.setCurrency(result.getString("currency"));
 	
 				order.setOrder_type(result.getString("order_type"));

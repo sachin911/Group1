@@ -6,17 +6,23 @@
 		<link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
-		<header class="traderMenu">
-			<img class="traderMenu__logo" src="images/Logo.png">
+		<header class="menu">
+			<img class="menu__logo" src="images/Logo.png">
 
 			<!-- Menu buttons -->
-			<div class="traderMenu__buttonbox">
-				<input type="button" class="traderMenu__button" value="HOME" onClick="location.href='traderhome.html'">
-				<input type="button" class="traderMenu__button" value="INBOX" onClick="location.href='traderinbox.html'">
-				<input type="button" class="traderMenu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
-				<input type="button" class="traderMenu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
-				<input type="button" class="traderMenu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
-				<input type="button" class="traderMenu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
+<form name="historyform" action="TradeHistoryServlet" method = "get"></form>
+
+			<div class="menu__buttonbox">
+				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
+				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="menu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='logoutservlet'">
 			</div>
 		</header>
 		<!-- Header menu buttons end -->
@@ -25,7 +31,7 @@
 			<div class="makeatrade">
 				<h2 class="makeatrade__header">Make a Trade</h2>
 				<div class="scrollwrapper">
-					<form method="post">
+					<form method="post" action='TraderServlet' id="submit_form">
 						<table class="makeatrade__table" id="maketradetable" name="tradetable">
 							<tr>
 								<th name="side">Side</th>
@@ -56,8 +62,7 @@
 					<button onclick="deleteRow('maketradetable')" class="deletebutton generalbutton" name="deletebutton">Delete row</button>
 					<input type="submit" class="submittrade generalbutton" value="Submit" name="submittradebutton">
 			</div>
-
-
+	
 		<!-- makeatrade table -->
 			<div class="makeatradeinstructions">
 				<h2 class="makeatradeinstructions__header">PM Trade Orders</h2>
@@ -65,14 +70,14 @@
 					<table id="makeatradeinstructions__table" class="makeatradeinstructions__table" name="tradeinstructionstable">
 						<thead>
 							<tr>
-								<th name="sideinstructions">Side</th>
-								<th name="symbolinstructions">Symbol</th>
-								<th name="totalquantityinstructions">Total Quantity</th>
-								<th name="currencyinstructions">Currency</th>
-								<th name="limitpriceinstructions">Limit Price</th>
-								<th name="stoppriceinstructions">Stop Price</th>
-								<th name="ordertypeinstructions">Order Type</th>
-								<th name="checkboxcolumn"></th>
+								<th >Side</th>
+								<th >Symbol</th>
+								<th >Total Quantity</th>
+								<th >Currency</th>
+								<th >Limit Price</th>
+								<th >Stop Price</th>
+								<th >Order Type</th>
+								<th ></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -93,5 +98,52 @@
 		</main>
 		<script src="JavaScript/makeatrade.js"></script>
 		<script src="JavaScript/bundle.js"></script>
+		<script src="https://code.jquery.com/jquery-3.1.0.js"   integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk="   crossorigin="anonymous"></script>
+		<script>
+		
+		
+		$('.submittrade').on('click',function(){
+			 //e.preventDefault();
+			    var header = $('table thead tr th').map(function () {
+			        return $(this).text();
+			    });
+
+			    var tableObj = $('table tbody tr').map(function (i) {
+			        var row = {};
+			        $(this).find('td').each(function (i) {
+			            var rowName = header[i];
+			            row[rowName] = $(this).find("input").val();
+			        });
+			        return row;
+			    }).get();
+
+			    JSON.stringify(tableObj);
+			    console.log(tableObj);
+			    
+			    $.ajax({
+			    	url: 'TraderServlet',
+			        type: 'POST',
+			        //dataType: 'json',
+					data: { 
+					      tab_val: JSON.stringify(tableObj) // look here!
+					    },
+			       // contentType: 'application/json',
+			    	success: function(response) {
+/* 			    	         console.log(JSON.stringify(data))
+			    	                     
+			    	         console.log(JSON.parse(data)) */
+			    	         
+			    	         console.log("inserted into table");
+			    	        
+			    	    },
+			    	fail : function(response){
+			    		alert("its fucked");
+			    	}
+			    	});
+			    
+			});
+
+		
+		</script>
 	</body>
 </html>
