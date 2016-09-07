@@ -35,18 +35,18 @@
 		<main class="pmhomemain">
 			<div class="hero">
 				<article class="hero__block">
-					<h2 class="hero__heading">Total Assets</h2>
-					<p class="hero__data" name="heroassets">data</p>
+					<h2 class="hero__heading">CURRENT ASSETS</h2>
+					<p class="hero__data" name="heroassets"><%= request.getAttribute("current_assets") %></p>
 				</article>
 
 				<article class="hero__block">
-					<h2 class="hero__heading">Profit/ Loss</h2>
-					<p class="hero__data" name="heropl">data</p>
+					<h2 class="hero__heading">PROFIT/LOSS</h2>
+					<p class="hero__data" name="heropl"><%= request.getAttribute("pl_assets") %></p>
 				</article>
 
 				<article class="hero__block">
-					<h2 class="hero__heading">% Change</h2>
-					<p class="hero__data" name="heropchange">data</p>
+					<h2 class="hero__heading">% CHANGE</h2>
+					<p class="hero__data" name="heropchange"><%= request.getAttribute("change") %></p>
 				</article>
 			</div>
 			

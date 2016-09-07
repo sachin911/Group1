@@ -16,7 +16,7 @@
 
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='pmhome1.jsp'">
+				<input type="button" class="menu__button" value="HOME" onClick="document.homeform.submit()">
 				<input type="button" class="menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
 				<input type="button" class="menu__button selected" value="PROFIT/LOSS" onClick="document.plform.submit()">
@@ -27,6 +27,7 @@
 		<!-- Header menu buttons end -->
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
 <form name="plform" action="PLServlet" method = "get"></form>
+<form name="homeform" action="PMHomeServlet" method="get"></form>
 		<main class="traderproflossmain">
 		<!-- profloss table -->
 			<div class="profloss">
