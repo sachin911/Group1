@@ -46,7 +46,7 @@ public class TraderServlet extends HttpServlet {
 		output = order_arr.replace("[", "").replace("]", "").replace("{},", "").replace(",{\"\":\"on\"}", "");
 		System.out.println("before formatting-------------"+output);
 		String[] str_array = output.split(Pattern.quote("},"));
-		System.out.println("after formatting--------"+str_array);
+		System.out.println("after formatting--------"+str_array.length);
 		TraderController tc = new TraderController();
 		HttpSession session = request.getSession();
 		Employee e = (Employee)session.getAttribute("obj");
@@ -56,6 +56,20 @@ public class TraderServlet extends HttpServlet {
 		int pmorders=tc.getcountPM(e.getEmployee_id());
 		System.out.println(pmorders);
 		if(str_array.length > 1){
+			if(pmorders==0)
+			{
+				for(int i = 0; i<str_array.length-1; i++){
+				JSONObject obj = new JSONObject(str_array[i]+"}");
+				Order o = new Order((Integer.valueOf((String) obj.get("Total Quantity"))),
+						e.getPm_id() , e.getEmployee_id(),
+						(String)obj.get("Side") , (String)obj.get("Symbol"),
+						(String)obj.get("Currency"),(String)obj.get("Order Type"),
+						Float.valueOf((String) obj.get("Limit Price")),
+						Float.valueOf((String) obj.get("Stop Price")));
+				orders.add(o);
+				}
+			}
+			else{
 			for(int i = 0; i<str_array.length-pmorders; i++){
 				JSONObject obj = new JSONObject(str_array[i]+"}");
 				System.out.println((String)obj.get("OrderId"));
@@ -81,7 +95,8 @@ public class TraderServlet extends HttpServlet {
 						Float.valueOf((String) obj.get("Stop Price")));
 				orders.add(o);
 				}
-			} 
+			}
+			}
 			tc.createTraderBlockOrder(orders);
 
 		}else {	
