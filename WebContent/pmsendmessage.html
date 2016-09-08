@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>Trader Inbox</title>
+		<title>PM Send a Message</title>
 		<link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
@@ -21,17 +21,18 @@
 		</header>
 		<!-- Header menu buttons end -->
 
-		<main class="pmtraders">
-		<h2>Traders</h2>
-				<table class="trader__table" name="traderlist">
-					<tr>
-						<th name="tradername">Name</th>
-						<th name="traderbuttonbox">Options</th>
-					</tr>
-					<tbody>
-						
-					</tbody>
-				</table>
+		<main class="traderinboxmain">
+			<div class="messages">
+				<h2 class="messages__header">Messages</h2>
+				<div class="scrollwrapper">
+				<form>
+					<select name="tradername">
+						<!-- need to add tradernames whihc belong to that pm through backend -->
+					</select>
+					<p>Message<input type="text" name="message"></p>
+				</form>
+				</div>
+			</div>
 		</main>
 	</body>
 </html>

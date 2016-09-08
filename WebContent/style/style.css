@@ -228,6 +228,9 @@ table {
   margin-left: 5%;
   margin-top: 2%; }
 
+.displaynone {
+  display: none; }
+
 h2 {
   margin-left: auto;
   margin-right: auto;

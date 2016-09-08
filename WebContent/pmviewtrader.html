@@ -2,7 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
-		<title>PM Profit Loss</title>
+		<title>Trader Profile</title>
 		<link rel="stylesheet" href="style/style.css">
 	</head>
 	<body>
@@ -12,17 +12,36 @@
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
 				<input type="button" class="menu__button" value="HOME" onClick="location.href='pmhome.html'">
-				<input type="button" class="menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
+				<input type="button" class="menu__button selected" value="TRADERS" onClick="location.href='pmtraders.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
-				<input type="button" class="menu__button selected" value="PROFIT/LOSS" onClick="location.href='pmprofitloss.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='pmprofitloss.html'">
 				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="location.href='pmorderhistory.html'">
 				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
 			</div>
 		</header>
 		<!-- Header menu buttons end -->
 
-		<main class="traderproflossmain">
-		<!-- profloss table -->
+		<main class="pmviewtrader">
+		<h2 class="pmviewtrader__header">Portfolio</h2>
+			<table class="portfolio__table" name="traderportfolio">
+				<tr>
+					<th name="symbol">Symbol</th>
+					<th name="quantity">Quantity</th>
+					<th name="basecurrency">Base Currency</th>
+					<th name="usdvalue">USD Value</th>
+					<th name="executedprice">Executed Price</th>
+					<th name="averageprice">Average Price</th>
+					<th name="currentshareprice">Current Share Price</th>
+					<th name="marketvalue">Market Value</th>
+					<th name="profitloss">Profit/loss</th>
+				</tr>
+				<tbody>
+		
+				</tbody>
+			</table>
+
+
+			<!-- profloss table -->
 			<div class="profloss">
 				<h2 class="profloss__header">Profit/Loss</h2>
 				<div class="scrollwrapper">

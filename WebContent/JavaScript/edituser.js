@@ -1,8 +1,8 @@
 function buttonFunction() {
-	redirectpage(document.getElementById("editButton").closest('tr'));
+	redirectpage(.closest(tr));
 }
 
 function redirectpage(tr) {
-	window.location="../editUser.jsp";
+	window.location="../adminedituser";
 	document.getElementById("addusertable").appendChild(tr);
 }
