@@ -55,7 +55,7 @@
 							<td><% Random rand = new Random();float current_price;%>
 							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></td>
 							<td><%=list.get(i).getCurrency()%></td>
-							<td><%float pl; %><%= pl = (float) (list.get(i).getExecuted_price() - current_price) * list.get(i).getOpen_quantity() %></td>
+							<td><%float pl; %><%= pl = (float) (current_price - list.get(i).getExecuted_price()) * list.get(i).getOpen_quantity() %></td>
 						</tr>
 		<% 	}}%>
 						<tbody>

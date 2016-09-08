@@ -70,8 +70,8 @@ public class PMHomeServlet extends HttpServlet {
 		float change = pl_assets/executed_assets;
 		
 		request.setAttribute("current_assets", current_assets);
-		request.setAttribute("pl_assets", pl_assets);
-		request.setAttribute("change", change);
+		request.setAttribute("pl_assets", -pl_assets);
+		request.setAttribute("change", -change);
 		request.setAttribute("map", map);
 		
 		
