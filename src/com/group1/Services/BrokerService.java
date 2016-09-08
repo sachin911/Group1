@@ -30,6 +30,7 @@ public class BrokerService {
 				if (portdao.checkPortfolio(o)) {
 					System.out.println("Placing market order now..");
 					marketOrderFull(o);
+					blockdao.updateBlocks();
 				}
 			} else {
 				final int ran = rand.nextInt(100);

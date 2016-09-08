@@ -84,7 +84,7 @@ public class BlockDao {
 		List<Integer> b_ids = new ArrayList<Integer>();
 		
 		try {
-			pstmt = con.prepareStatement("SELECT BLOCK_ID FROM BLOCK WHERE STATUS != 'EXECUTED");
+			pstmt = con.prepareStatement("SELECT BLOCK_ID FROM BLOCK WHERE STATUS != 'EXECUTED'");
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				b_ids.add(rs.getInt(1));
@@ -102,9 +102,10 @@ public class BlockDao {
 				}
 				
 				for (int j = 0; j < statuses.size(); j++) {
-					if (statuses.get(i).equals("PARTIAL")) {
+					String current = statuses.get(i);
+					if (current.equals("PARTIAL")) {
 						partialOrderPresent = true;
-					} else if (statuses.get(i).equals("PENDING")) {
+					} else if (current.equals("PENDING")) {
 						pendingOrderPresent = true;
 					} else {
 						pendingOrderPresent = false;
