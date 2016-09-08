@@ -69,6 +69,7 @@ public class TraderController {
 		
 		BrokerService bs = new BrokerService();
 		bs.broker();
+		
 		//block_service.executeBlockService(new_block);
 		//System.out.println("Block is created-------"+is_block_created + " and " + blockUpdated);
 		

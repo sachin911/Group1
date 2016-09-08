@@ -5,12 +5,14 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
+import com.group1.Daos.BlockDao;
 import com.group1.Daos.BrokerDao;
 import com.group1.Daos.PortfolioDao;
 import com.group1.Models.Order;
 
 public class BrokerService {
 	BrokerDao brokerdao = new BrokerDao();
+	BlockDao blockdao = new BlockDao();
 	PortfolioDao portdao = new PortfolioDao();
 
 	Random rand = new Random();
@@ -48,8 +50,8 @@ public class BrokerService {
 			case "STOP": stopOrderFull(o); break;
 			case "STOP LIMIT": stopLimitOrderFull(o); break;
 			}
-
 		}
+		blockdao.updateBlocks();
 	}
 
 	public void marketOrderFull(Order o) {
@@ -111,6 +113,14 @@ public class BrokerService {
 		float max = 0;
 		float min =0;
 		
+		if (o.getOrder_type().equals("BUY")) { // BUY STOP LIMIT --> HIGH IS LIMIT
+			max = o.getLimit_price();
+			min = o.getStop_price();
+		} else {							// SELL STOP LIMIT --> HIGH IS STOP
+			max = o.getStop_price();
+			min = o.getLimit_price();
+		}
+		
 	    int price = (int) (rand.nextInt((int) ((max - min) + 1)) + min);
 	    
 		float pl = calcAmount(o.getSide(), o.getTotal_quantity(), price);
@@ -137,7 +147,7 @@ public class BrokerService {
 			case "STOP LIMIT": stopLimitOrderPartial(o); break;
 			}			
 		}
-
+		blockdao.updateBlocks();
 	}
 
 	public void limitOrderPartial(Order o) {
@@ -182,6 +192,15 @@ public class BrokerService {
 	public void stopLimitOrderPartial(Order o) {
 		float max = 0;
 		float min =0;
+		
+		if (o.getOrder_type().equals("BUY")) { // BUY STOP LIMIT --> HIGH IS LIMIT
+			max = o.getLimit_price();
+			min = o.getStop_price();
+		} else {							// SELL STOP LIMIT --> HIGH IS STOP
+			max = o.getStop_price();
+			min = o.getLimit_price();
+		}
+
 		
 	    int price = (int) (rand.nextInt((int) ((max - min) + 1)) + min);
 		int open = rand.nextInt(o.getTotal_quantity() + 1);
