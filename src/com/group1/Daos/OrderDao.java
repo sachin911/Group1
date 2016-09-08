@@ -20,6 +20,8 @@ public class OrderDao {
 		ResultSet rs = null;
 		int order_id = 0;
 		Connection con=jobj.getCon();
+		System.out.println("Create Broker order DAO : " + o.getStatus());
+		
 		String sql = "insert into order_table (side, symbol, total_quantity, limit_price, stop_price, "
 				+ "open_quantity, allocated_quantity, status, pm_id, trader_id,block_id, " 
 				+ "order_date, executed_date, currency, order_type, executed_price) " 
@@ -59,6 +61,14 @@ public class OrderDao {
 			
 			System.out.println("Order created");
 			System.out.println(o.toString());
+			
+			if(o.getStatus().equals("PM ASSIGNED")){
+				pstmt=con.prepareStatement("delete from order_table where order_id=?");
+				pstmt.setInt(1, o.getOrder_id());
+				pstmt.executeUpdate();
+				System.out.println("Deleted PM assigned order and created broker order");
+			
+			}
 
 		} catch (SQLException e) {
 			 //TODO Auto-generated catch block
@@ -68,9 +78,10 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
-		
+
 		// CALL BROKER BUT WITH A CHECK
 		
+
 		return order_id;
 	}
 	
@@ -242,6 +253,40 @@ public class OrderDao {
 		
 		return result;
 	}
+	public int getcountPM(int trader_id)
+	{
+		System.out.println("OrderDao : pl");
+		Jdbc jobj = new Jdbc();
+		int result = 0;
+		Connection con=jobj.getCon();
+		//String sql = "update order_table set status = 'CANCELLED'";
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement("select count(*) from order_table where trader_id= ? and status='PM ASSIGNED'");
+			pstmt.setInt(1, trader_id);
+			
+			rs=pstmt.executeQuery();
+			while(rs.next())
+			{
+				result=rs.getInt(1);
+			}
+				
+			System.out.println("PM assigned count : " + result);
+			con.close();
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
+		}
+		
+		
+		return result;
+	}
 	
 	public ArrayList<Order> getlist(int trader_id)
 	{
@@ -263,6 +308,49 @@ public class OrderDao {
 				Order tmp = new Order();
 				tmp.setSymbol(rs.getString(1));
 				tmp.setTotal_quantity(rs.getInt(2));
+				result.add(tmp);
+			}
+				
+			System.out.println("Total assets : " + result);
+			
+			con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+		    try { rs.close(); } catch (Exception e) { /* ignored */ }
+		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
+		    try { con.close(); } catch (Exception e) { /* ignored */ }
+		}
+		return result;
+	}
+	public ArrayList<Order> getPMlist(int trader_id)
+	{
+		System.out.println("OrderDao : trades");
+		Jdbc jobj = new Jdbc();
+		ArrayList<Order> result = new ArrayList<Order>();
+		Connection con=jobj.getCon();
+		//String sql = "update order_table set status = 'CANCELLED'";
+		ResultSet rs = null;
+		PreparedStatement pstmt = null;
+		try {
+			pstmt = con.prepareStatement("select side,symbol,total_quantity,currency,limit_price,stop_price,order_type,order_id from order_table where trader_id= ? and status='PM ASSIGNED'");
+			pstmt.setInt(1, trader_id);
+			
+			rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				Order tmp = new Order();
+				tmp.setSide(rs.getString(1));
+				tmp.setSymbol(rs.getString(2));
+				tmp.setTotal_quantity(rs.getInt(3));
+				tmp.setCurrency(rs.getString(4));
+				tmp.setLimit_price(rs.getFloat(5));
+				tmp.setStop_price(rs.getFloat(6));
+				tmp.setOrder_type(rs.getString(7));
+				tmp.setOrder_id(rs.getInt(8));
+				System.out.println(tmp);
 				result.add(tmp);
 			}
 				

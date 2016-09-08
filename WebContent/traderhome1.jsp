@@ -19,9 +19,9 @@
 			onClick="document.homeform.submit()"> 
 
 		<input type="button" class="menu__button" value="INBOX"
-			onClick="location.href='traderinbox.html'"> <input
+			onClick="document.inboxform.submit()"> <input
 			type="button" class="menu__button" value="MAKE A TRADE"
-			onClick="location.href='tradermakeatrade.html'"> <input
+			onClick="location.href='tradermaketrade.jsp'"> <input
 			type="button" class="menu__button" value="PROFIT/LOSS"
 			onClick="document.plform.submit()"> <input type="button"
 			class="menu__button selected" value="ORDER HISTORY"
@@ -35,6 +35,8 @@
 	</header>
 	<form name="homeform" action="TraderHomeServlet" method="get"></form>
 	<form name="historyform" action="TradeHistoryServlet" method="get"></form>
+	<form name="inboxform" action="NotificationServlet" method="get"></form>
+	
 	<form name="plform" action="PLServlet" method="get"></form>
 
 	<!-- Header menu buttons end -->

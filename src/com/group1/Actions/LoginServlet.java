@@ -52,6 +52,8 @@ public class LoginServlet extends HttpServlet {
 
 			userValidity = map.get(1);
 			typeOfUser = map.get(2);
+			System.out.println("User: " + typeOfUser + "; Validity: " + userValidity);
+
 			// eid=Integer.parseInt(map.get(3));
 			if (userValidity.equals("Valid User")) {
 				e = (Employee) li.get(1);
@@ -59,60 +61,64 @@ public class LoginServlet extends HttpServlet {
 				AdminDao ad = new AdminDao();
 				System.out.println(ad.checkstate(e));
 				if(ad.checkstate(e)==false)
-					{
+				{
 					System.out.println("Redirecting to home page");
 					request.setAttribute("error", "You hav been deactivated");
 					RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
 					rd.forward(request, response);
+				} else {
+
+					if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("PM")) {
+						System.out.println("Hello PM");
+
+						HttpSession session = request.getSession();
+						session.setAttribute("obj", e);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("PMHomeServlet");
+
+						rd.forward(request, response);
 					}
-				else
-				{
+					if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Trader")) {
+						System.out.println("Hello Trader");
 
-			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("PM")) {
-				HttpSession session = request.getSession();
-				session.setAttribute("obj", e);
-				RequestDispatcher rd = request
-						.getRequestDispatcher("PMHomeServlet");
-
-				rd.forward(request, response);
-			}
-			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Trader")) {
-				System.out.println(userValidity + typeOfUser);
-				HttpSession session = request.getSession();
-				session.setMaxInactiveInterval(20 * 60);
-				session.setAttribute("obj", e);
+						System.out.println(userValidity + typeOfUser);
+						HttpSession session = request.getSession();
+						session.setMaxInactiveInterval(20 * 60);
+						session.setAttribute("obj", e);
 
 
-			System.out.println(obj);
-				RequestDispatcher rd = request
-						.getRequestDispatcher("TraderHomeServlet");
-//				RequestDispatcher rd = request
-//						.getRequestDispatcher("TraderHomeServlet.java");
+						System.out.println(obj);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("TraderHomeServlet");
+						//				RequestDispatcher rd = request
+						//						.getRequestDispatcher("TraderHomeServlet.java");
 
-				session.setAttribute("test", "sachin");
-				System.out.println(session.getAttribute("obj").toString());
+						session.setAttribute("test", "sachin");
+						System.out.println(session.getAttribute("obj").toString());
 
-				// RequestDispatcher rd = request
-				// .getRequestDispatcher("TraderHomeServlet.java");
+						// RequestDispatcher rd = request
+						// .getRequestDispatcher("TraderHomeServlet.java");
 
 
-				rd.forward(request, response);
-			}
-			if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Admin")) {
-				System.out.println(userValidity + typeOfUser);
-				HttpSession session = request.getSession();
-				session.setAttribute("obj", e);
-				System.out.println(obj);
-				RequestDispatcher rd = request
-						.getRequestDispatcher("AdminServlet");
-				response.sendRedirect("AdminServlet");
-				//rd.forward(request, response);
+						rd.forward(request, response);
+					}
+					if (userValidity.equals("Valid User") && typeOfUser.equalsIgnoreCase("Admin")) {
+						System.out.println("Hello Admin");
 
-//
-//				RequestDispatcher rd = request.getRequestDispatcher("AdminHomeServlet");
-//				rd.forward(request, response);
+						System.out.println(userValidity + typeOfUser);
+						HttpSession session = request.getSession();
+						session.setAttribute("obj", e);
+						System.out.println(obj);
+						RequestDispatcher rd = request
+								.getRequestDispatcher("AdminServlet");
+						response.sendRedirect("AdminServlet");
+						//rd.forward(request, response);
 
-			}
+						//
+						//				RequestDispatcher rd = request.getRequestDispatcher("AdminHomeServlet");
+						//				rd.forward(request, response);
+
+					}
 				}
 			}
 			if (userValidity.equals("Invalid password") && typeOfUser.equalsIgnoreCase("null")) {
@@ -146,8 +152,8 @@ public class LoginServlet extends HttpServlet {
 				request.setAttribute("error", "Invalid Username/Password");
 				rd.forward(request, response);
 			}
-				
-			
+
+
 		} catch (SQLException ex) {
 			// TODO Auto-generated catch block
 			ex.printStackTrace();

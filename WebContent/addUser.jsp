@@ -18,18 +18,20 @@
 				<h2>Add user</h2>
 				<form action="AddUserServlet" method="get">
 					
-				<p>First Name <input type="text" name="firstname" /></p>
-				<p>Last Name <input type="text" name="lastname" ></p>
-				<p>Username <input type="text" name="username" ></p>
-				<p>Password <input type="password" name="password" ></p>
+				<p>First Name <input type="text" name="firstname" required/></p>
+				<p>Last Name <input type="text" name="lastname" required></p>
+				<p>Username <input type="text" id="username" name="username" required ></p>
+				<p>Password <input type="password" id="password" name="password" onkeyup="validate()" required></p>
+				<p id ="keyup"></p>
+				
 				<p>Role <!--  <input type="text" name="role" >-->
-				<select name="role" id="role" onchange="disable(this)">
-				<option value="Trader">Trader</option>
+				<select required name="role" id="role" onchange="disable(this)">
+				<option selected value="Trader">Trader</option>
 				<option value="PM">PM</option>
 				<option value="Admin">Admin</option>
 				</select></p>
 				<p>Manager<!--  <input type="text" name="pm_id"  >--> 
-				<select name="pm_id" id="pm_id">
+				<select required name="pm_id" id="pm_id">
 				<%AdminController ac = new AdminController(); 
 				ArrayList<Integer> pmlist=ac.getpm_id();
 				System.out.println(pmlist);
@@ -41,7 +43,7 @@
 				<%} %>
 				</select></p>
 
-				<input class="generalbutton" type = "submit" value = "Edit">
+				<input class="generalbutton" type = "submit" value = "Add">
 				<button class="generalbutton" onClick="adminhome1.jsp">Cancel</button>
 				</form>
 			</article>
@@ -55,6 +57,27 @@
 			else
 				document.getElementById("pm_id").disabled=true;
 		}
+		function validate(){
+			
+			var u=document.getElementById("username").value;
+			var p=document.getElementById("password").value;
+			
+			if(u===p)
+				{
+				
+				document.getElementById("keyup").innerHTML="Username = Password";
+				
+				}
+			else if(p.length<8)
+			{
+				document.getElementById("keyup").innerHTML="Password too short, minimum 8 characters";
+			}
+			else 
+				{
+				document.getElementById("keyup").innerHTML="";
+				}
+			
+		};
 		</script>
 	</body>
 </html>
