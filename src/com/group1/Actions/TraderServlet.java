@@ -50,7 +50,7 @@ public class TraderServlet extends HttpServlet {
 		TraderController tc = new TraderController();
 		HttpSession session = request.getSession();
 		Employee e = (Employee)session.getAttribute("obj");
-		System.out.println("session-----------"+session.getAttribute("test")+ " " + e.toString());
+//		System.out.println("session-----------"+session.getAttribute("test")+ " " + e.toString());
 		
 		List<Order> orders = new ArrayList<Order>();
 		int pmorders=tc.getcountPM(e.getEmployee_id());
