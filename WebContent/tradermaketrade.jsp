@@ -212,7 +212,7 @@
 			    	        
 			    	    },
 			    	fail : function(response){
-			    		alert("its fucked");
+			    		alert("its fuckedsss");
 			    	}
 			    	});
 			    

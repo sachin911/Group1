@@ -26,7 +26,7 @@ import com.group1.Models.Trader;
 @WebServlet("/TraderServlet")
 public class TraderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	//fuck
 
 	public TraderServlet() {
 		super();
