@@ -21,7 +21,7 @@
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
 
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome1.jsp'">
+				<input type="button" class="menu__button" value="HOME" onClick="location.href='TraderHomeServlet'">
 				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
 				<input type="button" class="menu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
 				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
