@@ -20,7 +20,7 @@
 		<input type="button" class="menu__button" value="INBOX"
 			onClick="location.href='traderinbox.html'"> <input
 			type="button" class="menu__button" value="MAKE A TRADE"
-			onClick="location.href='tradermakeatrade.html'"> <input
+			onClick="location.href='tradermaketrade.jsp'"> <input
 			type="button" class="menu__button" value="PROFIT/LOSS"
 			onClick="document.plform.submit()"> <input type="button"
 			class="menu__button selected" value="ORDER HISTORY"
