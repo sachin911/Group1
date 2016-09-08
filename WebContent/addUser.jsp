@@ -78,7 +78,6 @@
 				}
 			
 		};
-	<!--	object.addEventListener("keyup",myscript)-->
 		</script>
 	</body>
 </html>
