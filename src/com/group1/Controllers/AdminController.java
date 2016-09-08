@@ -71,6 +71,9 @@ public class AdminController {
 	public List<Employee> getAllTraders() {
 		return AdminService.getAllTraders();
 	}
+	public List<Integer> getAllPMTraders(int id) {
+		return AdminService.getAllPMTraders(id);
+	}
 	public List<Employee> getNTraders() {
 		return AdminService.getNTraders();
 	}

@@ -21,6 +21,9 @@ public class AdminService implements AdminServiceInterface {
 	public static List<Employee> getAllTraders() {
 		return adminDao.getAllTraders();
 	}
+	public static List<Integer> getAllPMTraders(int id) {
+		return adminDao.getAllPMTraders(id);
+	}
 	public static List<Employee> getNTraders() {
 		return adminDao.getNTraders();
 	}

@@ -198,6 +198,33 @@ public class AdminDao {
 		}
 		 return emps;
 	} 
+	public List<Integer> getAllPMTraders(int id) {
+		Connection con = jdbc.getCon();
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		List<Integer> emps = new ArrayList<Integer>();
+
+		try {
+			stmt = con.prepareStatement("select employee_id from employee where role='Trader' and pm_id=?");
+			stmt.setInt(1, id);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				
+				int tid = rs.getInt(1);
+				
+				emps.add(tid);
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try { rs.close(); } catch (Exception e) { /* ignored */ }
+			try { stmt.close(); } catch (Exception e) { /* ignored */ }
+			try { con.close(); } catch (Exception e) { /* ignored */ }
+		}
+		 return emps;
+	} 
 	public List<Employee> getNTraders() {
 		Connection con = jdbc.getCon();
 		PreparedStatement stmt = null;
