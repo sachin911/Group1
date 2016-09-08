@@ -78,6 +78,10 @@ public class OrderDao {
 		    try { pstmt.close(); } catch (Exception e) { /* ignored */ }
 		    try { con.close(); } catch (Exception e) { /* ignored */ }
 		}
+
+		// CALL BROKER BUT WITH A CHECK
+		
+
 		return order_id;
 	}
 	

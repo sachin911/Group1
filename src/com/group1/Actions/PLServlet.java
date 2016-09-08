@@ -44,7 +44,6 @@ public class PLServlet extends HttpServlet {
 		List<Order> displayPlList = new ArrayList<>();
 		displayPlList = plController.PLCalculation(e.getEmployee_id(), e.getRole());
 		request.setAttribute("displayPlList", displayPlList);
-		System.out.println(e.getRole());
 		if(e.getRole().equalsIgnoreCase("Trader")){
 		RequestDispatcher rd=request.getRequestDispatcher("tradeprofitloss1.jsp");  
 		System.out.println(displayPlList);

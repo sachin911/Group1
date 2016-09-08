@@ -86,7 +86,7 @@ public class TraderServlet extends HttpServlet {
 
 		}else {	
 			JSONObject obj = new JSONObject(str_array[0]+"}");
-				tc.createTraderBokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
+				tc.createTraderBrokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
 						e.getPm_id() , e.getEmployee_id(),
 						(String)obj.get("Side") , (String)obj.get("Symbol"),
 						(String)obj.get("Currency"),(String)obj.get("Order Type"),

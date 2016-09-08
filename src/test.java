@@ -6,6 +6,7 @@ import java.util.Random;
 import com.group1.Controllers.*;
 import com.group1.Models.Order;
 import com.group1.Services.BrokerService;
+import com.group1.Services.OrderService;
 import com.group1.Controllers.AdminController;
 import com.group1.Controllers.PMController;
 import com.group1.Daos.Jdbc;
@@ -21,18 +22,25 @@ public class test {
 		PMController pmc = new PMController();
 		TraderController tc = new TraderController();
 
-		//		boolean result = ac.AddAdminController("reed", "sox", "reed", "spencer", "Trader", 11);
-		//		boolean result1 = ac.AddAdminController("brian", "surf", "brian", "mahoney", "Trader", 11);
-		//		boolean result2 = ac.AddAdminController("pat", "titos", "pat", "coyne", "Trader", 11);
+//		// Q, PM_ID, PM_ID, SIDE, SYMBOL, CURRENCY, TYPE, LIMIT, STOP
+		pmc.createPMBrokerOrder(90, 65, 65, "BUY", "AAAA", "AUD", "STOP", 0, 95);
+		pmc.createPMBrokerOrder(55, 65, 65, "BUY", "PIPE", "GBP", "MARKET", 0, 0);
+		pmc.createPMTraderOrder(1000, 65, 66, "BUY", "JEWEL", "USD", "LIMIT", 50, 0);
+		
+		
+		tc.createTraderBrokerOrder(100, 65, 66, "BUY", "GOOGL", "USD", "MARKET", 0, 0);
+		tc.createTraderBrokerOrder(50, 65, 66, "BUY", "PIPE", "GBP", "LIMIT", 90, 0);
+		
+		
+		tc.createTraderBrokerOrder(30, 65, 66, "BUY", "CATS", "EUR", "STOP", 0, 100);
+		tc.createTraderBrokerOrder(150, 65, 66, "SELL", "GOOGL", "USD", "MARKET", 0, 0);
 
+		
 
-		//		boolean result = pmc.createPMBrokerOrder(10, 11, 11, "BUY", "COCA", "410K", "USD", "MARKET", 110, 0);
-		//		boolean result1 = pmc.createPMTraderOrder(1000, 11, 16, "BUY", "GOOGL", "ROTH-IRA", "USD", "MARKET", 50, 0);
-		//		boolean result2 = tc.createTraderBrokerOrder(50, 11, 16, "BUY", "GOOGL", "FARLEY", "AUD", "LIMIT", 95, 0);
-		//		boolean result3 = tc.createTraderBrokerOrder(30, 11, 16, "SELL", "GOOGL", "FARLEY", "USD", "MARKET", 0, 0);
+//		BrokerService bs = new BrokerService();
+//		bs.broker();
 
-
-		List<Double> var = var();
+		//List<Double> var = var();
 
 	}
 
@@ -41,7 +49,7 @@ public class test {
 		double ninetyPercent = -1.285;
 		double ninetyFivePercent = -1.65;
 		double ninetyNinePercent = -2.325;
-		
+
 		List<Double> percentages = new ArrayList<Double>();
 		List<Double> vars = new ArrayList<Double>();
 

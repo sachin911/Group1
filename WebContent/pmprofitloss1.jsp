@@ -16,7 +16,7 @@
 
 			<!-- Menu buttons -->
 			<div class="menu__buttonbox">
-				<input type="button" class="menu__button" value="HOME" onClick="location.href='pmhome1.jsp'">
+				<input type="button" class="menu__button" value="HOME" onClick="document.homeform.submit()">
 				<input type="button" class="menu__button" value="TRADERS" onClick="location.href='pmtraders.html'">
 				<input type="button" class="menu__button" value="MAKE A TRADE" onClick="location.href='pmmakeatrade.html'">
 				<input type="button" class="menu__button selected" value="PROFIT/LOSS" onClick="document.plform.submit()">
@@ -27,6 +27,7 @@
 		<!-- Header menu buttons end -->
 <form name="historyform" action="TradeHistoryServlet" method = "get"></form>
 <form name="plform" action="PLServlet" method = "get"></form>
+<form name="homeform" action="PMHomeServlet" method="get"></form>
 		<main class="traderproflossmain">
 		<!-- profloss table -->
 			<div class="profloss">
@@ -36,7 +37,7 @@
 						<tr>
 							<th name="symbol">Symbol</th>
 							<th name="quantity">Quantity</th>
-							<th name="ordertype">Order Type</th>
+							<!--	<th name="ordertype">Order Type</th> -->
 							<th name="priceexecuted">Price Executed</th>
 							<th name="currentprice">Current Price</th>
 							<th name="basecurrency">Base Currency</th>
@@ -47,14 +48,14 @@
 				for(int i = 0;i<list.size();i++){ %>
 					<tr>
 					
-							<th><%=list.get(i).getSymbol()%></th>
-							<th><%=list.get(i).getOpen_quantity()%></th>
-							<th><%=list.get(i).getOrder_type()%></th>
-							<th><%=list.get(i).getExecuted_price()%></th>
-							<th ><% Random rand = new Random();float current_price;%>
-							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></th>
-							<th><%=list.get(i).getCurrency()%></th>
-							<th><%float pl; %><%= pl = (float) (list.get(i).getExecuted_price() - current_price) * list.get(i).getOpen_quantity() %></th>
+							<td><%=list.get(i).getSymbol()%></td>
+							<td><%=list.get(i).getOpen_quantity()%></td>
+							<!--  	<td><%=list.get(i).getOrder_type()%></td> -->
+							<td><%=list.get(i).getExecuted_price()%></td>
+							<td><% Random rand = new Random();float current_price;%>
+							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></td>
+							<td><%=list.get(i).getCurrency()%></td>
+							<td><%float pl; %><%= pl = (float) (list.get(i).getExecuted_price() - current_price) * list.get(i).getOpen_quantity() %></td>
 						</tr>
 		<% 	}}%>
 						<tbody>
