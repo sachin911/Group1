@@ -18,23 +18,16 @@
 	<!-- Header menu buttons end -->
 	<form name="historyform" action="TradeHistoryServlet" method="get"></form>
 
-	<div class="menu__buttonbox">
-		<input type="button" class="menu__button" value="HOME"
-			onClick="location.href='traderhome1.jsp'"> <input
-			type="button" class="menu__button" value="INBOX"
-			onClick="location.href='traderinbox.html'"> <input
-			type="button" class="menu__button selected" value="MAKE A TRADE"
-			onClick="location.href='tradermakeatrade.html'"> <input
-			type="button" class="menu__button" value="PROFIT/LOSS"
-			onClick="location.href='traderprofitloss.html'"> <input
-			type="button" class="menu__button" value="ORDER HISTORY"
-			onClick="document.historyform.submit()"> <input type="button"
-			class="menu__button logoutbutton" value="LOG OUT"
-			onClick="location.href='logoutservlet'">
-	</div>
-	</header>
-	<!-- Header menu buttons end -->
-
+			<div class="menu__buttonbox">
+				<input type="button" class="menu__button" value="HOME" onClick="location.href='TraderHomeServlet'">
+				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.jsp'">
+				<input type="button" class="menu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="document.historyform.submit()">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='logoutservlet'">
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
 	<main class="tradermakeatrademain">
 	<div class="makeatrade">
 		<h2 class="makeatrade__header">Make a Trade</h2>
@@ -59,6 +52,8 @@
 									<option value="BUY">Buy</option>
 									<option value="SELL">Sell</option>
 							</select></td>
+							
+
 
 							<td><input type="text" class="table__input"
 								name="symbolinput"></td>
