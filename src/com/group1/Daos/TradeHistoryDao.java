@@ -13,7 +13,7 @@ import com.group1.Models.Order;
 public class TradeHistoryDao {
 
 	Jdbc jdbc = new Jdbc();
-	public List<Order> historyList = new ArrayList<>(0);
+	public List<Order> historyList = new ArrayList<>();
 	
 	
 	public List displayTradeHistory(Employee user){

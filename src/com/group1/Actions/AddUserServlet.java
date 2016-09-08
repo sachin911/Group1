@@ -30,19 +30,20 @@ public class AddUserServlet extends HttpServlet {
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String first_name = request.getParameter("first_name");
-		String last_name = request.getParameter("last_name");
+		String first_name = request.getParameter("firstname");
+		String last_name = request.getParameter("lastname");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String role = request.getParameter("role");
 		String pm_idStr = request.getParameter("pm_id");
-
-		int pm_id = Integer.parseInt(pm_idStr);
+		int pm_id=0;
+if(request.getParameter("pm_id")!=null)
+		 pm_id = Integer.parseInt(pm_idStr);
 
 		AdminController ac = new AdminController();
 		boolean result = ac.AddAdminController(username, password, first_name, last_name, role, pm_id);
 		System.out.println(result);
-		
+		response.sendRedirect("AdminServlet");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

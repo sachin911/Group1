@@ -1,6 +1,6 @@
 package com.group1.Controllers;
 
-import java.util.List;
+import java.util.*;
 
 import com.group1.Models.Admin;
 import com.group1.Models.Employee;
@@ -38,11 +38,13 @@ public class AdminController {
 		}
 		
 		//returns boolean
+		//System.out.println(e.getFirst_Name()+" "+e.getUserName());
 		return AdminService.removeEmployee(e);
 	}
 	
 	public boolean EditAdminController(String username, String password, String first_name, String last_name, String role, int pm_id) {	
 		System.out.println("Controller");
+		System.out.println(username);
 		if (role.equals("PM")) {
 			this.e = new PM(username, password, first_name, last_name, role);
 		} else if (role.equals("Trader")) {
@@ -50,14 +52,34 @@ public class AdminController {
 		} else {
 			this.e = new Admin(username, password, first_name, last_name, role);
 		}
-		
 		//returns boolean
+		System.out.println(e.getFirst_Name()+" "+e.getUserName());
 		return AdminService.editEmployee(e);
 	}
-	
+	public boolean RemoveEmpController2(String username)
+	{
+		System.out.println("Controller");
+		System.out.println(username);
+		return AdminService.removeEmp2(username);
+	}
+	public boolean ActivateEmpController(String username)
+	{
+		System.out.println("Controller");
+		System.out.println(username);
+		return AdminService.activeEmp(username);
+	}
 	public List<Employee> getAllTraders() {
 		return AdminService.getAllTraders();
 	}
-	
+	public List<Employee> getNTraders() {
+		return AdminService.getNTraders();
+	}
+	public ArrayList<Integer> getpm_id()
+	{
+		ArrayList<Integer> pmlist=new ArrayList<Integer>();
+		pmlist=AdminService.getpm_id();
+		return pmlist;
+		
+	}
 	
 }

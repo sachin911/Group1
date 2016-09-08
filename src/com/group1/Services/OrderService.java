@@ -8,11 +8,11 @@ import com.group1.Models.Order;
 public class OrderService {
 	static OrderDao orderDao = new OrderDao();
 	
-	public static boolean createBrokerOrder(Order o) {
+	public static int createBrokerOrder(Order o) {
 		return orderDao.createBrokerOrder(o);
 	}
 	
-	public static boolean createPMAssignedOrder(Order o) {
+	public static int createPMAssignedOrder(Order o) {
 		return orderDao.createPMAssignedOrder(o);
 	}
 	

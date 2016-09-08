@@ -75,7 +75,7 @@
 		var rown = button.parentNode.parentNode.rowIndex;
 		var u = document.getElementById("trader").rows[rown].cells[0].innerHTML;
 
-		window.location.href = "pmtraderviewportfolio.html?uname=" + u;
+		window.location.href = "PmviewPortfolioServlet?uname=" + u;
 	}
 	
 	</script>

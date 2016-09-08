@@ -1,5 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%@ page import="java.util.*" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.group1.Models.Order" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -30,16 +34,28 @@
 	<h2 class="pmviewtrader__header">Portfolio</h2>
 	<table class="portfolio__table" name="traderportfolio">
 		<tr>
+			<th name="portfolioid">Portfolio ID</th>
 			<th name="symbol">Symbol</th>
 			<th name="quantity">Quantity</th>
-			<th name="basecurrency">Base Currency</th>
-			<th name="usdvalue">USD Value</th>
+			<th name="currency">Currency</th>
 			<th name="executedprice">Executed Price</th>
-			<th name="averageprice">Average Price</th>
-			<th name="currentshareprice">Current Share Price</th>
-			<th name="marketvalue">Market Value</th>
-			<th name="profitloss">Profit/loss</th>
-		</tr>
+					</tr>
+					
+					<% List<Order> list = (ArrayList<Order>) request.getAttribute("li");
+                   if(list!=null){
+				for(int i = 0;i<list.size();i++){ %>
+					<tr>
+					<td><%=list.get(i).getOrder_id()%></td>
+							<td><%=list.get(i).getSymbol()%></td>
+							<td><%=list.get(i).getOpen_quantity()%></td>
+						
+							<td><%=list.get(i).getExecuted_price()%></td>
+							<td><% Random rand = new Random();float current_price;%>
+							<%= current_price = (float)((list.get(i).getExecuted_price() + rand.nextDouble()*15) - 5) %></td>
+							<td><%=list.get(i).getCurrency()%></td>
+							<td><%float pl; %><%= pl = (float) (list.get(i).getExecuted_price() - current_price) * list.get(i).getOpen_quantity() %></td>
+						</tr>
+		<% 	}}%>
 		<tbody>
 
 		</tbody>
