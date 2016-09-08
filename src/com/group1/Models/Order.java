@@ -23,6 +23,21 @@ public class Order {
 		this.stop_price = stop_price;
 		this.status = "PENDING";
 	}
+	public Order(int order_id,int total_quantity, int pm_id, int trader_id, String side, String symbol,
+			String currency, String order_type, float limit_price, float stop_price) {
+		this.order_id=order_id;
+		this.total_quantity = total_quantity;
+		this.allocated_quantity = total_quantity;
+		this.pm_id = pm_id;
+		this.trader_id = trader_id;
+		this.side = side;
+		this.symbol = symbol;
+		this.currency = currency;
+		this.order_type = order_type;
+		this.limit_price = limit_price;
+		this.stop_price = stop_price;
+		this.status = "PM ASSIGNED";
+	}
 
 	// public Order(int order_id, int total_quantity, int open_quantity,
 	// int allocated_quantity, int pm_id, int trader_id, int block_id,

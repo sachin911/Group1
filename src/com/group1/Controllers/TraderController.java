@@ -69,6 +69,7 @@ public class TraderController {
 		
 		BrokerService bs = new BrokerService();
 		bs.broker();
+		
 		//block_service.executeBlockService(new_block);
 		//System.out.println("Block is created-------"+is_block_created + " and " + blockUpdated);
 		
@@ -109,6 +110,22 @@ public class TraderController {
 	{
 		OrderService os =  new OrderService();
 		ArrayList<Order> tassets = os.getlist(trader_id);
+
+
+		return tassets;
+	}
+	public ArrayList<Order> getPMOrders(int trader_id)
+	{
+		OrderService os =  new OrderService();
+		ArrayList<Order> tassets = os.getPMlist(trader_id);
+System.out.println("Controller : " + tassets);
+
+		return tassets;
+	}
+	public int getcountPM(int trader_id)
+	{
+		OrderService os =  new OrderService();
+		int tassets = os.getcountPM(trader_id);
 
 
 		return tassets;

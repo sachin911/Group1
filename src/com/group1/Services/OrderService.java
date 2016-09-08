@@ -33,11 +33,26 @@ public class OrderService {
     	int n =  orderDao.getpl(trader_id);
     	return n;
     }
+    public int getcountPM(int trader_id)
+    {
+    	System.out.println("OrderService : pl");
+    	int n =  orderDao.getcountPM(trader_id);
+    	return n;
+    }
+
     
     public ArrayList<Order> getlist(int trader_id)
     {
     	System.out.println("OrderService : lists");
     	ArrayList<Order> n =  orderDao.getlist(trader_id);
+    	return n;
+    }
+    public ArrayList<Order> getPMlist(int trader_id)
+    {
+    	
+    	ArrayList<Order> n =  orderDao.getPMlist(trader_id);
+    	System.out.println("OrderService : lists");
+    	System.out.println("n");
     	return n;
     }
 }

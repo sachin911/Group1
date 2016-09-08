@@ -56,7 +56,8 @@ public class PMTradeServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Employee e = (Employee)session.getAttribute("obj");
 		System.out.println("session-----------"+session.getAttribute("test")+ " " + e.toString());
-		
+		System.out.println(("pm id: "+ e.getPm_id()));
+
 		List<Order> orders = new ArrayList<Order>();
 		System.out.println();
 		JSONObject obj = new JSONObject(str_array[0]+"}");
@@ -64,7 +65,7 @@ public class PMTradeServlet extends HttpServlet {
 		String tb=(String)obj.getString("Trader/Broker");
 		if(tb.equals("Trader")){
 			pmc.createPMTraderOrder(Integer.valueOf((String) obj.get("Total Quantity")),
-					e.getPm_id() , Integer.valueOf((String) obj.get("TraderId")),
+					e.getEmployee_id() , Integer.valueOf((String) obj.get("TraderId")),
 					(String)obj.get("Side") , (String)obj.get("Symbol"),
 					(String)obj.get("Currency"),(String)obj.get("Order Type"),
 					Float.valueOf((String) obj.get("Limit Price")),
@@ -73,7 +74,7 @@ public class PMTradeServlet extends HttpServlet {
 		}else {	
 			
 			pmc.createPMBrokerOrder(Integer.valueOf((String) obj.get("Total Quantity")),
-					e.getPm_id() , e.getPm_id(),
+					e.getEmployee_id() , e.getPm_id(),
 					(String)obj.get("Side") , (String)obj.get("Symbol"),
 					(String)obj.get("Currency"),(String)obj.get("Order Type"),
 					Float.valueOf((String) obj.get("Limit Price")),
