@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Trader Make a Trade</title>
+		<link rel="stylesheet" href="style/style.css">
+	</head>
+	<body>
+		<header class="menu">
+			<img class="menu__logo" src="images/Logo.png">
+
+			<!-- Menu buttons -->
+			<div class="menu__buttonbox">
+				<input type="button" class="menu__button" value="HOME" onClick="location.href='traderhome.html'">
+				<input type="button" class="menu__button" value="INBOX" onClick="location.href='traderinbox.html'">
+				<input type="button" class="menu__button selected" value="MAKE A TRADE" onClick="location.href='tradermakeatrade.html'">
+				<input type="button" class="menu__button" value="PROFIT/LOSS" onClick="location.href='traderprofitloss.html'">
+				<input type="button" class="menu__button" value="ORDER HISTORY" onClick="location.href='traderorderhistory.html'">
+				<input type="button" class="menu__button logoutbutton" value="LOG OUT" onClick="location.href='login.html'">
+			</div>
+		</header>
+		<!-- Header menu buttons end -->
+		<main class="tradermakeatrademain">
+			<div class="makeatrade">
+				<h2 class="makeatrade__header">Make a Trade</h2>
+				<div class="scrollwrapper">
+					
+						<table class="makeatrade__table" id="maketradetable" name="tradetable">
+							<tr>
+								<form>
+									<th name="side">Side</th>
+									<th name="symbol">Symbol</th>
+									<th name="totalquantity">Total Quantity</th>
+									<th name="currency">Currency</th>
+									<th name="limitprice">Limit Price</th>
+									<th name="stopprice">Stop Price</th>
+									<th name="ordertype">Order Type</th>
+									<th class="displaynone" name="checkbox"></th>
+								</form>
+							</tr>
+							<tbody id="tablebody">
+								<tr id="tablerow">
+									<form>
+										<td>
+											<select name="ordertypeinput">
+												<option value="BUY">Buy</option>
+												<option value="SELL">Sell</option>
+											</select>
+										</td>
+
+										<td><input type="text" class="table__input" name="symbolinput"></td>
+
+										<td><input type="text" class="table__input" name="totalquantityinput"></td>
+										
+										<td>
+											<select name="currencyinput">
+												<option value="AUD">AUD</option>
+												<option value="CAD">CAD</option>
+												<option value="CHF">CHF</option>
+												<option value="EUR">EUR</option>
+												<option value="GBP">GBP</option>
+												<option value="INR">INR</option>
+												<option value="USD">USD</option>
+											</select>	
+										</td>
+										
+										<td><input type="text" class="table__input" name="limitpriceinput"></td>
+										
+										<td><input type="text" class="table__input" name="stoppriceinput"></td>
+										
+										<td>
+											<select name="ordertypeinput">
+												<option value="LIMIT">Limit</option>
+												<option value="STOP">Stop</option>
+												<option value="STOP LIMIT">Stop Limit</option>
+												<option value="MARKET">Market</option>
+											</select>
+										</td>
+										<td class="displaynone"><input type="checkbox" class="table__input" name="checkboxinput"></td>
+									</form>
+								</tr>
+							</tbody>
+						</table>
+						
+				</div>
+					<button class="createbutton generalbutton" id="addbutton">Add row</button>
+					<button onclick="deleteRow('maketradetable')" class="deletebutton generalbutton" name="deletebutton">Delete row</button>
+					<input type="submit" class="submittrade generalbutton" value="Submit" name="submittradebutton">
+			</div>
+
+
+		<!-- makeatrade table -->
+			<div class="makeatradeinstructions">
+				<h2 class="makeatradeinstructions__header">PM Trade Orders</h2>
+				<div class="scrollwrapper">
+					<table id="makeatradeinstructions__table" class="makeatradeinstructions__table" name="tradeinstructionstable">
+						<thead>
+							<tr>
+								<th name="sideinstructions">Side</th>
+								<th name="symbolinstructions">Symbol</th>
+								<th name="totalquantityinstructions">Total Quantity</th>
+								<th name="currencyinstructions">Currency</th>
+								<th name="limitpriceinstructions">Limit Price</th>
+								<th name="stoppriceinstructions">Stop Price</th>
+								<th name="ordertypeinstructions">Order Type</th>
+								<th name="checkboxcolumn"></th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td name="sideinstructions">Side</td>
+								<td name="symbolinstructions">Symbol</td>
+								<td name="totalquantityinstructions">Total Quantity</td>
+								<td name="currencyinstructions">Currency</td>
+								<td name="limitpriceinstructions">Limit Price</td>
+								<td name="stoppriceinstructions">Stop Price</td>
+								<td name="ordertypeinstructions">Order Type</td>
+								<td><input type="checkbox" class="checkbox"></td>
+							</tr>
+						
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</main>
+		<script src="JavaScript/makeatrade.js"></script>
+		<script src="JavaScript/bundle.js"></script>
+	</body>
+</html>

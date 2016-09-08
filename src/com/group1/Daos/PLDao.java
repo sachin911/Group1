@@ -23,7 +23,7 @@ public class PLDao {
 		try{
 			ResultSet result = null;
 			if(user.getRole().equals("PM")){
-			stmt = con.prepareStatement("SELECT * FROM PORTFOLIO WHERE EMP_ID = ?");
+			stmt = con.prepareStatement("SELECT * FROM PORTFOLIO WHERE PM_ID = ?");
 			stmt.setInt(1, user.getEmployee_id());
 			result = stmt.executeQuery();
 			}
